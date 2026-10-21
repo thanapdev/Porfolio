@@ -32,10 +32,10 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
   return (
     <article className={`wrap ${s.page}`}>
       <header className={s.head}>
-        <ul className="chips">{p.tags.map((t) => <li key={t}>{t}</li>)}</ul>
-        <h1 className={`disp ${s.title}`}>{p.title}</h1>
+        <ul className="chips">{p.tags.map((t) => <li key={t}><Text value={t} /></li>)}</ul>
+        <h1 className={`disp ${s.title}`}><Text value={p.title} /></h1>
         <p className={`hand ${s.meta}`}>
-          {p.role} · {p.team} · {p.year} · {p.readTime} min read
+          <Text value={p.role} /> · <Text value={p.team} /> · {p.year} · {p.readTime} min read
         </p>
         <p className={s.metric}>
           <b className="hand"><Text value={p.metric.value} /></b> <Text value={p.metric.label} />
