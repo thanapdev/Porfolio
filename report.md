@@ -19,8 +19,8 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 |---|---|
 | 1. Compare 3 directions (mockup) | Done. `mockup-directions.html` |
 | 2. Full-page mockup of the chosen direction | Done, approved by the owner. `mockup-full.html` |
-| 3. Spec for the real site (Next.js + Vercel) | Written, waiting for the owner's review. `docs/superpowers/specs/2026-10-21-portfolio-site-design.md` |
-| 4. Implementation plan | Not started |
+| 3. Spec for the real site (Next.js + Vercel) | Approved. `docs/superpowers/specs/2026-10-21-portfolio-site-design.md` |
+| 4. Implementation plan | Written, waiting for the owner's review and choice of execution method. `docs/superpowers/plans/2026-10-21-portfolio-site.md` (8 tasks) |
 | 5. Build + deploy | Not started |
 
 ## Decisions (with reasons)
@@ -84,7 +84,7 @@ Facts that need the owner's confirmation:
 
 Next steps:
 
-- [ ] Owner reviews the spec. Then write the implementation plan with the `superpowers:writing-plans` skill.
+- [ ] Owner reviews the plan and picks an execution method (subagent-driven or native). Then start at Task 1.
 
 Known mockup limits:
 
@@ -109,4 +109,4 @@ Known mockup limits:
 
 ## Log
 
-- 2026-10-21: Built the 3-direction mockup. The owner picked a mix of 2 and 3, then approved the full-page mockup. Filled in real data from GitHub. Created this report. Connected the folder to GitHub and pushed the first commit. Wrote the real-site spec.
+- 2026-10-21: Built the 3-direction mockup. The owner picked a mix of 2 and 3, then approved the full-page mockup. Filled in real data from GitHub. Created this report. Connected the folder to GitHub and pushed the first commit. Wrote the real-site spec (approved) and the implementation plan.
