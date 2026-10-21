@@ -7,6 +7,7 @@ import {
   Noto_Sans_Thai,
 } from 'next/font/google';
 import './globals.css';
+import Nav from '@/components/Nav';
 
 const body = Space_Grotesk({
   subsets: ['latin'],
@@ -56,7 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip" href="#main">
           Skip to content
         </a>
-        {children}
+        <Nav />
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
       </body>
     </html>
   );
