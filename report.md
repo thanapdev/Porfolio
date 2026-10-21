@@ -19,7 +19,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 |---|---|
 | 1. Compare 3 directions (mockup) | Done. `mockup-directions.html` |
 | 2. Full-page mockup of the chosen direction | Done, approved by the owner. `mockup-full.html` |
-| 3. Spec for the real site (Next.js + Vercel) | Not started |
+| 3. Spec for the real site (Next.js + Vercel) | Written, waiting for the owner's review. `docs/superpowers/specs/2026-10-21-portfolio-site-design.md` |
 | 4. Implementation plan | Not started |
 | 5. Build + deploy | Not started |
 
@@ -41,7 +41,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - Touch targets are at least 44px.
   - The timeline table turns into a stacked list on mobile.
 - **Yee-Peng-CNX role follows the repo README** (owner's decision, 2026-10-21): Experience Designer, covering UX/UI design and the cinematic look. Do not claim dev work on this project. Wiriya Thepbangchag is credited as Lead Developer.
-- **Planned stack for the real site:** Next.js, deployed on Vercel. Not yet confirmed in a spec.
+- **Real-site decisions (2026-10-21):** Next.js App Router, MDX content in the repo, CSS Modules (no Tailwind), English only, full case-study pages, static on Vercel. Details are in the spec.
 
 ## Data sources
 
@@ -84,8 +84,7 @@ Facts that need the owner's confirmation:
 
 Next steps:
 
-- [ ] Write the spec for the real Next.js site.
-- [ ] Turn the spec into an implementation plan.
+- [ ] Owner reviews the spec. Then write the implementation plan with the `superpowers:writing-plans` skill.
 
 Known mockup limits:
 
@@ -110,4 +109,4 @@ Known mockup limits:
 
 ## Log
 
-- 2026-10-21: Built the 3-direction mockup. The owner picked a mix of 2 and 3, then approved the full-page mockup. Filled in real data from GitHub. Created this report. Connected the folder to GitHub and pushed the first commit.
+- 2026-10-21: Built the 3-direction mockup. The owner picked a mix of 2 and 3, then approved the full-page mockup. Filled in real data from GitHub. Created this report. Connected the folder to GitHub and pushed the first commit. Wrote the real-site spec.
