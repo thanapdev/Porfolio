@@ -20,8 +20,8 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 | 1. Compare 3 directions (mockup) | Done. `mockup-directions.html` |
 | 2. Full-page mockup of the chosen direction | Done, approved by the owner. `mockup-full.html` |
 | 3. Spec for the real site (Next.js + Vercel) | Approved. `docs/superpowers/specs/2026-10-21-portfolio-site-design.md` |
-| 4. Implementation plan | Written, waiting for the owner's review and choice of execution method. `docs/superpowers/plans/2026-10-21-portfolio-site.md` (8 tasks) |
-| 5. Build + deploy | Not started |
+| 4. Implementation plan | Written and executed. `docs/superpowers/plans/2026-10-21-portfolio-site.md` (8 tasks) |
+| 5. Build + deploy | Build done on branch `feat/site` (all 8 tasks), not merged, not deployed. Deploy steps are in `README.md`. |
 
 ## Decisions (with reasons)
 
@@ -67,16 +67,16 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 
 ## Open items
 
-Placeholders still in `mockup-full.html` (search for `class="ph"`):
+Placeholders still on the real site. A production build (`VERCEL_ENV=production`) fails until they are gone. Search `className="ph"` and `[` bracket values in `content/work/*.mdx` frontmatter (`tldr.problem`, `tldr.result`, and any bracketed `metric`).
 
-- [ ] Year of study or current status.
-- [ ] The problem each case study solves (both cards).
-- [ ] Reading time for each case study.
-- [ ] Real outcome numbers. The cards currently show project-scope numbers ("3 rituals", "13 roles"), not real-world results.
-- [ ] Real screenshots and a profile photo.
-- [ ] Resume PDF.
-- [ ] Role in QueueApp and in TiguS.
-- [ ] Research methods to show on the back of the "User Research" chip.
+- [ ] Year of study or current status (`components/About.tsx`).
+- [ ] Profile photo (`components/About.tsx`, add `/profile.jpg`).
+- [ ] The problem and result of each case study (frontmatter `tldr`, plus body sections).
+- [ ] Real outcome numbers and the goal, research and caption sections in both MDX bodies.
+- [ ] Real screenshots (covers and BeforeAfter images).
+- [ ] Resume PDF (`/resume.pdf`; the Contact button is still a placeholder).
+- [ ] Role in QueueApp and in TiguS (`lib/timeline-extra.ts`).
+- [ ] Research methods on the back of the "User Research" chip.
 
 Facts that need the owner's confirmation:
 
@@ -84,12 +84,14 @@ Facts that need the owner's confirmation:
 
 Next steps:
 
-- [ ] Owner reviews the plan and picks an execution method (subagent-driven or native). Then start at Task 1.
+- [ ] Owner reviews branch `feat/site` and merges it.
+- [ ] Fill the placeholders above, then deploy on Vercel (see `README.md`). Set `NEXT_PUBLIC_SITE_URL` after the first deploy.
 
-Known mockup limits:
+Lighthouse (local production build, 2026-10-21): desktop Performance 100, Accessibility 100, SEO 92; mobile Performance 91, Accessibility 100, SEO 92. axe reports no violations on the home page and a case study.
 
-- On mobile, the stickers sit below the hero text in a 440px zone. They overlap each other until moved.
-- Not checked yet by screenshot at real phone width.
+Known limits:
+
+- On mobile, the stickers sit below the hero text and overlap each other until moved.
 
 ## Do not
 
@@ -110,3 +112,4 @@ Known mockup limits:
 ## Log
 
 - 2026-10-21: Built the 3-direction mockup. The owner picked a mix of 2 and 3, then approved the full-page mockup. Filled in real data from GitHub. Created this report. Connected the folder to GitHub and pushed the first commit. Wrote the real-site spec (approved) and the implementation plan.
+- 2026-10-21: Built the site on branch `feat/site` (8 tasks: scaffold, content, home, hero toys, case studies, SEO, placeholder guard + a11y/smoke tests, README deploy notes). Not merged, not deployed. Placeholders remain by design.

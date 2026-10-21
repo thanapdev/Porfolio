@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import styles from './Nav.module.css';
 
 const links = [
@@ -14,9 +15,9 @@ export default function Nav() {
   return (
     <nav className={`${styles.nav} ${open ? styles.open : ''}`} aria-label="Main">
       <div className={`wrap ${styles.bar}`}>
-        <a className={`hand ${styles.logo}`} href="/">
+        <Link className={`hand ${styles.logo}`} href="/">
           thanap.
-        </a>
+        </Link>
         <button
           className={styles.menuBtn}
           type="button"
@@ -29,9 +30,9 @@ export default function Nav() {
         <ul id="navList" className={styles.list}>
           {links.map(([label, href]) => (
             <li key={href}>
-              <a href={href} onClick={() => setOpen(false)}>
+              <Link href={href} onClick={() => setOpen(false)}>
                 {label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

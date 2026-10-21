@@ -15,10 +15,10 @@ export default function StickerZone({ children }: { children: ReactNode }) {
         <Sticker className="star" label="Draggable sticker: open to work" rot={8} right="30%" top="-4%">
           OPEN TO<br />WORK
         </Sticker>
-        <Sticker className="code" label="Draggable sticker: design plus code" rot={-4} right="2%" top="78%">
+        <Sticker className="code" label="<design + code /> sticker. Arrow keys move it." rot={-4} right="2%" top="78%">
           &lt;design + code /&gt;
         </Sticker>
-        <Sticker className="cnx" label="Draggable sticker: Chiang Mai to Bangkok" rot={12} right="36%" top="74%">
+        <Sticker className="cnx" label="CNX → BKK sticker. Arrow keys move it." rot={12} right="36%" top="74%">
           CNX<br />→ BKK ✦
         </Sticker>
         {children}

@@ -19,7 +19,7 @@ section{padding:96px 0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 20px;border:3px solid var(--ink);border-radius:16px;background:var(--c,#fff);color:var(--t,var(--ink));font:700 16px var(--font-toy),sans-serif;text-decoration:none;box-shadow:0 6px 0 var(--ink);transition:transform .08s,box-shadow .08s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--ink)}
 .btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
-.btn.red{--c:var(--red);--t:#fff}.btn.blue{--c:var(--blue);--t:#fff}.btn.yel{--c:var(--yel)}
+.btn.red{--c:#c93a22;--t:#fff}.btn.blue{--c:var(--blue);--t:#fff}.btn.yel{--c:var(--yel)}
 .btns{display:flex;flex-wrap:wrap;gap:14px}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:0;list-style:none}
