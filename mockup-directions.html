@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,800&family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;800&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ---------- shared ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;font-family:"Space Grotesk","Noto Sans Thai",system-ui,sans-serif;background:#111;color:#111;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #3ef0ff;outline-offset:3px}
+section.dir{position:relative;overflow:hidden}
+
+/* placeholder = ต้องเติมข้อมูลจริง */
+.ph{background:#fff200;color:#000;outline:2px dashed #e0002a;outline-offset:1px;padding:0 .25em;border-radius:2px;font-style:normal}
+
+/* top switcher (mockup chrome, not part of the design) */
+.chrome{position:sticky;top:0;z-index:50;display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 16px;background:#111;color:#fff;font:500 14px/1.3 "Noto Sans Thai","Space Grotesk",sans-serif;border-bottom:1px solid #333}
+.chrome strong{margin-right:auto}
+.chrome a{text-decoration:none;padding:8px 12px;border-radius:999px;background:#2a2a2a;min-height:36px;display:inline-flex;align-items:center}
+.chrome a:hover{background:#3a3a3a}
+.chrome .legend{font-size:12px;opacity:.8}
+.dir-label{position:absolute;top:12px;left:16px;z-index:5;font:600 12px/1 "Noto Sans Thai",sans-serif;letter-spacing:.04em;padding:6px 10px;border-radius:999px;background:#000;color:#fff}
+
+/* ================= 1. ARCADE / GACHA ================= */
+.d-arcade{--bg:#2a0f57;--pink:#ff3e9a;--yel:#ffd23f;--cyan:#3ef0ff;--ink:#fff;background:var(--bg);color:var(--ink);padding:64px 16px 80px}
+.d-arcade::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 2px,transparent 2px 4px)}
+.d-arcade .px{font-family:"Press Start 2P",monospace}
+.a-hero{min-height:82vh;display:flex;flex-direction:column;justify-content:center;max-width:1100px;margin:0 auto}
+.a-coin{color:var(--yel);font-size:12px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.a-name{font-size:clamp(28px,8.5vw,104px);line-height:1.15;margin:24px 0 16px;text-shadow:6px 6px 0 var(--pink),12px 12px 0 #000;word-break:break-word}
+.a-role{font-size:clamp(12px,2.4vw,22px);color:var(--cyan);line-height:1.6}
+.a-tag{font-size:clamp(16px,2.2vw,20px);max-width:36ch;line-height:1.5;margin:20px 0 28px}
+.a-stats{display:grid;gap:10px;max-width:420px}
+.a-stat{display:grid;grid-template-columns:80px 1fr;align-items:center;gap:12px;font-size:10px}
+.a-bar{height:16px;border:3px solid #fff;background:#000;position:relative}
+.a-bar i{position:absolute;inset:0 auto 0 0;background:var(--c);width:0;transition:width 1.2s steps(12)}
+.a-hero.on .a-bar i{width:var(--w)}
+.a-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 18px;border:4px solid #000;background:var(--yel);color:#000;font-family:"Press Start 2P",monospace;font-size:12px;text-decoration:none;box-shadow:6px 6px 0 #000;transition:transform .08s,box-shadow .08s}
+.a-btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #000}
+.a-btn:active{transform:translate(4px,4px);box-shadow:2px 2px 0 #000}
+.a-btn.alt{background:var(--cyan)}
+.a-btn[aria-disabled="true"]{background:#777;cursor:not-allowed}
+.a-play{max-width:1100px;margin:40px auto 0;display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:start}
+.a-play h2{grid-column:1/-1;font-size:clamp(14px,2.6vw,22px);color:var(--yel);margin:0}
+/* machine */
+.machine{display:flex;flex-direction:column;align-items:center;gap:0;position:relative}
+.globe{width:200px;height:200px;border-radius:50%;border:6px solid #fff;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.35),rgba(255,255,255,.06) 60%);position:relative;overflow:hidden}
+.globe.shake{animation:shake .6s steps(6)}
+@keyframes shake{0%,100%{transform:none}20%{transform:rotate(-8deg)}40%{transform:rotate(7deg)}60%{transform:rotate(-5deg)}80%{transform:rotate(4deg)}}
+.cap{position:absolute;width:44px;height:44px;border-radius:50%;border:3px solid #000;background:linear-gradient(var(--c) 0 50%,#fff 50%)}
+.m-base{width:220px;background:var(--pink);border:6px solid #000;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-top:-6px}
+.m-slot{width:56px;height:40px;background:#000}
+.m-knob{width:48px;height:48px;border-radius:50%;background:var(--yel);border:4px solid #000;transition:transform .5s}
+.m-knob.turn{transform:rotate(360deg)}
+.drop{position:absolute;bottom:20px;left:38px;width:44px;height:44px;border-radius:50%;border:3px solid #000;background:linear-gradient(var(--c,#ff3e9a) 0 50%,#fff 50%);opacity:0}
+.drop.go{animation:drop .7s ease-in forwards}
+@keyframes drop{0%{opacity:1;transform:translateY(-40px)}70%{transform:translateY(30px)}85%{transform:translateY(20px)}100%{opacity:1;transform:translateY(30px) scale(1.2)}}
+.pull{margin-top:28px;width:220px}
+.pulls{font-size:10px;margin-top:12px;opacity:.85}
+/* card */
+.a-card{background:#14072e;border:4px solid #fff;box-shadow:10px 10px 0 var(--pink);padding:24px;position:relative}
+.a-card.reveal{animation:flip .5s ease-out}
+@keyframes flip{from{transform:perspective(800px) rotateY(90deg)}to{transform:none}}
+.rar{position:absolute;top:-18px;right:16px;background:var(--yel);color:#000;border:4px solid #000;padding:8px 10px;font-size:12px}
+.a-card h3{font-family:"Press Start 2P",monospace;font-size:clamp(16px,3vw,26px);line-height:1.4;margin:6px 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:0;list-style:none}
+.a-card .chips li{font:10px "Press Start 2P",monospace;padding:6px 8px;border:2px solid var(--cyan);color:var(--cyan)}
+.a-meta{font-size:15px;opacity:.9;margin:0 0 12px}
+.a-card p{font-size:17px;line-height:1.55;margin:0 0 18px;max-width:52ch}
+.a-metric{display:flex;gap:14px;align-items:baseline;background:#000;border:3px dashed var(--yel);padding:14px;margin-bottom:20px}
+.a-metric b{font:clamp(22px,4vw,34px) "Press Start 2P",monospace;color:var(--yel)}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+@media (max-width:760px){.a-play{grid-template-columns:1fr}.machine{margin:0 auto}}
+
+/* ================= 2. STICKER / COLLAGE ================= */
+.d-sticker{--paper:#f5efe2;--ink:#1d1a16;--red:#e8492f;--blue:#2f5be8;--yel:#ffd84a;--grn:#3fae6a;background:var(--paper) radial-gradient(#d8cfbd 1.2px,transparent 1.4px) 0 0/22px 22px;color:var(--ink);padding:64px 16px 80px;font-family:"Bricolage Grotesque","Noto Sans Thai",sans-serif}
+.s-hero{position:relative;min-height:82vh;max-width:1100px;margin:0 auto;display:flex;flex-direction:column;justify-content:center}
+.s-hi{font:700 clamp(26px,4vw,40px) "Caveat",cursive;color:var(--blue);transform:rotate(-3deg);display:inline-block}
+.s-name{font-weight:800;font-size:clamp(48px,13vw,170px);line-height:.9;letter-spacing:-.03em;margin:8px 0 10px;word-break:break-word}
+.s-role{font:700 clamp(30px,5vw,56px) "Caveat",cursive;position:relative;display:inline-block}
+.s-role svg{position:absolute;left:0;bottom:-10px;width:100%;height:16px}
+.s-tag{font-size:clamp(17px,2vw,21px);max-width:38ch;line-height:1.5;margin-top:26px}
+.s-hint{font:600 22px "Caveat",cursive;color:#7b7262;margin-top:14px}
+.stk{position:absolute;touch-action:none;user-select:none;cursor:grab;filter:drop-shadow(2px 3px 0 rgba(0,0,0,.18));transform:rotate(var(--r,0deg));transition:transform .15s;z-index:2;display:grid;place-items:center;text-align:center;font-weight:800}
+.stk:hover{transform:rotate(var(--r,0deg)) scale(1.05)}
+.stk.drag{cursor:grabbing;transform:rotate(calc(var(--r,0deg) + 6deg)) scale(1.12);transition:none;z-index:20}
+.stk-hello{width:120px;height:120px;border-radius:50%;background:var(--red);color:#fff;border:5px solid #fff;font-size:22px;line-height:1}
+.stk-star{width:110px;height:110px;background:var(--yel);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);font-size:13px;color:var(--ink)}
+.stk-code{padding:10px 14px;background:var(--ink);color:#9effa0;font:600 16px "Space Grotesk",monospace;border:4px solid #fff;border-radius:10px}
+.stk-tape{padding:8px 18px;background:rgba(63,174,106,.85);color:#fff;font:700 24px "Caveat",cursive;border-radius:2px}
+.stk-cnx{width:96px;height:96px;border-radius:24px;background:var(--blue);color:#fff;border:5px solid #fff;font-size:14px;line-height:1.1}
+.s-card{position:relative;max-width:1000px;margin:24px auto 0;background:#fffdf7;border:2px solid var(--ink);padding:28px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;transform:rotate(-.6deg);box-shadow:8px 10px 0 rgba(0,0,0,.12)}
+.s-card::before,.s-card::after{content:"";position:absolute;width:110px;height:30px;background:rgba(255,216,74,.75);top:-14px}
+.s-card::before{left:30px;transform:rotate(-6deg)}.s-card::after{right:30px;transform:rotate(5deg)}
+.s-shot{aspect-ratio:4/3;background:linear-gradient(160deg,#1b1f4b,#4b2a6b 60%,#f29b4b);border:8px solid #fff;outline:2px solid var(--ink);display:grid;place-items:center;color:#fff;font-size:15px;transform:rotate(1.5deg);position:relative}
+.s-shot .lan{position:absolute;width:18px;height:24px;border-radius:40% 40% 30% 30%;background:#ffcf6b;box-shadow:0 0 18px #ffb347}
+.s-card h3{font-size:clamp(30px,4.6vw,48px);line-height:1;margin:4px 0 12px;letter-spacing:-.02em}
+.s-card .chips li{font:700 13px "Space Grotesk",sans-serif;padding:5px 10px;border:2px solid var(--ink);border-radius:999px;background:#fff}
+.s-card .chips li:nth-child(1){background:var(--yel)}.s-card .chips li:nth-child(3){background:#cfe0ff}
+.s-meta{font:600 15px "Space Grotesk",sans-serif;color:#5a5245;margin:0 0 12px}
+.s-card p{font:17px/1.55 "Space Grotesk","Noto Sans Thai",sans-serif;margin:0 0 18px}
+.s-note{background:var(--yel);padding:14px 16px;transform:rotate(1.5deg);display:inline-block;margin-bottom:20px;box-shadow:3px 4px 0 rgba(0,0,0,.15)}
+.s-note b{display:block;font-size:34px;line-height:1}
+.s-note span{font:700 20px "Caveat",cursive}
+.s-btn{display:inline-flex;align-items:center;min-height:48px;padding:12px 18px;border:2px solid var(--ink);background:#fff;font:700 16px "Space Grotesk",sans-serif;text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.s-btn:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:6px 6px 0 var(--ink)}
+.s-btn.primary{background:var(--red);color:#fff}
+@media (max-width:760px){.s-card{grid-template-columns:1fr;padding:20px}.stk{scale:.75}}
+
+/* ================= 3. TOY UI ================= */
+.d-toy{--bg:#fff3d1;--ink:#20223a;--red:#ff5a4e;--red2:#c73a30;--blue:#3d6bff;--blue2:#2747c2;--grn:#2fc28a;--grn2:#1f8f63;--yel:#ffc93c;--yel2:#d99e12;background:var(--bg);color:var(--ink);padding:64px 16px 80px;font-family:"Nunito","Noto Sans Thai",sans-serif}
+.d-toy.code{--bg:#e6ecff}
+.t-hero{min-height:82vh;max-width:1100px;margin:0 auto;display:flex;flex-direction:column;justify-content:center}
+.t-name{font:700 clamp(48px,12vw,160px)/1 "Fredoka",sans-serif;margin:0 0 12px;display:flex;flex-wrap:wrap}
+.t-name span{display:inline-block;transform:rotate(calc(var(--play)*var(--r)*1deg)) translateY(calc(var(--play)*var(--y)*1px));transition:transform .4s cubic-bezier(.3,1.8,.5,1),color .2s}
+.t-name span:hover,.t-name span.pop{transform:translateY(-.18em) rotate(calc(var(--r)*-1.5deg)) scale(1.1);color:var(--c)}
+.d-toy.code .t-name{font-family:"Space Grotesk",monospace;letter-spacing:-.04em}
+.t-role{font:600 clamp(20px,3vw,30px) "Fredoka",sans-serif;margin:0 0 6px}
+.t-tag{font-size:clamp(17px,2vw,20px);line-height:1.55;max-width:40ch;margin:8px 0 26px}
+.panel{display:flex;flex-wrap:wrap;gap:16px;align-items:center;background:#fff;border:3px solid var(--ink);border-radius:24px;padding:16px 18px;box-shadow:0 8px 0 var(--ink);max-width:760px}
+.ctl{display:flex;align-items:center;gap:10px;font:600 15px "Fredoka",sans-serif}
+.sw{position:relative;width:76px;height:44px;border-radius:999px;border:3px solid var(--ink);background:var(--yel);box-shadow:inset 0 -4px 0 var(--yel2);padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:32px;height:32px;border-radius:50%;background:#fff;border:3px solid var(--ink);box-shadow:0 3px 0 var(--ink);transition:left .35s cubic-bezier(.3,1.7,.5,1)}
+.sw[aria-checked="true"]{background:var(--blue);box-shadow:inset 0 -4px 0 var(--blue2)}
+.sw[aria-checked="true"]::after{left:35px}
+input[type=range].sl{-webkit-appearance:none;appearance:none;width:150px;height:14px;border-radius:999px;border:3px solid var(--ink);background:linear-gradient(90deg,var(--grn) var(--v,40%),#fff var(--v,40%))}
+.sl::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--red);border:3px solid var(--ink);box-shadow:0 3px 0 var(--ink)}
+.sl::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--red);border:3px solid var(--ink)}
+.t-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:12px 22px;border:3px solid var(--ink);border-radius:18px;background:var(--c,var(--red));color:#fff;font:700 17px "Fredoka",sans-serif;text-decoration:none;box-shadow:0 7px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+.t-btn:hover{transform:translateY(-2px);box-shadow:0 9px 0 var(--ink)}
+.t-btn:active{transform:translateY(6px);box-shadow:0 1px 0 var(--ink)}
+.t-btn.ghost{--c:#fff;color:var(--ink)}
+.t-card{max-width:1000px;margin:30px auto 0;background:#fff;border:3px solid var(--ink);border-radius:32px;box-shadow:0 12px 0 var(--ink);padding:28px;display:grid;grid-template-columns:1fr 280px;gap:28px}
+.t-card h3{font:700 clamp(30px,4.6vw,46px)/1.05 "Fredoka",sans-serif;margin:6px 0 12px}
+.t-card .chips li{font:700 13px "Fredoka",sans-serif;padding:6px 12px;border-radius:999px;border:3px solid var(--ink);background:var(--yel);box-shadow:0 3px 0 var(--ink)}
+.t-card .chips li:nth-child(2){background:#bfe9ff}.t-card .chips li:nth-child(3){background:#ffd0e6}
+.t-meta{font-weight:600;color:#585a73;margin:0 0 12px}
+.t-card p{font-size:17px;line-height:1.55;margin:0 0 20px}
+.lcd{background:#a8d58a;border:3px solid var(--ink);border-radius:18px;padding:18px;box-shadow:inset 0 4px 0 rgba(0,0,0,.15);font-family:"Space Grotesk",monospace;color:#1d3a10;align-self:start}
+.lcd b{display:block;font-size:44px;line-height:1}
+.lcd .dots{display:flex;gap:8px;margin-top:14px}
+.lcd .dots i{width:16px;height:16px;border-radius:50%;border:3px solid var(--ink);background:var(--c)}
+.t-play{display:flex;gap:16px;align-items:center;margin-top:28px;flex-wrap:wrap}
+.confetti{position:fixed;width:14px;height:14px;pointer-events:none;z-index:60;border:2px solid #20223a}
+@media (max-width:760px){.t-card{grid-template-columns:1fr;padding:20px}.panel{border-radius:18px}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="chrome" aria-label="Mockup directions">
+  <strong>Portfolio mockup: 3 ทิศทาง</strong>
+  <a href="#arcade">1 · Arcade/Gacha</a>
+  <a href="#sticker">2 · Sticker/Collage</a>
+  <a href="#toy">3 · Toy UI</a>
+  <span class="legend"><span class="ph">แถบเหลือง</span> = ข้อมูลที่ต้องเติม</span>
+</nav>
+
+<!-- ================= 1. ARCADE ================= -->
+<section class="dir d-arcade" id="arcade" aria-label="Direction 1: Arcade Gacha">
+  <span class="dir-label">ทิศ 1 · Arcade / Gacha</span>
+  <header class="a-hero" id="aHero">
+    <div class="a-coin px">▶ INSERT COIN · PLAYER 1</div>
+    <h1 class="a-name px" data-name></h1>
+    <div class="a-role px">UX/UI DESIGNER<br>+ FRONT-END DEV</div>
+    <p class="a-tag">I design interfaces, then I build them so you can actually click, play and break them.</p>
+    <div class="a-stats" aria-label="Skill stats">
+      <div class="a-stat px">DESIGN<div class="a-bar"><i style="--w:92%;--c:var(--pink)"></i></div></div>
+      <div class="a-stat px">CODE<div class="a-bar"><i style="--w:80%;--c:var(--cyan)"></i></div></div>
+      <div class="a-stat px">PLAY<div class="a-bar"><i style="--w:100%;--c:var(--yel)"></i></div></div>
+    </div>
+    <p style="margin-top:32px"><a class="a-btn" href="#aPlay">PRESS START ▼</a></p>
+  </header>
+
+  <div class="a-play" id="aPlay">
+    <h2 class="px">PULL A CASE STUDY ★</h2>
+    <div>
+      <div class="machine" aria-hidden="true">
+        <div class="globe" id="globe">
+          <i class="cap" style="--c:#ff3e9a;left:30px;top:110px"></i>
+          <i class="cap" style="--c:#3ef0ff;left:80px;top:130px"></i>
+          <i class="cap" style="--c:#ffd23f;left:120px;top:100px"></i>
+          <i class="cap" style="--c:#7cff6b;left:56px;top:70px"></i>
+          <i class="cap" style="--c:#ff8a3e;left:104px;top:56px"></i>
+        </div>
+        <div class="m-base"><div class="m-slot"></div><div class="m-knob" id="knob"></div></div>
+        <i class="drop" id="drop"></i>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <button class="a-btn pull" id="pullBtn" type="button">PULL ×1</button>
+        <div class="pulls px" id="pulls" aria-live="polite">PULLS: 0</div>
+      </div>
+    </div>
+    <article class="a-card" id="aCard" aria-live="polite"></article>
+  </div>
+</section>
+
+<!-- ================= 2. STICKER ================= -->
+<section class="dir d-sticker" id="sticker" aria-label="Direction 2: Sticker Collage">
+  <span class="dir-label">ทิศ 2 · Sticker / Collage</span>
+  <header class="s-hero" id="sHero">
+    <span class="s-hi">hi, I'm</span>
+    <h1 class="s-name" data-name></h1>
+    <span class="s-role">UX/UI Designer who builds
+      <svg viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 C 60 2, 120 16, 180 7 S 270 4, 298 9" fill="none" stroke="#e8492f" stroke-width="5" stroke-linecap="round"/></svg>
+    </span>
+    <p class="s-tag">Designs you can touch. I sketch, prototype and ship real, playable web things.</p>
+    <p class="s-hint">psst… the stickers are draggable →</p>
+
+    <div class="stk stk-hello" tabindex="0" role="button" aria-label="Draggable sticker: Hello. Use arrow keys to move." style="--r:-10deg;right:6%;top:12%">HELLO<br>THERE!</div>
+    <div class="stk stk-star" tabindex="0" role="button" aria-label="Draggable sticker: open to work" style="--r:8deg;right:22%;top:52%">OPEN TO<br>WORK</div>
+    <div class="stk stk-code" tabindex="0" role="button" aria-label="Draggable sticker: designer who codes" style="--r:-4deg;right:4%;top:70%">&lt;design + code /&gt;</div>
+    <div class="stk stk-tape" tabindex="0" role="button" aria-label="Draggable sticker: hire me" style="--r:6deg;right:30%;top:16%">hire me?</div>
+    <div class="stk stk-cnx" tabindex="0" role="button" aria-label="Draggable sticker: Chiang Mai" style="--r:12deg;right:10%;top:40%">CHIANG<br>MAI ✦</div>
+  </header>
+
+  <article class="s-card">
+    <div class="s-shot" aria-label="Project screenshot placeholder">
+      <i class="lan" style="left:18%;top:22%"></i><i class="lan" style="left:46%;top:12%"></i><i class="lan" style="left:72%;top:30%"></i><i class="lan" style="left:30%;top:48%"></i>
+      <span class="ph">[ภาพหน้าจอจริง]</span>
+    </div>
+    <div>
+      <ul class="chips"><li>WEB</li><li>EVENT</li><li>AI-ASSISTED</li></ul>
+      <h3>Yee-Peng-CNX</h3>
+      <p class="s-meta">Experience Designer · team of 2 · <span class="ph">[ปี?]</span> · <span class="ph">[X]</span> min read</p>
+      <p>A website for Chiang Mai's Yi Peng lantern festival, designed and built end-to-end with help from generative AI tools. <span class="ph">[ปัญหาที่แก้คืออะไร?]</span></p>
+      <div class="s-note"><b class="ph">[00%]</b><span>[ผลลัพธ์หลัก?]</span></div>
+      <div class="btns">
+        <a class="s-btn primary" href="#" onclick="return false">View Case Study →</a>
+        <a class="s-btn" href="https://yee-peng-cnx.vercel.app" target="_blank" rel="noopener">Live Website ↗</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ================= 3. TOY UI ================= -->
+<section class="dir d-toy" id="toy" aria-label="Direction 3: Toy UI">
+  <span class="dir-label">ทิศ 3 · Toy UI</span>
+  <header class="t-hero">
+    <h1 class="t-name" id="tName" aria-label="Name"></h1>
+    <p class="t-role" id="tRole">UX/UI Designer</p>
+    <p class="t-tag">I make interfaces that feel like toys: clear enough for anyone, fun enough that you keep pressing.</p>
+    <div class="panel" role="group" aria-label="Play with the page">
+      <div class="ctl">Design<button class="sw" id="sw" role="switch" aria-checked="false" aria-label="Switch between design mode and code mode" type="button"></button>Code</div>
+      <label class="ctl">Wobble <input class="sl" id="sl" type="range" min="0" max="100" value="40"></label>
+      <button class="t-btn" id="boom" type="button">Don't press</button>
+    </div>
+  </header>
+
+  <article class="t-card">
+    <div>
+      <ul class="chips"><li>WEB</li><li>EVENT</li><li>AI-ASSISTED</li></ul>
+      <h3>Yee-Peng-CNX</h3>
+      <p class="t-meta">Experience Designer · team of 2 · <span class="ph">[ปี?]</span> · <span class="ph">[X]</span> min read</p>
+      <p>A website for Chiang Mai's Yi Peng lantern festival, designed and built end-to-end with help from generative AI tools. <span class="ph">[ปัญหาที่แก้คืออะไร?]</span></p>
+      <div class="t-play">
+        <a class="t-btn" style="--c:var(--blue)" href="#" onclick="return false">View Case Study</a>
+        <a class="t-btn ghost" href="https://yee-peng-cnx.vercel.app" target="_blank" rel="noopener">Live Website ↗</a>
+      </div>
+    </div>
+    <div class="lcd" aria-label="Key result">
+      <small>KEY RESULT</small>
+      <b class="ph">[00%]</b>
+      <span class="ph">[ผลลัพธ์หลัก?]</span>
+      <div class="dots" aria-hidden="true"><i style="--c:var(--red)"></i><i style="--c:var(--yel)"></i><i style="--c:var(--blue)"></i></div>
+    </div>
+  </article>
+</section>
+
+<script>
+// แก้ชื่อตรงนี้จุดเดียว
+const NAME = "[YOUR NAME]";
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+document.querySelectorAll("[data-name]").forEach(el => {
+  el.textContent = NAME;
+  if (NAME.startsWith("[")) el.innerHTML = `<span class="ph">${NAME}</span>`;
+});
+
+/* ---------- 1. Arcade ---------- */
+new IntersectionObserver(([e], o) => { if (e.isIntersecting) { e.target.classList.add("on"); o.disconnect(); } }, { threshold: .4 })
+  .observe(document.getElementById("aHero"));
+
+const projects = [
+  { title: "Yee-Peng-CNX", rarity: "SSR ★★★", color: "#ff3e9a", tags: ["WEB", "EVENT", "AI-ASSISTED"],
+    meta: 'Experience Designer · team of 2 · <span class="ph">[ปี?]</span> · <span class="ph">[X]</span> min read',
+    blurb: 'A website for Chiang Mai\'s Yi Peng lantern festival, designed and built end-to-end with help from generative AI tools. <span class="ph">[ปัญหาที่แก้คืออะไร?]</span>',
+    live: "https://yee-peng-cnx.vercel.app" },
+  { title: "The Reborn Gacha", rarity: "SR ★★", color: "#3ef0ff", tags: ["GAME", "WEB", "SOLO"],
+    meta: 'Solo · design + dev · <span class="ph">[ปี?]</span> · <span class="ph">[X]</span> min read',
+    blurb: 'An isekai-themed web mini-game where you roll for a new life. <span class="ph">[เป้าหมาย/ปัญหาของโปรเจกต์?]</span>',
+    live: null }
+];
+const card = document.getElementById("aCard");
+function renderCard(p) {
+  card.innerHTML = `
+    <span class="rar px">${p.rarity}</span>
+    <ul class="chips">${p.tags.map(t => `<li>${t}</li>`).join("")}</ul>
+    <h3>${p.title}</h3>
+    <p class="a-meta">${p.meta}</p>
+    <p>${p.blurb}</p>
+    <div class="a-metric"><b class="ph">[00%]</b><span class="ph">[ผลลัพธ์หลัก?]</span></div>
+    <div class="btns">
+      <a class="a-btn" href="#" onclick="return false">VIEW CASE STUDY</a>
+      ${p.live
+        ? `<a class="a-btn alt" href="${p.live}" target="_blank" rel="noopener">LIVE SITE ↗</a>`
+        : `<a class="a-btn" aria-disabled="true"><span class="ph">[ลิงก์เล่นเกม?]</span></a>`}
+    </div>`;
+}
+renderCard(projects[0]);
+
+let pulls = 0, last = 0;
+const pullBtn = document.getElementById("pullBtn");
+pullBtn.addEventListener("click", () => {
+  pullBtn.disabled = true;
+  const i = Math.random() < .5 ? last : 1 - last;
+  last = i;
+  const p = projects[i];
+  const globe = document.getElementById("globe"), knob = document.getElementById("knob"), drop = document.getElementById("drop");
+  const finish = () => {
+    renderCard(p);
+    card.classList.remove("reveal"); void card.offsetWidth; card.classList.add("reveal");
+    document.getElementById("pulls").textContent = `PULLS: ${++pulls}`;
+    pullBtn.disabled = false;
+  };
+  if (reduce) return finish();
+  drop.style.setProperty("--c", p.color);
+  [globe, knob, drop].forEach(el => el.classList.remove("shake", "turn", "go"));
+  void globe.offsetWidth;
+  globe.classList.add("shake"); knob.classList.add("turn");
+  setTimeout(() => drop.classList.add("go"), 500);
+  setTimeout(finish, 1200);
+});
+
+/* ---------- 2. Sticker drag ---------- */
+const sHero = document.getElementById("sHero");
+sHero.querySelectorAll(".stk").forEach(st => {
+  let dx = 0, dy = 0;
+  const place = (x, y) => {
+    const b = sHero.getBoundingClientRect();
+    x = Math.max(0, Math.min(x, b.width - st.offsetWidth));
+    y = Math.max(0, Math.min(y, b.height - st.offsetHeight));
+    st.style.left = x + "px"; st.style.top = y + "px"; st.style.right = "auto";
+  };
+  st.addEventListener("pointerdown", e => {
+    const r = st.getBoundingClientRect();
+    dx = e.clientX - r.left; dy = e.clientY - r.top;
+    st.setPointerCapture(e.pointerId); st.classList.add("drag");
+  });
+  st.addEventListener("pointermove", e => {
+    if (!st.classList.contains("drag")) return;
+    const b = sHero.getBoundingClientRect();
+    place(e.clientX - b.left - dx, e.clientY - b.top - dy);
+  });
+  const drop = () => { st.classList.remove("drag"); st.style.zIndex = Date.now() % 1e6; };
+  st.addEventListener("pointerup", drop);
+  st.addEventListener("pointercancel", drop);
+  st.addEventListener("keydown", e => {
+    const m = { ArrowLeft: [-12, 0], ArrowRight: [12, 0], ArrowUp: [0, -12], ArrowDown: [0, 12] }[e.key];
+    if (!m) return;
+    e.preventDefault();
+    place(st.offsetLeft + m[0], st.offsetTop + m[1]);
+  });
+});
+
+/* ---------- 3. Toy UI ---------- */
+const toy = document.getElementById("toy"), tName = document.getElementById("tName");
+const colors = ["#ff5a4e", "#3d6bff", "#2fc28a", "#ffc93c"];
+function buildName(text) {
+  tName.setAttribute("aria-label", text);
+  tName.innerHTML = [...text].map((ch, i) =>
+    `<span aria-hidden="true" style="--r:${(Math.random() * 16 - 8).toFixed(1)};--y:${(Math.random() * 20 - 10).toFixed(1)};--c:${colors[i % 4]}">${ch === " " ? "&nbsp;" : ch}</span>`
+  ).join("");
+  if (NAME.startsWith("[")) tName.classList.add("ph");
+}
+buildName(NAME);
+tName.addEventListener("click", e => {
+  const s = e.target.closest("span"); if (!s) return;
+  s.classList.add("pop"); setTimeout(() => s.classList.remove("pop"), 400);
+});
+
+const sl = document.getElementById("sl");
+const setPlay = () => { toy.style.setProperty("--play", sl.value / 100); sl.style.setProperty("--v", sl.value + "%"); };
+sl.addEventListener("input", setPlay); setPlay();
+
+const sw = document.getElementById("sw");
+sw.addEventListener("click", () => {
+  const on = sw.getAttribute("aria-checked") !== "true";
+  sw.setAttribute("aria-checked", on);
+  toy.classList.toggle("code", on);
+  buildName(on ? `<${NAME.replace(/[\[\]\s]/g, "")} />` : NAME);
+  document.getElementById("tRole").textContent = on ? "Front-end Developer (yes, same person)" : "UX/UI Designer";
+});
+
+document.getElementById("boom").addEventListener("click", e => {
+  if (reduce) return;
+  const r = e.currentTarget.getBoundingClientRect();
+  const n = 10 + Math.round(sl.value / 100 * 30);
+  for (let i = 0; i < n; i++) {
+    const c = document.createElement("i");
+    c.className = "confetti";
+    c.style.cssText = `left:${r.left + r.width / 2}px;top:${r.top}px;background:${colors[i % 4]};border-radius:${i % 3 ? "50%" : "3px"}`;
+    document.body.appendChild(c);
+    const a = Math.random() * Math.PI * 2, d = 80 + Math.random() * 180;
+    c.animate([
+      { transform: "translate(0,0) rotate(0)" },
+      { transform: `translate(${Math.cos(a) * d}px,${Math.sin(a) * d - 80}px) rotate(${Math.random() * 540}deg)`, opacity: 0 }
+    ], { duration: 900 + Math.random() * 400, easing: "cubic-bezier(.2,.8,.3,1)" }).onfinish = () => c.remove();
+  }
+  e.currentTarget.textContent = ["Told you", "Again?!", "OK one more", "Don't press"][Math.floor(Math.random() * 4)];
+});
+</script>
+</body>
+</html>
