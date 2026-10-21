@@ -27,3 +27,4 @@ section{padding:96px 0}
 .chips li:nth-child(1){background:var(--yel)}.chips li:nth-child(3){background:var(--sky)}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+body[data-mode="code"]{--paper:#eef1ff}

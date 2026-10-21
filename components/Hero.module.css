@@ -1,0 +1,15 @@
+.hero{position:relative;min-height:calc(100vh - 64px);display:flex;align-items:center;padding:48px 0 64px}
+.grid{position:relative;width:100%;display:grid;grid-template-columns:1.35fr 1fr;gap:24px;align-items:center}
+.name{font-size:clamp(48px,8.5vw,124px);line-height:.92;margin:8px 0 14px}
+.word{display:inline-block;font-style:normal;white-space:nowrap}
+.name span span{display:inline-block;transform:rotate(calc(var(--play)*var(--r)*1deg)) translateY(calc(var(--play)*var(--y)*1px));transition:transform .4s cubic-bezier(.3,1.8,.5,1),color .2s}
+.name span span:hover,.name span span.pop,.name .pop{transform:translateY(-.15em) rotate(calc(var(--r)*-1.5deg));color:var(--c)}
+.codeName{font-family:var(--font-body),monospace;letter-spacing:-.05em}
+.role{font-size:clamp(30px,5vw,56px);position:relative;display:inline-block;line-height:1.1}
+.role svg{position:absolute;left:0;bottom:-10px;width:100%;height:16px}
+.tag{font-size:clamp(17px,2vw,21px);max-width:38ch;margin:28px 0 30px}
+.hint{font-size:22px;color:#7b7262;margin-top:18px}
+@media (max-width:760px){
+  .hero{align-items:flex-start;padding-top:32px}
+  .grid{grid-template-columns:1fr}
+}
