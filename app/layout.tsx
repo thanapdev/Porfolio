@@ -8,6 +8,7 @@ import {
 } from 'next/font/google';
 import './globals.css';
 import Nav from '@/components/Nav';
+import { SITE_URL } from '@/lib/site';
 
 const body = Space_Grotesk({
   subsets: ['latin'],
@@ -41,6 +42,7 @@ const thai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     template: '%s · Thanapong Yamkamol',
     default: 'Thanapong Yamkamol · UX/UI Designer',
