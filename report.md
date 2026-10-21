@@ -84,7 +84,6 @@ Facts that need the owner's confirmation:
 
 Next steps:
 
-- [ ] Ask the owner whether the local project should be connected to the GitHub repo (`git init`, remote, first commit). Do not push without asking.
 - [ ] Write the spec for the real Next.js site.
 - [ ] Turn the spec into an implementation plan.
 
@@ -107,7 +106,8 @@ Known mockup limits:
 - `mockup-directions.html`: the 3-direction comparison (Arcade, Sticker, Toy).
 - `mockup-full.html`: the approved full-page mockup. The hero name comes from `const NAME` in its script.
 - `report.md`: this file.
+- Git: `main` tracks `origin` (`git@github.com:thanapdev/Porfolio.git`). The README.md already on the remote is kept.
 
 ## Log
 
-- 2026-10-21: Built the 3-direction mockup. The owner picked a mix of 2 and 3, then approved the full-page mockup. Filled in real data from GitHub. Created this report.
+- 2026-10-21: Built the 3-direction mockup. The owner picked a mix of 2 and 3, then approved the full-page mockup. Filled in real data from GitHub. Created this report. Connected the folder to GitHub and pushed the first commit.
