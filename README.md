@@ -1,3 +1,4 @@
+<!--
 # Porfolio
 My Portfolio
 
@@ -52,3 +53,4 @@ MDX components available in the body:
 2. Keep the default framework (Next.js) and build settings.
 3. After the first deploy, set `NEXT_PUBLIC_SITE_URL` to the live URL and redeploy (used for the sitemap, robots and OG images).
 4. A production build fails while placeholders remain (`scripts/check-placeholders.mjs` runs after `next build` and exits 1 when `VERCEL_ENV=production`). Preview and local builds only warn.
+-->
