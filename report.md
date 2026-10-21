@@ -2,7 +2,39 @@
 
 Read this file first when starting a new chat. Update it at the end of every work session.
 
-Last updated: 2026-10-21
+Last updated: 2026-10-21 (end of day 1)
+
+## Resume here (next session)
+
+**Where things stand:**
+- The site is built, reviewed, merged into `main` and pushed. `main` tracks `origin`, and the working tree is clean. Run `git log --oneline -5` for the latest commits.
+- Nothing is deployed yet.
+
+**Deploy decision (owner, 2026-10-21):**
+- Platform: Vercel.
+- Deploy only once, after all the content is filled in. Do not deploy, and do not connect Vercel, before that.
+
+**To see the site locally:**
+- Development: `npm run dev`, then open http://localhost:3000.
+- Production preview: `npm run build && npx next start -p 3001`.
+- `npm run build` prints a placeholder warning. That is expected until the content is complete.
+
+**Tomorrow's work, in order:**
+1. Ask the owner for the missing content listed under "Open items". LinkedIn cannot be fetched automatically, so ask the owner to paste the text.
+2. Put each item where the Open items list says, replacing the yellow `.ph` placeholder.
+3. Re-run `npm run lint && npm test && npm run e2e`. When `npm run build` stops listing pages, every placeholder is gone.
+4. Re-run Lighthouse. SEO was 92 before the description and canonical URL fix, and it has not been re-measured.
+5. Restore the README (see "Files"). Then, with the owner's OK, connect Vercel and deploy (steps are in the README).
+
+**Code map:**
+- `app/`: routes, metadata, OG images, sitemap and robots.
+- `components/`: UI. `mdx/` holds the MDX components. `Text.tsx` holds the `[bracket]` placeholder helper.
+- `content/work/*.mdx`: the case studies (frontmatter plus body).
+- `lib/projects.ts`: content loader and validation.
+- `lib/timeline-extra.ts`: timeline rows that have no case study.
+- `scripts/check-placeholders.mjs`: the placeholder guard.
+- `e2e/`: Playwright tests. Unit tests sit next to their code.
+
 
 ## Goal
 
@@ -21,7 +53,9 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 | 2. Full-page mockup of the chosen direction | Done, approved by the owner. `mockup-full.html` |
 | 3. Spec for the real site (Next.js + Vercel) | Approved. `docs/superpowers/specs/2026-10-21-portfolio-site-design.md` |
 | 4. Implementation plan | Written and executed. `docs/superpowers/plans/2026-10-21-portfolio-site.md` (8 tasks) |
-| 5. Build + deploy | Built, reviewed, merged into `main` and pushed (2026-10-21). Not deployed yet: connect the repo to Vercel (steps in `README.md`). |
+| 5. Build | Done. Built, reviewed, merged into `main` and pushed (2026-10-21). |
+| 6. Fill real content | Not started. See Open items. |
+| 7. Deploy (Vercel) | On hold until stage 6 is complete (owner's decision). |
 
 ## Decisions (with reasons)
 
@@ -74,8 +108,10 @@ Placeholders still on the real site. A production build (`VERCEL_ENV=production`
 - [ ] Profile photo (`components/About.tsx`, add `/profile.jpg`).
 - [ ] The problem and result of each case study (frontmatter `tldr`, plus body sections).
 - [ ] Real outcome numbers and the goal, research and caption sections in both MDX bodies.
-- [ ] Real screenshots (covers and BeforeAfter images).
-- [ ] Resume PDF (`/resume.pdf`; the Contact button is still a placeholder).
+- [ ] Real screenshots.
+  - Covers: add `public/work/<slug>/cover.png`. The yellow "[real screenshot]" label disappears once the file exists.
+  - BeforeAfter: replace `public/work/the-reborn-gacha/before.png` and `after.png`, then edit the caption in the MDX.
+- [ ] Resume PDF. Add `public/resume.pdf`, then change the Resume button label in `components/Contact.tsx`.
 - [ ] Role in QueueApp and in TiguS (`lib/timeline-extra.ts`).
 - [ ] Research methods on the back of the "User Research" chip.
 
@@ -85,10 +121,15 @@ Facts that need the owner's confirmation:
 
 Next steps:
 
-- [ ] Owner connects `thanapdev/Porfolio` to Vercel (steps in `README.md`). Production deploys fail until every `.ph` placeholder is replaced; preview deploys work.
-- [ ] Fill the placeholders above, then deploy on Vercel (see `README.md`). Set `NEXT_PUBLIC_SITE_URL` after the first deploy.
+- [ ] Fill the placeholders above. This is the next work session.
+- [ ] Restore the README by removing the wrapping `<!--` and `-->` lines.
+- [ ] Deploy once on Vercel, with the owner's OK. The steps are in the README:
+  1. Import `thanapdev/Porfolio`.
+  2. Keep the defaults.
+  3. Set `NEXT_PUBLIC_SITE_URL` after the first deploy.
+  - A production build fails while any `.ph` placeholder remains.
 
-Lighthouse (local production build, 2026-10-21): desktop Performance 100, Accessibility 100, SEO 92; mobile Performance 91, Accessibility 100, SEO 92. axe reports no violations on the home page and a case study.
+Lighthouse (local production build, 2026-10-21, before the SEO fix): desktop Performance 100, Accessibility 100, SEO 92; mobile Performance 91, Accessibility 100, SEO 92. The home description and canonical URLs were added afterwards; re-measure. axe reports no violations on the home page, either case study or the 404 page.
 
 Known limits:
 
@@ -108,10 +149,13 @@ Known limits:
 - `mockup-directions.html`: the 3-direction comparison (Arcade, Sticker, Toy).
 - `mockup-full.html`: the approved full-page mockup. The hero name comes from `const NAME` in its script.
 - `report.md`: this file.
-- Git: `main` tracks `origin` (`git@github.com:thanapdev/Porfolio.git`). The README.md already on the remote is kept.
+- `README.md`: dev commands, how to write a case study, and the Vercel deploy steps. **The whole file is currently wrapped in an HTML comment** (owner's request), so it shows blank on GitHub.
+- `docs/superpowers/specs/` and `docs/superpowers/plans/`: the approved spec and the executed plan.
+- Git: `main` tracks `origin` (`git@github.com:thanapdev/Porfolio.git`).
 
 ## Log
 
 - 2026-10-21: Built the 3-direction mockup. The owner picked a mix of 2 and 3, then approved the full-page mockup. Filled in real data from GitHub. Created this report. Connected the folder to GitHub and pushed the first commit. Wrote the real-site spec (approved) and the implementation plan.
 - 2026-10-21: Built the site on branch `feat/site` (8 tasks: scaffold, content, home, hero toys, case studies, SEO, placeholder guard + a11y/smoke tests, README deploy notes). Placeholders remain by design.
 - 2026-10-21: Final whole-branch review passed after one fix round (SEO description + canonical URLs, placeholder guard now covers covers and timeline roles). Merged `feat/site` into `main` and pushed.
+- 2026-10-21: Hid the README content (HTML comment). The owner chose Vercel, but will deploy only after all content is filled. Next session: fill the content.
