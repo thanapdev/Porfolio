@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import Image from 'next/image';
 import SkillChip from './SkillChip';
 import styles from './About.module.css';
 
@@ -11,6 +14,7 @@ const skills = [
 ];
 
 export default function About() {
+  const hasPhoto = fs.existsSync(path.join(process.cwd(), 'public/profile.jpg'));
   return (
     <section id="about">
       <div className="wrap">
@@ -18,7 +22,13 @@ export default function About() {
         <h2 className="h2 disp">Designer by trade,<br />tinkerer by habit.</h2>
         <div className={styles.about}>
           <figure className={styles.polaroid}>
-            <div className={styles.img}><span className="ph">[Profile photo: add /profile.jpg]</span></div>
+            <div className={styles.img}>
+              {hasPhoto ? (
+                <Image src="/profile.jpg" alt="Thanapong Yamkamol" fill sizes="300px" style={{ objectFit: 'cover' }} />
+              ) : (
+                <span className="ph">[Profile photo: add /profile.jpg]</span>
+              )}
+            </div>
             <figcaption className="hand">that&apos;s me!</figcaption>
           </figure>
           <div className={styles.text}>
