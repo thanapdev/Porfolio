@@ -31,6 +31,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - The toy controls live in a draggable "control panel" sticker in the hero. It drags by its pink grip only, so its controls stay clickable.
 - **Fonts:** Bricolage Grotesque (display), Space Grotesk (body), Caveat (handwriting), Fredoka (buttons), Noto Sans Thai (Thai fallback).
 - **Colors:** paper `#f5efe2`, ink `#1d1a16`, red `#e8492f`, blue `#2f5be8`, yellow `#ffd84a`, green `#3fae6a`.
+- **Red with white text uses `#c93a22`, not the mockup's `#e8492f`.** This applies to `.btn.red` and the HELLO sticker. White text needs 4.5:1 contrast; `#e8492f` gives 3.87:1.
 - **Site copy is in English** because the readers are HR and clients.
 - **Placeholder style:** missing data is shown with class `.ph` (yellow background, red dashed outline). It must be easy to see and replace.
 - **Accessibility kept in the mockup and must carry into the real site:**

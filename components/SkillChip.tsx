@@ -1,10 +1,11 @@
 'use client';
 import { useState, type CSSProperties } from 'react';
 import styles from './About.module.css';
+import { isPlaceholder } from './Text';
 
 export default function SkillChip({ front, back, color }: { front: string; back: string; color: string }) {
   const [on, setOn] = useState(false);
-  const isPh = /^\[.*\]$/.test(back);
+  const isPh = isPlaceholder(back);
   return (
     <button
       type="button"

@@ -16,6 +16,10 @@ test('mobile menu opens and closes', async ({ page }, testInfo) => {
   await expect(work).toBeVisible();
   await work.click();
   await expect(btn).toHaveAttribute('aria-expanded', 'false');
+  await btn.click();
+  await expect(btn).toHaveAttribute('aria-expanded', 'true');
+  await page.keyboard.press('Escape');
+  await expect(btn).toHaveAttribute('aria-expanded', 'false');
 });
 
 test('axe: home and case study have no violations', async ({ page }) => {

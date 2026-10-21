@@ -47,3 +47,21 @@ test('reduced motion: no confetti', async ({ page }) => {
   await expect(page.locator('.confetti')).toHaveCount(0);
   await expect(btn).not.toHaveText("Don't press");
 });
+
+test('sticker re-clamps when the viewport shrinks', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'desktop only');
+  await page.goto('/');
+  const st = page.getByRole('button', { name: /Hello there/ });
+  await st.scrollIntoViewIfNeeded();
+  const b = (await st.boundingBox())!;
+  const cx = b.x + b.width / 2;
+  const cy = b.y + b.height / 2;
+  await page.mouse.move(cx, cy);
+  await page.mouse.down();
+  await page.mouse.move(cx + 400, cy, { steps: 5 });
+  await page.mouse.up();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect
+    .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth))
+    .toBe(true);
+});

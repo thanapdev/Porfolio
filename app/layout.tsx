@@ -43,6 +43,8 @@ const thai = Noto_Sans_Thai({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  description:
+    'Thanapong Yamkamol is a student UX/UI designer who builds playable web things. Case studies, skills and contact.',
   title: {
     template: '%s · Thanapong Yamkamol',
     default: 'Thanapong Yamkamol · UX/UI Designer',

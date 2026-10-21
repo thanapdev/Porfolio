@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './Nav.module.css';
 
@@ -12,6 +12,12 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!open) return;
+    const esc = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('keydown', esc);
+    return () => document.removeEventListener('keydown', esc);
+  }, [open]);
   return (
     <nav className={`${styles.nav} ${open ? styles.open : ''}`} aria-label="Main">
       <div className={`wrap ${styles.bar}`}>

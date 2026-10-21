@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import Text from '@/components/Text';
+import { hasCover } from '@/lib/cover';
 import { getProject, getProjects, nextProject, projectLinks } from '@/lib/projects';
 import s from './page.module.css';
 
@@ -14,7 +15,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const p = getProject(slug)!;
-  return { title: p.title, description: p.summary };
+  return { title: p.title, description: p.summary, alternates: { canonical: '/work/' + slug } };
 }
 
 export default async function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
@@ -51,7 +52,11 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
 
       <figure className={s.cover}>
         <div className={s.coverImg}>
-          <Image src={p.cover} alt={p.coverAlt} fill priority sizes="(max-width:760px) 90vw, 520px" style={{ objectFit: 'cover' }} />
+          {hasCover(p.cover) ? (
+            <Image src={p.cover} alt={p.coverAlt} fill priority sizes="(max-width:760px) 90vw, 520px" style={{ objectFit: 'cover' }} />
+          ) : (
+            <span className="ph" style={{ position: 'absolute', inset: 'auto auto 12px 12px' }}>[real screenshot]</span>
+          )}
         </div>
       </figure>
 

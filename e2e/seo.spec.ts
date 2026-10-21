@@ -11,3 +11,11 @@ test('sitemap lists case studies', async ({ request }) => {
   expect(res.ok()).toBe(true);
   expect(await res.text()).toContain('/work/yee-peng-cnx');
 });
+
+test('home and case study have description and canonical', async ({ page }) => {
+  for (const path of ['/', '/work/yee-peng-cnx']) {
+    await page.goto(path);
+    await expect(page.locator('meta[name=description]')).toHaveAttribute('content', /.+/);
+    await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href', /.+/);
+  }
+});

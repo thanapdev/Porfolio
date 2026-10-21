@@ -52,6 +52,12 @@ export function useDrag(
       const cs = getComputedStyle(st);
       place(parseFloat(cs.left) + m[0], parseFloat(cs.top) + m[1]);
     };
+    const reclamp = () => {
+      if (!st.style.left) return;
+      place(parseFloat(st.style.left), parseFloat(st.style.top));
+    };
+    const ro = new ResizeObserver(reclamp);
+    ro.observe(zone);
     handle.style.setProperty('touch-action', 'none');
     handle.addEventListener('pointerdown', down);
     handle.addEventListener('pointermove', move);
@@ -59,6 +65,7 @@ export function useDrag(
     handle.addEventListener('pointercancel', drop);
     handle.addEventListener('keydown', key);
     return () => {
+      ro.disconnect();
       handle.removeEventListener('pointerdown', down);
       handle.removeEventListener('pointermove', move);
       handle.removeEventListener('pointerup', drop);

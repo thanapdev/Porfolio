@@ -1,5 +1,6 @@
 import { getProjects, getTimeline } from '@/lib/projects';
 import { timelineExtra } from '@/lib/timeline-extra';
+import Text from './Text';
 import styles from './Timeline.module.css';
 
 export default function Timeline() {
@@ -17,9 +18,9 @@ export default function Timeline() {
             <tbody>
               {rows.map((r) => (
                 <tr key={r.title}>
-                  <td>{r.title}</td>
+                  <td><Text value={r.title} /></td>
                   <td data-l="year">{r.year}</td>
-                  <td data-l="role">{r.role}</td>
+                  <td data-l="role"><Text value={r.role} /></td>
                   <td data-l="link">
                     {r.href && <a href={r.href} target="_blank" rel="noopener">{r.linkLabel}</a>}
                   </td>

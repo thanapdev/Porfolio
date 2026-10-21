@@ -24,6 +24,7 @@ export default function ControlPanel({ codeMode, onCodeMode, play, onPlay }: Pro
     <div
       ref={ref}
       className={`${styles.stk} ${styles.panel}`}
+      role="group"
       aria-label="Control panel sticker"
       style={{ '--r': '3deg', right: '8%', top: '26%' } as CSSProperties}
     >

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import { projectLinks, type Project } from '@/lib/projects';
+import { hasCover } from '@/lib/cover';
 import Text from './Text';
 import styles from './ProjectCard.module.css';
 
@@ -13,7 +14,11 @@ export default function ProjectCard({ project: p, index }: { project: Project; i
       style={{ '--tilt': odd ? '.7deg' : '-.6deg' } as CSSProperties}
     >
       <div className={styles.shot}>
-        <Image src={p.cover} alt={p.coverAlt} fill sizes="(max-width:760px) 90vw, 560px" style={{ objectFit: 'cover' }} />
+        {hasCover(p.cover) ? (
+          <Image src={p.cover} alt={p.coverAlt} fill sizes="(max-width:760px) 90vw, 560px" style={{ objectFit: 'cover' }} />
+        ) : (
+          <span className="ph" style={{ position: 'absolute', inset: 'auto auto 12px 12px' }}>[real screenshot]</span>
+        )}
       </div>
       <div>
         <ul className="chips">

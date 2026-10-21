@@ -2,6 +2,7 @@ import { ogImage, OG_SIZE } from '@/lib/og';
 import { getProject, getProjects } from '@/lib/projects';
 
 export const alt = 'Case study';
+export const dynamicParams = false;
 export const size = OG_SIZE;
 export const contentType = 'image/png';
 

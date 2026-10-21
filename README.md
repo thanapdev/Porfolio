@@ -8,6 +8,7 @@ Personal portfolio for Thanapong Yamkamol: Next.js (App Router), MDX case studie
 | Command | What it does |
 |---|---|
 | `npm run dev` | Dev server at http://localhost:3000 |
+| `npm run lint` | ESLint. |
 | `npm test` | Unit tests (Vitest, includes `scripts/**/*.test.mjs`) |
 | `npm run e2e` | Playwright smoke, a11y and journey tests (mobile 390×844 and desktop 1280×800). Builds and starts the site first. |
 | `npm run build` | Production build. The `postbuild` step lists pages that still contain placeholders. |
@@ -29,6 +30,10 @@ Add `content/work/<slug>.mdx`. It starts with this frontmatter. A missing or wro
 | `cover`, `coverAlt` | string | yes | Build fails if `coverAlt` is missing. |
 | `live`, `repo` | URL | no | A button shows only when the URL is present. |
 | `order` | number | yes | Sort order on the home page. |
+
+Covers: put the image at the path in `cover` (under `public/`). While that file is missing the card and case study show a yellow `[real screenshot]` label.
+
+Profile photo: it must be exactly `public/profile.jpg`. Resume: after adding `public/resume.pdf`, edit the Resume label in `components/Contact.tsx` (it is still a placeholder).
 
 Reading time is computed from the word count. Do not write it by hand.
 

@@ -2,7 +2,7 @@
 .stk{position:absolute;touch-action:none;user-select:none;cursor:grab;filter:drop-shadow(2px 3px 0 rgba(0,0,0,.18));transform:rotate(var(--r,0deg));transition:transform .15s;z-index:2;display:grid;place-items:center;text-align:center;font-weight:800;font-family:var(--font-display),sans-serif}
 .stk:hover{transform:rotate(var(--r,0deg)) scale(1.05)}
 .stk.drag{cursor:grabbing;transform:rotate(calc(var(--r,0deg) + 5deg)) scale(1.08);transition:none}
-.hello{width:118px;height:118px;border-radius:50%;background:var(--red);color:#fff;border:5px solid #fff;font-size:21px;line-height:1}
+.hello{width:118px;height:118px;border-radius:50%;background:#c93a22;color:#fff;border:5px solid #fff;font-size:21px;line-height:1}
 .star{width:108px;height:108px;background:var(--yel);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);font-size:13px}
 .code{padding:10px 14px;background:var(--ink);color:#9effa0;font:600 16px var(--font-body),monospace;border:4px solid #fff;border-radius:10px}
 .cnx{width:94px;height:94px;border-radius:24px;background:var(--blue);color:#fff;border:5px solid #fff;font-size:14px;line-height:1.1}

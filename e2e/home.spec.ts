@@ -18,3 +18,9 @@ test('timeline lists 4 rows', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('#timeline tbody tr')).toHaveCount(4);
 });
+
+test('placeholder timeline roles and missing covers are flagged', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#timeline tbody td[data-l=role] .ph')).toHaveCount(2);
+  await expect(page.locator('article').first().locator('.ph', { hasText: '[real screenshot]' })).toHaveCount(1);
+});

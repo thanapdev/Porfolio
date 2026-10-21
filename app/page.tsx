@@ -5,6 +5,8 @@ import Timeline from '@/components/Timeline';
 import Contact from '@/components/Contact';
 import { getProjects } from '@/lib/projects';
 
+export const metadata = { alternates: { canonical: '/' } };
+
 export default function Home() {
   const projects = getProjects();
   return (
