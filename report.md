@@ -21,7 +21,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 | 2. Full-page mockup of the chosen direction | Done, approved by the owner. `mockup-full.html` |
 | 3. Spec for the real site (Next.js + Vercel) | Approved. `docs/superpowers/specs/2026-10-21-portfolio-site-design.md` |
 | 4. Implementation plan | Written and executed. `docs/superpowers/plans/2026-10-21-portfolio-site.md` (8 tasks) |
-| 5. Build + deploy | Build done on branch `feat/site` (all 8 tasks), not merged, not deployed. Deploy steps are in `README.md`. |
+| 5. Build + deploy | Built, reviewed, merged into `main` and pushed (2026-10-21). Not deployed yet: connect the repo to Vercel (steps in `README.md`). |
 
 ## Decisions (with reasons)
 
@@ -85,7 +85,7 @@ Facts that need the owner's confirmation:
 
 Next steps:
 
-- [ ] Owner reviews branch `feat/site` and merges it.
+- [ ] Owner connects `thanapdev/Porfolio` to Vercel (steps in `README.md`). Production deploys fail until every `.ph` placeholder is replaced; preview deploys work.
 - [ ] Fill the placeholders above, then deploy on Vercel (see `README.md`). Set `NEXT_PUBLIC_SITE_URL` after the first deploy.
 
 Lighthouse (local production build, 2026-10-21): desktop Performance 100, Accessibility 100, SEO 92; mobile Performance 91, Accessibility 100, SEO 92. axe reports no violations on the home page and a case study.
@@ -113,4 +113,5 @@ Known limits:
 ## Log
 
 - 2026-10-21: Built the 3-direction mockup. The owner picked a mix of 2 and 3, then approved the full-page mockup. Filled in real data from GitHub. Created this report. Connected the folder to GitHub and pushed the first commit. Wrote the real-site spec (approved) and the implementation plan.
-- 2026-10-21: Built the site on branch `feat/site` (8 tasks: scaffold, content, home, hero toys, case studies, SEO, placeholder guard + a11y/smoke tests, README deploy notes). Not merged, not deployed. Placeholders remain by design.
+- 2026-10-21: Built the site on branch `feat/site` (8 tasks: scaffold, content, home, hero toys, case studies, SEO, placeholder guard + a11y/smoke tests, README deploy notes). Placeholders remain by design.
+- 2026-10-21: Final whole-branch review passed after one fix round (SEO description + canonical URLs, placeholder guard now covers covers and timeline roles). Merged `feat/site` into `main` and pushed.
