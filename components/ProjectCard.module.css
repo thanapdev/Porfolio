@@ -1,0 +1,14 @@
+.card{position:relative;background:var(--card);border:2px solid var(--ink);padding:28px;display:grid;grid-template-columns:1.1fr 1fr;gap:32px;transform:rotate(var(--tilt));box-shadow:8px 10px 0 rgba(0,0,0,.12);transition:transform .25s cubic-bezier(.3,1.5,.5,1),box-shadow .25s}
+.card:hover,.card:focus-within{transform:rotate(0) translateY(-6px);box-shadow:10px 16px 0 rgba(0,0,0,.14)}
+.card::before,.card::after{content:"";position:absolute;width:110px;height:30px;background:rgba(255,216,74,.75);top:-14px}
+.card::before{left:30px;transform:rotate(-6deg)}
+.card::after{right:30px;transform:rotate(5deg)}
+.flip{grid-template-columns:1fr 1.1fr}
+.flip .shot{order:2}
+.shot{aspect-ratio:4/3;border:8px solid #fff;outline:2px solid var(--ink);transform:rotate(1.5deg);position:relative;overflow:hidden;background:#e9e1cf}
+.card h3{font-size:clamp(32px,4.6vw,50px);line-height:1;margin:4px 0 12px}
+.meta{font-weight:600;font-size:15px;color:var(--mute);margin:0 0 12px}
+.note{background:var(--yel);padding:14px 16px;transform:rotate(1.5deg);display:inline-block;margin:4px 0 22px;box-shadow:3px 4px 0 rgba(0,0,0,.15)}
+.note b{display:block;font-size:34px;line-height:1}
+.note span{font-size:20px}
+@media (max-width:760px){.card,.flip{grid-template-columns:1fr;padding:20px}.flip .shot{order:0}}

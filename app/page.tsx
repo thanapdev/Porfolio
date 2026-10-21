@@ -1,5 +1,27 @@
 import Hero from '@/components/Hero';
+import ProjectCard from '@/components/ProjectCard';
+import About from '@/components/About';
+import Timeline from '@/components/Timeline';
+import Contact from '@/components/Contact';
+import { getProjects } from '@/lib/projects';
 
 export default function Home() {
-  return <Hero />;
+  const projects = getProjects();
+  return (
+    <>
+      <Hero />
+      <section id="work">
+        <div className="wrap">
+          <p className="eyebrow">selected work</p>
+          <h2 className="h2 disp">Things I made<br />(and you can click)</h2>
+          <div style={{ display: 'grid', gap: 56 }}>
+            {projects.map((p, i) => <ProjectCard key={p.slug} project={p} index={i} />)}
+          </div>
+        </div>
+      </section>
+      <About />
+      <Timeline />
+      <Contact />
+    </>
+  );
 }

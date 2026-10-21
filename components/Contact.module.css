@@ -1,0 +1,4 @@
+.contact{padding:120px 0 40px;text-align:left}
+.big{font-size:clamp(56px,12vw,168px);line-height:.88;margin:10px 0 40px}
+.big em{font-style:normal;color:var(--red);position:relative;display:inline-block;transform:rotate(-2deg)}
+.btns :global(.btn){min-height:60px;font-size:19px;padding:14px 26px}
