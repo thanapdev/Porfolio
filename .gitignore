@@ -1,1 +1,21 @@
 .DS_Store
+
+# next.js
+/.next/
+/out/
+/node_modules
+/coverage
+/build
+*.pem
+npm-debug.log*
+.env*
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# playwright
+/test-results/
+/playwright-report/
+
+# scratch
+.superpowers/

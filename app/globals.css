@@ -1,0 +1,29 @@
+*,*::before,*::after{box-sizing:border-box}
+:root{--paper:#f5efe2;--card:#fffdf7;--ink:#1d1a16;--mute:#5a5245;--red:#e8492f;--blue:#2f5be8;--yel:#ffd84a;--grn:#3fae6a;--pink:#ffc6dc;--sky:#cfe0ff}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--paper) radial-gradient(#d8cfbd 1.2px,transparent 1.4px) 0 0/22px 22px;color:var(--ink);font:17px/1.55 var(--font-body),var(--font-thai),system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.skip{position:absolute;left:16px;top:-80px;z-index:100;padding:10px 16px;background:var(--ink);color:#fff;border-radius:8px}
+.skip:focus{top:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.hand{font-family:var(--font-hand),cursive;font-weight:700}
+.disp{font-family:var(--font-display),var(--font-thai),sans-serif;font-weight:800;letter-spacing:-.03em}
+.ph{background:#fff200;color:#000;outline:2px dashed #e0002a;outline-offset:1px;padding:0 .25em;border-radius:2px}
+section{padding:96px 0}
+.eyebrow{font:700 clamp(26px,3.4vw,34px) var(--font-hand),cursive;color:var(--blue);display:inline-block;transform:rotate(-2deg);margin:0}
+.h2{font-size:clamp(40px,7vw,80px);line-height:.95;margin:4px 0 40px}
+
+/* chunky toy buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 20px;border:3px solid var(--ink);border-radius:16px;background:var(--c,#fff);color:var(--t,var(--ink));font:700 16px var(--font-toy),sans-serif;text-decoration:none;box-shadow:0 6px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--ink)}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
+.btn.red{--c:var(--red);--t:#fff}.btn.blue{--c:var(--blue);--t:#fff}.btn.yel{--c:var(--yel)}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;padding:0;list-style:none}
+.chips li{font:700 13px var(--font-body),sans-serif;padding:5px 10px;border:2px solid var(--ink);border-radius:999px;background:#fff}
+.chips li:nth-child(1){background:var(--yel)}.chips li:nth-child(3){background:var(--sky)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
