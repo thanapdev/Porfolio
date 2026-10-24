@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mockup: Design work section</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;800&family=Caveat:wght@700&family=Fredoka:wght@600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f5efe2;--card:#fffdf7;--ink:#1d1a16;--mute:#5a5245;--blue:#2f5be8;--yel:#ffd84a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper) radial-gradient(#d8cfbd 1.2px,transparent 1.4px) 0 0/22px 22px;color:var(--ink);font:17px/1.55 'Space Grotesk',system-ui,sans-serif}
+.note-top{background:var(--ink);color:#fff;padding:10px 16px;font-size:14px;text-align:center}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+section{padding:72px 0 96px}
+.eyebrow{font:700 clamp(26px,3.4vw,34px) 'Caveat',cursive;color:var(--blue);display:inline-block;transform:rotate(-2deg);margin:0}
+.h2{font:800 clamp(40px,7vw,80px)/.95 'Bricolage Grotesque',sans-serif;margin:4px 0 40px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 14px}
+.chips li{font:700 13px 'Space Grotesk',sans-serif;padding:5px 10px;border:2px solid var(--ink);border-radius:999px;background:#fff}
+.ph{background:var(--yel);outline:2px dashed #e8492f;padding:0 4px}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 20px;border:3px solid var(--ink);border-radius:16px;background:var(--c,#fff);color:var(--t,var(--ink));font:700 16px 'Fredoka',sans-serif;text-decoration:none;box-shadow:0 6px 0 var(--ink);cursor:pointer;transition:transform .08s,box-shadow .08s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--ink)}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
+.btn.blue{--c:var(--blue);--t:#fff}
+
+.card{position:relative;background:var(--card);border:2px solid var(--ink);padding:28px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;transform:rotate(-.6deg);box-shadow:8px 10px 0 rgba(0,0,0,.12);transition:transform .25s cubic-bezier(.3,1.5,.5,1)}
+.card:hover,.card:focus-within{transform:rotate(0) translateY(-6px)}
+.card::before,.card::after{content:"";position:absolute;width:110px;height:30px;background:rgba(255,216,74,.75);top:-14px}
+.card::before{left:30px;transform:rotate(-6deg)}
+.card::after{right:30px;transform:rotate(5deg)}
+.card h3{font:800 clamp(32px,4.6vw,50px)/1 'Bricolage Grotesque',sans-serif;margin:4px 0 12px}
+.meta{font-weight:600;font-size:15px;color:var(--mute);margin:0 0 12px}
+.hint{font:700 22px 'Caveat',cursive;color:#7b7262;margin:18px 0 0}
+
+/* black phone frame; the Figma embed is cropped to just its screen and scaled in */
+.phone{box-sizing:content-box;width:220px;aspect-ratio:453/982;border:10px solid var(--ink);border-radius:36px;background:#e9e1cf;position:relative;overflow:hidden;transform:rotate(1.5deg);box-shadow:6px 8px 0 rgba(0,0,0,.15)}
+.phone .ph{position:absolute;left:12px;bottom:12px}
+/* at 600x1300 Figma draws the 453x982 screen at (73,158); crop to it, scale to the frame */
+.phone iframe{position:absolute;left:0;top:0;width:600px;height:1300px;border:0;transform-origin:0 0;transform:scale(calc(220/453)) translate(-73px,-158px)}
+.play{position:absolute;inset:0;margin:auto;width:max-content;height:max-content}
+
+@media (max-width:760px){
+  .card{grid-template-columns:1fr;padding:20px}
+  .phone{margin:0 auto}
+}
+</style>
+</head>
+<body>
+<div class="note-top">Mockup only. The real section goes between Work and Timeline. Yellow boxes are placeholders.</div>
+<section id="design">
+  <div class="wrap">
+    <p class="eyebrow">made in figma</p>
+    <h2 class="h2">Designs you<br>can tap through</h2>
+    <article class="card">
+      <div>
+        <ul class="chips"><li>UX/UI</li><li>Mobile app</li><li>Figma prototype</li></ul>
+        <h3>RoomieMatch</h3>
+        <p class="meta"><span class="ph">[class / personal / client?]</span> · <span class="ph">[year?]</span></p>
+        <p><span class="ph">[one line: what the app does and who it is for]</span></p>
+        <div class="btns">
+          <button class="btn blue" id="play2">▶ Play prototype</button>
+          <a class="btn" href="https://www.figma.com/proto/XflnePuAHp00z4TEDtzwJx/RoomieMatch?node-id=25-4479&amp;starting-point-node-id=25%3A4479" target="_blank" rel="noopener">Open in Figma ↗</a>
+        </div>
+        <p class="hint">psst… it really works, tap around →</p>
+      </div>
+      <div class="phone" id="phone">
+        <span class="ph">[real screenshot]</span>
+        <button class="btn play" id="play">▶ Play</button>
+      </div>
+    </article>
+  </div>
+</section>
+<script>
+const src = 'https://embed.figma.com/proto/XflnePuAHp00z4TEDtzwJx/RoomieMatch?node-id=25-4479&starting-point-node-id=25%3A4479&embed-host=portfolio&hide-ui=1&theme=light&bg-color=f5efe2&device-frame=0&scaling=contain';
+function load() {
+  const phone = document.getElementById('phone');
+  if (phone.querySelector('iframe')) return;
+  phone.innerHTML = `<iframe title="RoomieMatch prototype (Figma)" src="${src}" allowfullscreen></iframe>`;
+}
+document.getElementById('play').onclick = load;
+document.getElementById('play2').onclick = load;
+</script>
+</body>
+</html>
