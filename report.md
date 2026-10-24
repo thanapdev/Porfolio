@@ -7,7 +7,7 @@ Last updated: 2026-10-24
 ## Resume here (next session)
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Copy, photo, cursor ring, layout tweaks and the intro splash (2026-10-22 to 2026-10-24) are pushed. The Contact heading fix (2026-10-24) is pushed too. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Everything up to the Figma Design work section (2026-10-24) is merged into `main` and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -32,6 +32,7 @@ Last updated: 2026-10-24
 - `content/work/*.mdx`: the case studies (frontmatter plus body).
 - `lib/projects.ts`: content loader and validation.
 - `lib/timeline-extra.ts`: timeline rows that have no case study.
+- `lib/designs.ts`: Figma design pieces for the Design work section, plus `figmaEmbedUrl`.
 - `scripts/check-placeholders.mjs`: the placeholder guard.
 - `e2e/`: Playwright tests. Unit tests sit next to their code.
 
@@ -80,7 +81,12 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - A: sticker cards with Ram-style fields (CASE STUDY 01, outcome subtitle, skill tags, stat notes).
   - B: a full editorial restyle.
   - The owner kept the current design. Do not restyle the cards or the site toward whyramachandran.design or gloriaha.com.
-- **Section order (owner, 2026-10-23):** Hero → Work → Timeline → About → Contact. The timeline stays next to the project cards. The nav order matches.
+- **Section order (owner, 2026-10-23; Design added 2026-10-24):** Hero → Work → Design → Timeline → About → Contact. The timeline stays next to the project cards. The nav order matches.
+- **Design work section (owner, 2026-10-24).** GitHub builds (Work) and Figma designs are separate groups.
+  - Spec: `docs/superpowers/specs/2026-10-24-figma-design-work-design.md`. Approved look: `mockup-design-work.html`.
+  - Each piece is a card with a black phone frame. Nothing from Figma loads until Play is clicked. Then the Figma embed shows inside the phone, and focus moves into it.
+  - The embed is cropped to fill the phone: iframe 600×1300, screen at (73,158). If Figma changes its padding, re-measure these numbers in `components/DesignWork.module.css`.
+  - First piece: RoomieMatch.
 - **Cursor ring (owner, 2026-10-22).** Borrowed from whyramachandran.design (`components/CursorLabel.tsx`).
   - A small, quiet "scroll ✦ scroll ✦" ring in muted grey at 80% opacity spins slowly around the mouse.
   - It has no hover states (owner: no change on hover, not too eye-catching).
@@ -128,6 +134,8 @@ Placeholders still on the real site. A production build (`VERCEL_ENV=production`
 - [ ] Resume PDF. Add `public/resume.pdf`, then change the Resume button label in `components/Contact.tsx`.
 - [ ] Role in QueueApp and in TiguS (`lib/timeline-extra.ts`).
 - [ ] Research methods on the back of the "User Research" chip.
+- [ ] RoomieMatch (`lib/designs.ts`): one-line description, year, and kind of work (class, personal or client). Add a cover at `public/design/roomiematch/cover.png`.
+- [ ] Optional, from the Design work review: the double-play and mobile layout tests could be stricter; the "tap around →" arrow points right on mobile where the phone is below; `figmaEmbedUrl` assumes the Figma link already has a `?`.
 
 Facts that need the owner's confirmation:
 
@@ -162,6 +170,7 @@ Known limits:
 ## Files
 
 - `mockup-directions.html`: the 3-direction comparison (Arcade, Sticker, Toy).
+- `mockup-design-work.html`: the approved mockup for the Design work section.
 - `mockup-full.html`: the approved full-page mockup. The hero name comes from `const NAME` in its script.
 - `report.md`: this file.
 - `README.md`: dev commands, how to write a case study, and the Vercel deploy steps. **The whole file is currently wrapped in an HTML comment** (owner's request), so it shows blank on GitHub.
@@ -183,3 +192,4 @@ Known limits:
 - 2026-10-24: Fixed the hero buttons falling below the fold on short desktop windows. A rule in `components/Hero.module.css` for desktop heights of 820px or less sizes the name and role by height too and trims the spacing. Checked at 1437×655, 1280×600, 1440×900, 1920×1080 and 390×844. The hero and home e2e tests pass.
 - 2026-10-24: Added the intro splash (`components/IntroSplash.tsx`) with e2e tests. Lint, typecheck, unit tests and all e2e tests pass. Pushed to `origin/main`.
 - 2026-10-24: Fixed the Contact heading pushing the buttons below the fold on short desktop windows. `.big` in `components/Contact.module.css` now uses `min(12vw,16svh)`. Mobile was already fine. All e2e tests pass.
+- 2026-10-24: Added the Design work section for Figma prototypes (RoomieMatch), with a Design nav link. Built on branch `feat/design-work` from the plan `docs/superpowers/plans/2026-10-24-figma-design-work.md`. A fresh review found one Important issue (focus lost after the phone Play button), which was fixed with a test. 55 e2e tests pass. Merged into `main` and pushed.
