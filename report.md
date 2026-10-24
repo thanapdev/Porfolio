@@ -7,7 +7,7 @@ Last updated: 2026-10-24
 ## Resume here (next session)
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Copy, photo, cursor ring, layout tweaks and the intro splash (2026-10-22 to 2026-10-24) are committed and pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Copy, photo, cursor ring, layout tweaks and the intro splash (2026-10-22 to 2026-10-24) are pushed. The Contact heading fix (2026-10-24) is committed but not pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -182,3 +182,4 @@ Known limits:
 - 2026-10-22 to 2026-10-23: Added the cursor ring (`components/CursorLabel.tsx`). Set the section order to Hero → Work → Timeline → About → Contact, and the nav matches.
 - 2026-10-24: Fixed the hero buttons falling below the fold on short desktop windows. A rule in `components/Hero.module.css` for desktop heights of 820px or less sizes the name and role by height too and trims the spacing. Checked at 1437×655, 1280×600, 1440×900, 1920×1080 and 390×844. The hero and home e2e tests pass.
 - 2026-10-24: Added the intro splash (`components/IntroSplash.tsx`) with e2e tests. Lint, typecheck, unit tests and all e2e tests pass. Pushed to `origin/main`.
+- 2026-10-24: Fixed the Contact heading pushing the buttons below the fold on short desktop windows. `.big` in `components/Contact.module.css` now uses `min(12vw,16svh)`. Mobile was already fine. All e2e tests pass.
