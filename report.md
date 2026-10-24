@@ -7,7 +7,7 @@ Last updated: 2026-10-24
 ## Resume here (next session)
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Copy, photo, cursor ring and layout tweaks from 2026-10-22 to 2026-10-24 are committed locally on `main`, but not pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Copy, photo, cursor ring, layout tweaks and the intro splash (2026-10-22 to 2026-10-24) are committed and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -87,6 +87,11 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - The native pointer stays visible.
   - Mouse only.
   - Under reduced motion it does not spin or trail.
+- **Intro splash (owner, 2026-10-24).** `components/IntroSplash.tsx`.
+  - Shows a HELLO THERE! sticker, the line "designing… then building…" and a filling bar, then slides up after about 1.3 seconds.
+  - It shows once per browser session (session cookie `intro=1`). It never shows under reduced motion or without JavaScript.
+  - Any key, click or tap skips it.
+  - Playwright gives every test the `intro=1` cookie in `playwright.config.ts`. `e2e/intro.spec.ts` starts without it.
 - **Real-site decisions (2026-10-21):** Next.js App Router, MDX content in the repo, CSS Modules (no Tailwind), English only, full case-study pages, static on Vercel. Details are in the spec.
 
 ## Data sources
@@ -131,6 +136,7 @@ Facts that need the owner's confirmation:
 Next steps:
 
 - [ ] Fill the placeholders above. This is the next work session.
+- [ ] From the 2026-10-24 review of the hero fix (optional): add an e2e test that the hero buttons stay above the fold at 1280×650, and change `vh` to `svh` in the short-window rule.
 - [ ] Restore the README by removing the wrapping `<!--` and `-->` lines.
 - [ ] Deploy once on Vercel, with the owner's OK. The steps are in the README:
   1. Import `thanapdev/Porfolio`.
@@ -175,3 +181,4 @@ Known limits:
 - 2026-10-22: Added the profile photo (`public/profile.jpg`, a 900×900 square cropped from the original so the subject is centred).
 - 2026-10-22 to 2026-10-23: Added the cursor ring (`components/CursorLabel.tsx`). Set the section order to Hero → Work → Timeline → About → Contact, and the nav matches.
 - 2026-10-24: Fixed the hero buttons falling below the fold on short desktop windows. A rule in `components/Hero.module.css` for desktop heights of 820px or less sizes the name and role by height too and trims the spacing. Checked at 1437×655, 1280×600, 1440×900, 1920×1080 and 390×844. The hero and home e2e tests pass.
+- 2026-10-24: Added the intro splash (`components/IntroSplash.tsx`) with e2e tests. Lint, typecheck, unit tests and all e2e tests pass. Pushed to `origin/main`.

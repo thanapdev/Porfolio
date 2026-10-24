@@ -9,6 +9,7 @@ import {
 import './globals.css';
 import Nav from '@/components/Nav';
 import CursorLabel from '@/components/CursorLabel';
+import IntroSplash from '@/components/IntroSplash';
 import { SITE_URL } from '@/lib/site';
 
 const body = Space_Grotesk({
@@ -56,9 +57,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      // IntroSplash's inline script sets data-intro before hydration
+      suppressHydrationWarning
       className={`${body.variable} ${display.variable} ${hand.variable} ${toy.variable} ${thai.variable}`}
     >
       <body>
+        <IntroSplash />
         <a className="skip" href="#main">
           Skip to content
         </a>
