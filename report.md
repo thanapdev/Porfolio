@@ -7,7 +7,7 @@ Last updated: 2026-10-24
 ## Resume here (next session)
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Everything up to the Figma Design work section (2026-10-24) is merged into `main` and pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Everything up to the Work/Design carousel (2026-10-24) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -93,6 +93,11 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - The native pointer stays visible.
   - Mouse only.
   - Under reduced motion it does not spin or trail.
+- **Carousel for Work and Design work (owner, 2026-10-24).** `components/Carousel.tsx` wraps both sections so the page stays short.
+  - One card at a time, with ←/→ buttons, dots, a ⏸ button, and swipe on phones (CSS scroll-snap).
+  - It auto-advances every 6 seconds and loops. The owner asked for 3 seconds, then chose 6 so HR can read a card.
+  - It starts only when the section is in view. It stops on hover, while focus is inside, when paused, and under reduced motion.
+  - With one card (Design work today) there are no controls and no auto-advance.
 - **Intro splash (owner, 2026-10-24).** `components/IntroSplash.tsx`.
   - Shows a HELLO THERE! sticker, the line "designing… then building…" and a filling bar, then slides up after about 1.3 seconds.
   - It shows once per browser session (session cookie `intro=1`). It never shows under reduced motion or without JavaScript.
@@ -193,3 +198,4 @@ Known limits:
 - 2026-10-24: Added the intro splash (`components/IntroSplash.tsx`) with e2e tests. Lint, typecheck, unit tests and all e2e tests pass. Pushed to `origin/main`.
 - 2026-10-24: Fixed the Contact heading pushing the buttons below the fold on short desktop windows. `.big` in `components/Contact.module.css` now uses `min(12vw,16svh)`. Mobile was already fine. All e2e tests pass.
 - 2026-10-24: Added the Design work section for Figma prototypes (RoomieMatch), with a Design nav link. Built on branch `feat/design-work` from the plan `docs/superpowers/plans/2026-10-24-figma-design-work.md`. A fresh review found one Important issue (focus lost after the phone Play button), which was fixed with a test. 55 e2e tests pass. Merged into `main` and pushed.
+- 2026-10-24: Turned Work and Design work into carousels (`components/Carousel.tsx`, `e2e/carousel.spec.ts`). Fixed a quick double-click on → landing on the wrong card, and a horizontal scroll on phones. 66 e2e tests pass on two full runs. One earlier full run had a single `intro.spec.ts` failure that did not come back; it may be flaky under load. Not reviewed by a separate reviewer. Pushed to `origin/main`.

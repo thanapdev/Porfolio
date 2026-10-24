@@ -3,6 +3,7 @@ import ProjectCard from '@/components/ProjectCard';
 import About from '@/components/About';
 import Timeline from '@/components/Timeline';
 import DesignWork from '@/components/DesignWork';
+import Carousel from '@/components/Carousel';
 import Contact from '@/components/Contact';
 import { getProjects } from '@/lib/projects';
 
@@ -17,9 +18,9 @@ export default function Home() {
         <div className="wrap">
           <p className="eyebrow">my projects</p>
           <h2 className="h2 disp">Things I made<br />(and you can click)</h2>
-          <div style={{ display: 'grid', gap: 56 }}>
+          <Carousel label="Projects">
             {projects.map((p, i) => <ProjectCard key={p.slug} project={p} index={i} />)}
-          </div>
+          </Carousel>
         </div>
       </section>
       <DesignWork />
