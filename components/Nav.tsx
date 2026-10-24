@@ -5,6 +5,7 @@ import styles from './Nav.module.css';
 
 const links = [
   ['Work', '/#work'],
+  ['Design', '/#design'],
   ['Timeline', '/#timeline'],
   ['About', '/#about'],
   ['Contact', '/#contact'],

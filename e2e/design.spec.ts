@@ -33,3 +33,11 @@ test('phone fits inside the card on mobile', async ({ page }, testInfo) => {
   const phone = await page.getByTestId('phone').boundingBox();
   expect(phone!.x + phone!.width).toBeLessThanOrEqual(card!.x + card!.width);
 });
+
+test('nav links to the design section in order', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'mobile nav is a menu');
+  await page.goto('/');
+  const labels = await page.locator('nav li a').allInnerTexts();
+  expect(labels).toEqual(['Work', 'Design', 'Timeline', 'About', 'Contact']);
+  await expect(page.getByRole('link', { name: 'Design', exact: true })).toHaveAttribute('href', '/#design');
+});

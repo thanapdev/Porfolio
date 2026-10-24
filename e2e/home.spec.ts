@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('home shows both case studies', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('article')).toHaveCount(2);
+  await expect(page.locator('#work article')).toHaveCount(2);
   await expect(page.getByRole('heading', { name: 'Yee-Peng-CNX' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'The Reborn Gacha' })).toBeVisible();
 });
