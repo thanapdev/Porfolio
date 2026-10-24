@@ -41,3 +41,15 @@ test('nav links to the design section in order', async ({ page }, testInfo) => {
   expect(labels).toEqual(['Work', 'Design', 'Timeline', 'About', 'Contact']);
   await expect(page.getByRole('link', { name: 'Design', exact: true })).toHaveAttribute('href', '/#design');
 });
+
+test('focus moves into the prototype after the phone Play button', async ({ page }) => {
+  await page.goto('/');
+  const s = page.locator('#design');
+  await expect(async () => {
+    await s.getByRole('button', { name: 'Play RoomieMatch prototype' }).focus();
+    await page.keyboard.press('Enter');
+    await expect(s.locator('iframe')).toHaveCount(1, { timeout: 500 });
+  }).toPass();
+  // short timeout: Figma grabs focus itself seconds later, which would hide the bug
+  await expect(s.locator('iframe')).toBeFocused({ timeout: 300 });
+});
