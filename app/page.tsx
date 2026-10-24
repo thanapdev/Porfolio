@@ -2,6 +2,7 @@ import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
 import About from '@/components/About';
 import Timeline from '@/components/Timeline';
+import DesignWork from '@/components/DesignWork';
 import Contact from '@/components/Contact';
 import { getProjects } from '@/lib/projects';
 
@@ -21,6 +22,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <DesignWork />
       <Timeline />
       <About />
       <Contact />

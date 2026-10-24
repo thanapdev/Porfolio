@@ -1,0 +1,18 @@
+.card{position:relative;background:var(--card);border:2px solid var(--ink);padding:28px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;transform:rotate(-.6deg);box-shadow:8px 10px 0 rgba(0,0,0,.12);transition:transform .25s cubic-bezier(.3,1.5,.5,1),box-shadow .25s}
+.card:hover,.card:focus-within{transform:rotate(0) translateY(-6px);box-shadow:10px 16px 0 rgba(0,0,0,.14)}
+.card::before,.card::after{content:"";position:absolute;width:110px;height:30px;background:rgba(255,216,74,.75);top:-14px}
+.card::before{left:30px;transform:rotate(-6deg)}
+.card::after{right:30px;transform:rotate(5deg)}
+.card h3{font-size:clamp(32px,4.6vw,50px);line-height:1;margin:4px 0 12px}
+.meta{font-weight:600;font-size:15px;color:var(--mute);margin:0 0 12px}
+.hint{font-size:22px;color:#7b7262;margin:18px 0 0}
+/* black phone frame at the prototype's screen ratio (393x852) */
+.phone{box-sizing:content-box;width:220px;aspect-ratio:453/982;border:10px solid var(--ink);border-radius:36px;background:#e9e1cf;position:relative;overflow:hidden;transform:rotate(1.5deg);box-shadow:6px 8px 0 rgba(0,0,0,.15)}
+.phone :global(.ph){position:absolute;left:12px;bottom:12px}
+.play{position:absolute;inset:0;margin:auto;width:max-content;height:max-content}
+/* shortcut: Figma pads the screen inside its embed; at 600x1300 it draws the 453x982 screen at (73,158), measured 2026-10-24. Re-measure if Figma changes its padding. */
+.phone iframe{position:absolute;left:0;top:0;width:600px;height:1300px;border:0;transform-origin:0 0;transform:scale(calc(220/453)) translate(-73px,-158px)}
+@media (max-width:760px){
+  .card{grid-template-columns:1fr;padding:20px}
+  .phone{margin:0 auto}
+}
