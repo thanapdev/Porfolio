@@ -32,9 +32,9 @@ export default function About() {
             <figcaption className="hand">that&apos;s me!</figcaption>
           </figure>
           <div className={styles.text}>
-            <p>I&apos;m a Software Engineering student at CAMT, Chiang Mai University <span className="ph">[year of study?]</span>, now living in Bangkok. I like to design things and then build them myself, so the idea that gets tested is the one that ships.</p>
-            <p>I care about interfaces that are clear first and fun second. Off the clock I&apos;m a HoYoverse player, which explains the gacha game.</p>
-            <p>Currently open to freelance projects and UX/UI internships or junior roles.</p>
+            <p>I&apos;m a 3rd-year Computer Innovation for Communication student at COSCI, Srinakharinwirot University, on the UX/UI design track.</p>
+            <p>I got into tech because I wanted to make useful things. Coding came first, then web development, which I liked straight away. Then I found UX/UI design and was hooked: talking to people, finding out what they need, and working out what to build for them. Now I do the research and the Figma prototypes, and I build the front end myself. I love seeing people use it and tell me &ldquo;this is cool&rdquo; or &ldquo;this makes things so much easier.&rdquo;</p>
+            <p>Looking for a UX/UI design role in 2026, and open to freelance projects now.</p>
             <ul className={styles.skills} aria-label="Skills">
               {skills.map((s) => <li key={s.front}><SkillChip {...s} /></li>)}
             </ul>

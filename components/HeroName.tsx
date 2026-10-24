@@ -12,6 +12,8 @@ type Props = { name: string; codeMode: boolean; play: number };
 export default function HeroName({ name, codeMode, play }: Props) {
   const [popped, setPopped] = useState<number | null>(null);
   const text = codeMode ? `<${name.split(' ')[0]} />` : name;
+  // code mode keeps "<Name />" as one unbreakable word so "/>" never wraps alone
+  const words = codeMode ? [text.replace(' ', '\u00A0')] : text.split(' ');
   let i = 0;
   return (
     <h1
@@ -19,7 +21,7 @@ export default function HeroName({ name, codeMode, play }: Props) {
       aria-label={text}
       style={{ '--play': play } as React.CSSProperties}
     >
-      {text.split(' ').map((word, w) => (
+      {words.map((word, w) => (
         <span key={w}>
           {w > 0 && ' '}
           <i className={styles.word}>

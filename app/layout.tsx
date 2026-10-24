@@ -8,6 +8,7 @@ import {
 } from 'next/font/google';
 import './globals.css';
 import Nav from '@/components/Nav';
+import CursorLabel from '@/components/CursorLabel';
 import { SITE_URL } from '@/lib/site';
 
 const body = Space_Grotesk({
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Nav />
+        <CursorLabel />
         <main id="main" tabIndex={-1}>
           {children}
         </main>

@@ -5,6 +5,12 @@ test('code switch renames hero', async ({ page }) => {
   await page.getByRole('switch', { name: 'Code mode' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveAttribute('aria-label', '<Thanapong />');
   await expect(page.getByRole('switch', { name: 'Code mode' })).toHaveAttribute('aria-checked', 'true');
+  // "<Thanapong />" stays on one line and fits the viewport
+  const tops = await page.locator('h1 span[aria-hidden="true"]').evaluateAll((els) =>
+    els.map((el) => Math.round(el.getBoundingClientRect().top / 20)),
+  );
+  expect(new Set(tops).size).toBe(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
 
 test('sticker stays in zone', async ({ page }) => {

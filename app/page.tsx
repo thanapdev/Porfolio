@@ -14,15 +14,15 @@ export default function Home() {
       <Hero />
       <section id="work">
         <div className="wrap">
-          <p className="eyebrow">selected work</p>
+          <p className="eyebrow">my projects</p>
           <h2 className="h2 disp">Things I made<br />(and you can click)</h2>
           <div style={{ display: 'grid', gap: 56 }}>
             {projects.map((p, i) => <ProjectCard key={p.slug} project={p} index={i} />)}
           </div>
         </div>
       </section>
-      <About />
       <Timeline />
+      <About />
       <Contact />
     </>
   );

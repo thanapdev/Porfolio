@@ -24,3 +24,17 @@ test('placeholder timeline roles and missing covers are flagged', async ({ page 
   await expect(page.locator('#timeline tbody td[data-l=role] .ph')).toHaveCount(2);
   await expect(page.locator('article').first().locator('.ph', { hasText: '[real screenshot]' })).toHaveCount(1);
 });
+
+test('cursor ring appears with the mouse', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'mouse-only feature');
+  await page.goto('/');
+  const ring = page.getByTestId('cursor-ring');
+  await expect(ring.locator('svg')).toHaveCSS('opacity', '0');
+  // keep moving until the client component has hydrated and picked up the pointer
+  await expect(async () => {
+    await page.mouse.move(40, 300);
+    await page.mouse.move(45, 305);
+    await expect(ring.locator('svg')).toHaveCSS('opacity', '0.8', { timeout: 500 });
+  }).toPass();
+  await expect(ring).toContainText('scroll');
+});

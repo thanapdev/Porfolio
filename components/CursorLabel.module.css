@@ -1,0 +1,7 @@
+.cursor{position:fixed;left:0;top:0;z-index:70;pointer-events:none;width:0;height:0}
+.ring{position:absolute;left:-42px;top:-42px;width:84px;height:84px;overflow:visible;opacity:0;transition:opacity .3s}
+.on .ring{opacity:.8}
+.text{font:600 12px var(--font-toy),sans-serif;text-transform:uppercase;letter-spacing:.1em;fill:var(--mute)}
+.star{fill:var(--mute)}
+@media (prefers-reduced-motion:no-preference){.ring text{animation:spin 14s linear infinite;transform-origin:60px 60px}}
+@keyframes spin{to{transform:rotate(360deg)}}

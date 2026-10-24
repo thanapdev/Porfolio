@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work Card Styles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,800&family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&family=Inter+Tight:wght@400;500;700;800&family=Noto+Sans+Thai:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font:17px/1.55 "Space Grotesk","Noto Sans Thai",sans-serif;background:#111;color:#1d1a16;overflow-x:hidden}
+a{color:inherit}
+.ph{background:#fff200;color:#000;outline:2px dashed #e0002a;outline-offset:1px;padding:0 .25em;border-radius:2px}
+.chrome{position:sticky;top:0;z-index:50;display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 16px;background:#111;color:#fff;font:500 14px/1.3 "Noto Sans Thai",sans-serif}
+.chrome strong{margin-right:auto}
+.chrome a{text-decoration:none;padding:8px 12px;border-radius:999px;background:#2a2a2a;min-height:36px;display:inline-flex;align-items:center}
+.label{display:inline-block;margin:0 0 24px;font:600 13px "Noto Sans Thai",sans-serif;padding:6px 12px;border-radius:999px;background:#000;color:#fff}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+
+/* ============ A: sticker base + Ram-style card fields ============ */
+.a{--paper:#f5efe2;--ink:#1d1a16;--mute:#5a5245;--red:#e8492f;--redtxt:#c93a22;--blue:#2f5be8;--yel:#ffd84a;--sky:#cfe0ff;--pink:#ffc6dc;
+  background:var(--paper) radial-gradient(#d8cfbd 1.2px,transparent 1.4px) 0 0/22px 22px;padding:56px 0 96px}
+.a .eyebrow{font:700 32px "Caveat",cursive;color:var(--blue);display:inline-block;transform:rotate(-2deg);margin:0}
+.a h2{font:800 clamp(40px,7vw,80px)/.95 "Bricolage Grotesque",sans-serif;letter-spacing:-.03em;margin:4px 0 48px}
+.a-cards{display:grid;gap:64px}
+.a-card{position:relative;background:#fffdf7;border:2px solid var(--ink);padding:28px;display:grid;grid-template-columns:1.1fr 1fr;gap:32px;transform:rotate(var(--t));box-shadow:8px 10px 0 rgba(0,0,0,.12);transition:transform .25s cubic-bezier(.3,1.5,.5,1)}
+.a-card:hover{transform:rotate(0) translateY(-6px)}
+.a-card::before,.a-card::after{content:"";position:absolute;width:110px;height:30px;background:rgba(255,216,74,.75);top:-14px}
+.a-card::before{left:30px;transform:rotate(-6deg)}.a-card::after{right:30px;transform:rotate(5deg)}
+.a-card.flip{grid-template-columns:1fr 1.1fr}.a-card.flip .shot{order:2}
+.shot{aspect-ratio:4/3;border:8px solid #fff;outline:2px solid var(--ink);transform:rotate(1.5deg);position:relative;overflow:hidden;display:grid;place-items:center}
+.shot.yp{background:linear-gradient(160deg,#1b1f4b,#4b2a6b 60%,#f29b4b)}
+.shot.rg{background:linear-gradient(140deg,#2a0f57,#7a2a9b 55%,#ff3e9a)}
+.a-num{font:700 13px "Space Grotesk",sans-serif;letter-spacing:.18em;color:var(--mute);display:flex;align-items:center;gap:10px;margin:0 0 6px}
+.a-num::after{content:"";flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--ink) 0 6px,transparent 6px 10px);opacity:.4}
+.a h3{font:800 clamp(32px,4.4vw,48px)/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.02em;margin:0 0 8px}
+.a-sub{font:700 26px/1.15 "Caveat",cursive;margin:0 0 14px;color:var(--ink)}
+.a-tags{font:700 13px "Space Grotesk",sans-serif;letter-spacing:.06em;color:var(--mute);margin:0 0 16px}
+.a-tags b{color:var(--ink)}
+.a-stats{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 22px}
+.a-stat{background:var(--c);padding:10px 12px;transform:rotate(var(--r));box-shadow:3px 4px 0 rgba(0,0,0,.15);min-width:130px;max-width:170px}
+.a-stat b{display:block;font:800 28px/1 "Bricolage Grotesque",sans-serif}
+.a-stat span{font:700 17px/1.1 "Caveat",cursive}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:50px;padding:12px 20px;border:3px solid var(--ink);border-radius:16px;background:var(--c,#fff);color:var(--t,var(--ink));font:700 16px "Fredoka",sans-serif;text-decoration:none;box-shadow:0 6px 0 var(--ink);transition:transform .08s,box-shadow .08s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--ink)}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
+.btn.blue{--c:var(--blue);--t:#fff}
+.btns{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.a .small{font:600 15px "Space Grotesk",sans-serif;text-underline-offset:3px}
+@media (max-width:760px){.a-card,.a-card.flip{grid-template-columns:1fr;padding:20px}.a-card.flip .shot{order:0}}
+
+/* ============ B: editorial, Ram-like overall ============ */
+.b{--bg:#f4f3ef;--ink:#0f0f0f;--mute:#6b6b6b;--line:#d6d4cc;--accent:#ff4d1a;background:var(--bg);color:var(--ink);font-family:"Inter Tight","Noto Sans Thai",sans-serif;padding:56px 0 96px}
+.b-nav{display:flex;justify-content:space-between;align-items:center;font:500 13px "Inter Tight",sans-serif;letter-spacing:.12em;text-transform:uppercase;padding-bottom:20px;border-bottom:1px solid var(--ink)}
+.b-nav span{display:flex;gap:28px}
+.b-hero{padding:72px 0 88px;border-bottom:1px solid var(--line)}
+.b-hi{font:500 18px "Inter Tight",sans-serif;color:var(--mute);margin:0 0 12px}
+.b-hero h1{font:800 clamp(44px,8.5vw,120px)/.92 "Inter Tight",sans-serif;letter-spacing:-.045em;text-transform:uppercase;margin:0 0 24px}
+.b-hero h1 em{font-style:normal;color:var(--accent)}
+.b-hero p{max-width:46ch;font-size:19px;color:#333;margin:0}
+.b-head{display:flex;justify-content:space-between;align-items:baseline;padding:56px 0 24px}
+.b-head h2{font:800 clamp(32px,4vw,48px)/1 "Inter Tight",sans-serif;letter-spacing:-.03em;text-transform:uppercase;margin:0}
+.b-head span{font:500 13px "Inter Tight";letter-spacing:.12em;color:var(--mute);text-transform:uppercase}
+.b-case{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;padding:48px 0;border-top:1px solid var(--ink);align-items:center}
+.b-case .shot{border:0;outline:0;transform:none;aspect-ratio:4/3;border-radius:6px;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.b-case:hover .shot{transform:scale(1.02)}
+.b-num{font:600 12px "Inter Tight";letter-spacing:.2em;color:var(--mute);text-transform:uppercase;margin:0 0 18px}
+.b-case h3{font:800 clamp(30px,3.6vw,44px)/1.02 "Inter Tight",sans-serif;letter-spacing:-.035em;margin:0 0 10px}
+.b-sub{font-size:19px;color:#333;margin:0 0 18px;max-width:40ch}
+.b-tags{font:600 12px "Inter Tight";letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 22px;display:flex;flex-wrap:wrap;gap:4px 14px}
+.b-tags .rt{color:var(--ink)}
+.b-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 24px}
+.b-stat{padding:14px 12px 14px 0}
+.b-stat+.b-stat{padding-left:14px;border-left:1px solid var(--line)}
+.b-stat b{display:block;font:800 28px/1 "Inter Tight";letter-spacing:-.03em;margin-bottom:6px}
+.b-stat span{font-size:13px;color:var(--mute);line-height:1.3;display:block}
+.b-links{display:flex;gap:28px;flex-wrap:wrap}
+.b-links a{font:700 14px "Inter Tight";letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-bottom:2px solid var(--ink);padding:6px 0;min-height:44px;display:inline-flex;align-items:flex-end}
+.b-links a:hover{color:var(--accent);border-color:var(--accent)}
+.b-case.flip .shot{order:2}
+@media (max-width:760px){.b-case,.b-case.flip{grid-template-columns:1fr;gap:24px}.b-case.flip .shot{order:0}.b-stats{grid-template-columns:1fr}.b-stat+.b-stat{padding-left:0;border-left:0;border-top:1px solid var(--line)}.b-nav span{display:none}}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="chrome" aria-label="Mockup options">
+  <strong>เทียบการ์ดผลงาน: แบบ ก และ ข</strong>
+  <a href="#a">ก · Sticker + การ์ดแบบ Ram</a>
+  <a href="#b">ข · Editorial ทั้งเว็บ</a>
+  <span style="font-size:12px;opacity:.8"><span class="ph">แถบเหลือง</span> = ข้อมูลที่ต้องเติม</span>
+</nav>
+
+<!-- ================= ก ================= -->
+<section class="a" id="a">
+  <div class="wrap">
+    <span class="label">แบบ ก · หน้าตาสติกเกอร์เดิม + โครงการ์ดแบบ Ram</span><br>
+    <p class="eyebrow">my projects</p>
+    <h2>Things I made<br>(and you can click)</h2>
+
+    <div class="a-cards">
+      <article class="a-card" style="--t:-.6deg">
+        <div class="shot yp"><span class="ph">[real screenshot]</span></div>
+        <div>
+          <p class="a-num">CASE STUDY 01</p>
+          <h3>Yee-Peng-CNX</h3>
+          <p class="a-sub"><span class="ph">[outcome headline? e.g. Bringing Yi Peng online for people who can't be there]</span></p>
+          <p class="a-tags"><b>• UX/UI DESIGN</b> • EXPERIENCE DESIGN • WEB • TH/EN &nbsp; ✦ <span class="ph">[X]</span> min read</p>
+          <div class="a-stats">
+            <div class="a-stat" style="--c:var(--yel);--r:-2deg"><b>3</b><span>virtual rituals to try in the browser</span></div>
+            <div class="a-stat" style="--c:var(--sky);--r:1.5deg"><b>2</b><span>languages, Thai and English</span></div>
+            <div class="a-stat" style="--c:var(--pink);--r:-1deg"><b class="ph">[00]</b><span class="ph">[real result?]</span></div>
+          </div>
+          <div class="btns">
+            <a class="btn blue" href="#" onclick="return false">View Case Study →</a>
+            <a class="small" href="https://yee-peng-cnx.vercel.app" target="_blank" rel="noopener">Live website ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="a-card flip" style="--t:.7deg">
+        <div class="shot rg"><span class="ph">[real screenshot]</span></div>
+        <div>
+          <p class="a-num">CASE STUDY 02</p>
+          <h3>The Reborn Gacha</h3>
+          <p class="a-sub"><span class="ph">[outcome headline? e.g. A 2-minute isekai quiz people want to share]</span></p>
+          <p class="a-tags"><b>• UX/UI DESIGN</b> • GAME DESIGN • FRONT-END • SOLO &nbsp; ✦ <span class="ph">[X]</span> min read</p>
+          <div class="a-stats">
+            <div class="a-stat" style="--c:var(--yel);--r:1.5deg"><b>13</b><span>reborn roles + 1 secret chicken</span></div>
+            <div class="a-stat" style="--c:var(--sky);--r:-1.5deg"><b>1080×1920</b><span>story card to share</span></div>
+            <div class="a-stat" style="--c:var(--pink);--r:1deg"><b class="ph">[00]</b><span class="ph">[plays / shares?]</span></div>
+          </div>
+          <div class="btns">
+            <a class="btn blue" href="#" onclick="return false">View Case Study →</a>
+            <a class="small" href="https://the-reborn-gacha.vercel.app" target="_blank" rel="noopener">Play the game ↗</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ข ================= -->
+<section class="b" id="b">
+  <div class="wrap">
+    <span class="label">แบบ ข · เปลี่ยนทั้งเว็บเป็นแนว editorial</span>
+    <div class="b-nav"><b>Thanapong</b><span>Work About Resume Contact</span></div>
+
+    <header class="b-hero">
+      <p class="b-hi">Hi, I'm Thanapong</p>
+      <h1>UX/UI designer<br>who <em>builds</em> it too</h1>
+      <p>3rd-year Computer Innovation student at COSCI, Srinakharinwirot University. I research, prototype in Figma and ship the front end myself.</p>
+    </header>
+
+    <div class="b-head"><h2>Selected work</h2><span>2026</span></div>
+
+    <article class="b-case">
+      <div class="shot yp"><span class="ph">[real screenshot]</span></div>
+      <div>
+        <p class="b-num">Case study 01</p>
+        <h3>Yee-Peng-CNX</h3>
+        <p class="b-sub"><span class="ph">[outcome headline? e.g. Bringing Yi Peng online for people who can't be there]</span></p>
+        <p class="b-tags"><span>• UX/UI Design</span><span>• Experience Design</span><span>• Web</span><span class="rt">✦ <span class="ph">[X]</span> min read</span></p>
+        <div class="b-stats">
+          <div class="b-stat"><b>3</b><span>virtual rituals in the browser</span></div>
+          <div class="b-stat"><b>TH/EN</b><span>bilingual content</span></div>
+          <div class="b-stat"><b class="ph">[00]</b><span class="ph">[real result?]</span></div>
+        </div>
+        <div class="b-links"><a href="#" onclick="return false">View case study →</a><a href="https://yee-peng-cnx.vercel.app" target="_blank" rel="noopener">Live website ↗</a></div>
+      </div>
+    </article>
+
+    <article class="b-case flip">
+      <div class="shot rg"><span class="ph">[real screenshot]</span></div>
+      <div>
+        <p class="b-num">Case study 02</p>
+        <h3>The Reborn Gacha</h3>
+        <p class="b-sub"><span class="ph">[outcome headline? e.g. A 2-minute isekai quiz people want to share]</span></p>
+        <p class="b-tags"><span>• UX/UI Design</span><span>• Game Design</span><span>• Front-end</span><span class="rt">✦ <span class="ph">[X]</span> min read</span></p>
+        <div class="b-stats">
+          <div class="b-stat"><b>13</b><span>reborn roles + 1 secret</span></div>
+          <div class="b-stat"><b>Solo</b><span>design and code</span></div>
+          <div class="b-stat"><b class="ph">[00]</b><span class="ph">[plays / shares?]</span></div>
+        </div>
+        <div class="b-links"><a href="#" onclick="return false">View case study →</a><a href="https://the-reborn-gacha.vercel.app" target="_blank" rel="noopener">Play the game ↗</a></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+</body>
+</html>

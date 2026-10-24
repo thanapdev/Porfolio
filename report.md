@@ -2,12 +2,12 @@
 
 Read this file first when starting a new chat. Update it at the end of every work session.
 
-Last updated: 2026-10-21 (end of day 1)
+Last updated: 2026-10-24
 
 ## Resume here (next session)
 
 **Where things stand:**
-- The site is built, reviewed, merged into `main` and pushed. `main` tracks `origin`, and the working tree is clean. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Copy, photo, cursor ring and layout tweaks from 2026-10-22 to 2026-10-24 are committed locally on `main`, but not pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -54,7 +54,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 | 3. Spec for the real site (Next.js + Vercel) | Approved. `docs/superpowers/specs/2026-10-21-portfolio-site-design.md` |
 | 4. Implementation plan | Written and executed. `docs/superpowers/plans/2026-10-21-portfolio-site.md` (8 tasks) |
 | 5. Build | Done. Built, reviewed, merged into `main` and pushed (2026-10-21). |
-| 6. Fill real content | Not started. See Open items. |
+| 6. Fill real content | In progress. About copy, education and profile photo are done. The rest is under Open items. |
 | 7. Deploy (Vercel) | On hold until stage 6 is complete (owner's decision). |
 
 ## Decisions (with reasons)
@@ -76,6 +76,17 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - Touch targets are at least 44px.
   - The timeline table turns into a stacked list on mobile.
 - **Yee-Peng-CNX role follows the repo README** (owner's decision, 2026-10-21): Experience Designer, covering UX/UI design and the cinematic look. Do not claim dev work on this project. Wiriya Thepbangchag is credited as Lead Developer.
+- **Work cards stay as built (owner, 2026-10-22).** Compared in `mockup-work-styles.html`:
+  - A: sticker cards with Ram-style fields (CASE STUDY 01, outcome subtitle, skill tags, stat notes).
+  - B: a full editorial restyle.
+  - The owner kept the current design. Do not restyle the cards or the site toward whyramachandran.design or gloriaha.com.
+- **Section order (owner, 2026-10-23):** Hero → Work → Timeline → About → Contact. The timeline stays next to the project cards. The nav order matches.
+- **Cursor ring (owner, 2026-10-22).** Borrowed from whyramachandran.design (`components/CursorLabel.tsx`).
+  - A small, quiet "scroll ✦ scroll ✦" ring in muted grey at 80% opacity spins slowly around the mouse.
+  - It has no hover states (owner: no change on hover, not too eye-catching).
+  - The native pointer stays visible.
+  - Mouse only.
+  - Under reduced motion it does not spin or trail.
 - **Real-site decisions (2026-10-21):** Next.js App Router, MDX content in the repo, CSS Modules (no Tailwind), English only, full case-study pages, static on Vercel. Details are in the spec.
 
 ## Data sources
@@ -88,7 +99,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 ### Facts already used, all from GitHub
 
 - **Name and city:** Thanapong Yamkamol. Lives in Bangkok, per the GitHub bio.
-- **Education:** Software Engineering at CAMT, Chiang Mai University, inferred from repo names. Year and status are not confirmed.
+- **Education (owner, 2026-10-22):** now studies Computer Innovation for Communication, UX/UI design track, at COSCI, Srinakharinwirot University (Bangkok). Earlier studied Software Engineering at CAMT, Chiang Mai University (older repos). 3rd year (LinkedIn, 2026-10-22).
 - **Yee-Peng-CNX (2026)**
   - Links: https://yee-peng-cnx.vercel.app and repo `thanapdev/Yee-Peng-CNX`.
   - The README lists Thanapong as "Experience Designer (UX/UI Design & Cinematic Aesthetic)" and Wiriya Thepbangchag as "Lead Developer".
@@ -104,8 +115,6 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 
 Placeholders still on the real site. A production build (`VERCEL_ENV=production`) fails until they are gone. Search `className="ph"` and `[` bracket values in `content/work/*.mdx` frontmatter (`tldr.problem`, `tldr.result`, and any bracketed `metric`).
 
-- [ ] Year of study or current status (`components/About.tsx`).
-- [ ] Profile photo (`components/About.tsx`, add `/profile.jpg`).
 - [ ] The problem and result of each case study (frontmatter `tldr`, plus body sections).
 - [ ] Real outcome numbers and the goal, research and caption sections in both MDX bodies.
 - [ ] Real screenshots.
@@ -159,3 +168,10 @@ Known limits:
 - 2026-10-21: Built the site on branch `feat/site` (8 tasks: scaffold, content, home, hero toys, case studies, SEO, placeholder guard + a11y/smoke tests, README deploy notes). Placeholders remain by design.
 - 2026-10-21: Final whole-branch review passed after one fix round (SEO description + canonical URLs, placeholder guard now covers covers and timeline roles). Merged `feat/site` into `main` and pushed.
 - 2026-10-21: Hid the README content (HTML comment). The owner chose Vercel, but will deploy only after all content is filled. Next session: fill the content.
+- 2026-10-22: Nav logo now reads `thanapong`. Code mode keeps `<Thanapong />` on one line, with a smaller font. The Work eyebrow now reads `my projects`; the heading is unchanged and Work stays before About (owner agreed). About now names the owner's current school, COSCI SWU.
+- 2026-10-22: Rewrote the About copy from the owner's LinkedIn About text (3rd year, research and Figma prototyping, looking for a UX/UI role in 2026). The freelance line is kept.
+- 2026-10-22: The About story now covers where it started (making useful things, coding, then web dev) and the turn to UX/UI (talking to users, pride when people like what was built). The HoYoverse line was removed at the owner's request.
+- 2026-10-22: Tightened the About copy from about 150 to about 105 words. Removed the repeated design-and-dev line, "the idea that gets tested is the one that ships" and "Let's talk."
+- 2026-10-22: Added the profile photo (`public/profile.jpg`, a 900×900 square cropped from the original so the subject is centred).
+- 2026-10-22 to 2026-10-23: Added the cursor ring (`components/CursorLabel.tsx`). Set the section order to Hero → Work → Timeline → About → Contact, and the nav matches.
+- 2026-10-24: Fixed the hero buttons falling below the fold on short desktop windows. A rule in `components/Hero.module.css` for desktop heights of 820px or less sizes the name and role by height too and trims the spacing. Checked at 1437×655, 1280×600, 1440×900, 1920×1080 and 390×844. The hero and home e2e tests pass.
