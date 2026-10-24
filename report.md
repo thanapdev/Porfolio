@@ -7,7 +7,7 @@ Last updated: 2026-10-24
 ## Resume here (next session)
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Copy, photo, cursor ring, layout tweaks and the intro splash (2026-10-22 to 2026-10-24) are pushed. The Contact heading fix (2026-10-24) is committed but not pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Copy, photo, cursor ring, layout tweaks and the intro splash (2026-10-22 to 2026-10-24) are pushed. The Contact heading fix (2026-10-24) is pushed too. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
