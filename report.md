@@ -6,6 +6,8 @@ Last updated: 2026-10-25
 
 ## Resume here (next session)
 
+**Paused (owner, 2026-10-25):** the owner put this project on hold. Nothing is in progress, the working tree is clean and `main` matches `origin/main`. When it resumes, start with "Next work, in order" below.
+
 **Where things stand:**
 - The site is built, reviewed and merged into `main`. Everything up to the anchor-jump gap fix (2026-10-25) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
@@ -19,7 +21,7 @@ Last updated: 2026-10-25
 - Production preview: `npm run build && npx next start -p 3001`.
 - `npm run build` prints a placeholder warning. That is expected until the content is complete.
 
-**Tomorrow's work, in order:**
+**Next work, in order:**
 1. Ask the owner for the missing content listed under "Open items". LinkedIn cannot be fetched automatically, so ask the owner to paste the text.
 2. Put each item where the Open items list says, replacing the yellow `.ph` placeholder.
 3. Re-run `npm run lint && npm test && npm run e2e`. When `npm run build` stops listing pages, every placeholder is gone.
@@ -200,3 +202,4 @@ Known limits:
 - 2026-10-24: Added the Design work section for Figma prototypes (RoomieMatch), with a Design nav link. Built on branch `feat/design-work` from the plan `docs/superpowers/plans/2026-10-24-figma-design-work.md`. A fresh review found one Important issue (focus lost after the phone Play button), which was fixed with a test. 55 e2e tests pass. Merged into `main` and pushed.
 - 2026-10-24: Turned Work and Design work into carousels (`components/Carousel.tsx`, `e2e/carousel.spec.ts`). Fixed a quick double-click on → landing on the wrong card, and a horizontal scroll on phones. 66 e2e tests pass on two full runs. One earlier full run had a single `intro.spec.ts` failure that did not come back; it may be flaky under load. Not reviewed by a separate reviewer. Pushed to `origin/main`.
 - 2026-10-25: Fixed the large empty gap under the nav after "See my work" or a nav link. `section[id]{scroll-margin-top:-64px}` in `app/globals.css` lifts the jump target past most of the 96px section padding, leaving about 36px under the nav on desktop and mobile. Contact, the last section, keeps a bigger gap because the page cannot scroll further. Smoke, home and carousel e2e tests pass (29 passed, 3 skipped).
+- 2026-10-25: The owner paused the project. The report is up to date and everything is pushed. Next session: fill the placeholders under "Open items".
