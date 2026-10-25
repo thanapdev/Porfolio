@@ -12,6 +12,7 @@ button{font:inherit;cursor:pointer;color:inherit}
 .disp{font-family:var(--font-display),var(--font-thai),sans-serif;font-weight:800;letter-spacing:-.03em}
 .ph{background:#fff200;color:#000;outline:2px dashed #e0002a;outline-offset:1px;padding:0 .25em;border-radius:2px}
 section{padding:96px 0}
+section[id]{scroll-margin-top:-64px}
 .eyebrow{font:700 clamp(26px,3.4vw,34px) var(--font-hand),cursive;color:var(--blue);display:inline-block;transform:rotate(-2deg);margin:0}
 .h2{font-size:clamp(40px,7vw,80px);line-height:.95;margin:4px 0 40px}
 
