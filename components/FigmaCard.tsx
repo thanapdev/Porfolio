@@ -10,7 +10,6 @@ export default function FigmaCard({ design: d, cover }: { design: Design; cover:
   const frame = useRef<HTMLIFrameElement>(null);
   // the phone Play button is removed on play, so hand focus to the prototype
   useEffect(() => { if (playing) frame.current?.focus(); }, [playing]);
-  const play = () => setPlaying(true);
   return (
     <article className={styles.card}>
       <div>
@@ -21,8 +20,9 @@ export default function FigmaCard({ design: d, cover }: { design: Design; cover:
         <p className={styles.meta}><Text value={d.kind} /> · <Text value={d.year} /></p>
         <p><Text value={d.blurb} /></p>
         <div className="btns">
-          <button type="button" className="btn blue" onClick={play}>▶ Play prototype</button>
-          <a className="btn" href={d.figma} target="_blank" rel="noopener">Open in Figma ↗</a>
+          <a className="btn blue" href={d.figma} target="_blank" rel="noopener">▶ Play prototype ↗</a>
+          {d.file && <a className="btn" href={d.file} target="_blank" rel="noopener">Open in Figma ↗</a>}
+          {d.caseStudy && <a className="btn" href={d.caseStudy} target="_blank" rel="noopener">UX case study ↗</a>}
         </div>
         <p className={`${styles.hint} hand`}>psst… it really works, tap around →</p>
       </div>
@@ -36,7 +36,7 @@ export default function FigmaCard({ design: d, cover }: { design: Design; cover:
             ) : (
               <span className="ph">[real screenshot]</span>
             )}
-            <button type="button" className={`btn ${styles.play}`} onClick={play} aria-label={`Play ${d.title} prototype`}>▶ Play</button>
+            <button type="button" className={`btn ${styles.play}`} onClick={() => setPlaying(true)} aria-label={`Play ${d.title} prototype`}>▶ Play</button>
           </>
         )}
       </div>

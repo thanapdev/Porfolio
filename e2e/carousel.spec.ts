@@ -54,8 +54,16 @@ test('reduced motion: no auto-advance', async ({ page }) => {
   await expect(current(page)).toHaveAccessibleName('Go to slide 1');
 });
 
-test('a single card gets no controls', async ({ page }) => {
-  await page.goto('/');
-  await expect(page.locator('#design article')).toHaveCount(1);
-  await expect(page.locator('#design').getByRole('button', { name: 'Next slide' })).toHaveCount(0);
+test('stays paused while hovered after focus leaves a control', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== 'desktop', 'needs a mouse');
+  // real clock: the fake one hides this bug
+  await page.goto('/#work');
+  await expect(current(page)).toHaveAccessibleName('Go to slide 1');
+  await work(page).getByRole('button', { name: 'Next slide' }).click();
+  // plain text: focus leaves the button, the mouse stays on the carousel
+  await work(page).locator('article').nth(1).locator('h3').click();
+  await expect(work(page).getByRole('button', { name: 'Next slide' })).not.toBeFocused();
+  await page.waitForTimeout(300); // let the blur re-render land
+  // read once, no retry: a retrying check passes on the stale value before the re-render
+  expect(await work(page).locator('[data-autoplay]').getAttribute('data-autoplay')).toBe('false');
 });

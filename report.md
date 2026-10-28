@@ -2,14 +2,14 @@
 
 Read this file first when starting a new chat. Update it at the end of every work session.
 
-Last updated: 2026-10-25
+Last updated: 2026-10-28
 
 ## Resume here (next session)
 
-**Paused (owner, 2026-10-25):** the owner put this project on hold. Nothing is in progress, the working tree is clean and `main` matches `origin/main`. When it resumes, start with "Next work, in order" below.
+**Stopped mid-task (2026-10-28):** everything is committed and pushed. Two questions are waiting for the owner. (1) Card title for the second design: "AcessCampus" (Figma file name) or "Route Access" (app name in the screenshot)? (2) RoomieMatch kind, year and one-line description. Then continue with "Next work, in order" below.
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Everything up to the anchor-jump gap fix (2026-10-25) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Everything up to the AcessCampus design card (2026-10-28) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -88,7 +88,9 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - Spec: `docs/superpowers/specs/2026-10-24-figma-design-work-design.md`. Approved look: `mockup-design-work.html`.
   - Each piece is a card with a black phone frame. Nothing from Figma loads until Play is clicked. Then the Figma embed shows inside the phone, and focus moves into it.
   - The embed is cropped to fill the phone: iframe 600×1300, screen at (73,158). If Figma changes its padding, re-measure these numbers in `components/DesignWork.module.css`.
-  - First piece: RoomieMatch.
+  - Pieces: RoomieMatch, then AcessCampus (added 2026-10-28). The section is a carousel.
+  - Buttons (owner, 2026-10-28): the blue "▶ Play prototype ↗" opens the Figma prototype in a new tab; the phone's "▶ Play" plays it inline. "Open in Figma ↗" shows only when a piece has a separate design file (`file`), and "UX case study ↗" only when it has `caseStudy`.
+  - AcessCampus prototype must start at the profile setup screen (owner): node `31-55`, the prototype's default flow start. The link on the owner's Canva board starts at `31-163` (home), so do not copy it from there.
 - **Cursor ring (owner, 2026-10-22).** Borrowed from whyramachandran.design (`components/CursorLabel.tsx`).
   - A small, quiet "scroll ✦ scroll ✦" ring in muted grey at 80% opacity spins slowly around the mouse.
   - It has no hover states (owner: no change on hover, not too eye-catching).
@@ -141,7 +143,9 @@ Placeholders still on the real site. A production build (`VERCEL_ENV=production`
 - [ ] Resume PDF. Add `public/resume.pdf`, then change the Resume button label in `components/Contact.tsx`.
 - [ ] Role in QueueApp and in TiguS (`lib/timeline-extra.ts`).
 - [ ] Research methods on the back of the "User Research" chip.
-- [ ] RoomieMatch (`lib/designs.ts`): one-line description, year, and kind of work (class, personal or client). Add a cover at `public/design/roomiematch/cover.png`.
+- [ ] RoomieMatch (`lib/designs.ts`): one-line description, year, and kind of work (class, personal, client or self-learning). The cover is done.
+- [ ] Flaky e2e under full-suite load (2026-10-28): `[mobile] carousel.spec.ts › auto-advances every 6 seconds` sometimes sees `data-autoplay="false"` for 5 s (about 2 of 9 full runs after the hover/focus split, 0 of 4 before; passes 15/15 alone; could not reproduce in 10 instrumented runs). Not yet known whether the split caused it. `intro.spec.ts › any key skips the intro` also still flakes under load. Next step: rerun with state logged (`paused/hovered/focused/inView`) until it fails.
+- [ ] AcessCampus card title: keep "AcessCampus" or change to "Route Access" (the app name in its screenshot)? Ask the owner. Kind (Self-learning project), year 2026, Canva link and cover are done.
 - [ ] Optional, from the Design work review: the double-play and mobile layout tests could be stricter; the "tap around →" arrow points right on mobile where the phone is below; `figmaEmbedUrl` assumes the Figma link already has a `?`.
 
 Facts that need the owner's confirmation:
@@ -203,3 +207,6 @@ Known limits:
 - 2026-10-24: Turned Work and Design work into carousels (`components/Carousel.tsx`, `e2e/carousel.spec.ts`). Fixed a quick double-click on → landing on the wrong card, and a horizontal scroll on phones. 66 e2e tests pass on two full runs. One earlier full run had a single `intro.spec.ts` failure that did not come back; it may be flaky under load. Not reviewed by a separate reviewer. Pushed to `origin/main`.
 - 2026-10-25: Fixed the large empty gap under the nav after "See my work" or a nav link. `section[id]{scroll-margin-top:-64px}` in `app/globals.css` lifts the jump target past most of the 96px section padding, leaving about 36px under the nav on desktop and mobile. Contact, the last section, keeps a bigger gap because the page cannot scroll further. Smoke, home and carousel e2e tests pass (29 passed, 3 skipped).
 - 2026-10-25: The owner paused the project. The report is up to date and everything is pushed. Next session: fill the placeholders under "Open items".
+- 2026-10-28: Added AcessCampus as the second Design piece (`lib/designs.ts`): prototype from node `31-55` (profile setup), the owner's Figma design link as "Open in Figma", and the Canva UX case study board (`canva.link/e0inqgga5kdhpws`) as a new "UX case study" button. Blurb written from the Concept text on that board; kind "Self-learning project" (owner); year 2026 from the Canva file date. Covers added for both designs (resized to 660px wide).
+- 2026-10-28: The blue "Play prototype" button is now a link that opens the prototype in Figma (owner asked). RoomieMatch lost its "Open in Figma" button because it pointed at the same link.
+- 2026-10-28: Fixed the carousel auto-advancing while the mouse was on it. Hover and focus shared one flag, so a blur (e.g. clicking plain text after a control) cleared the hover pause. They are now separate states in `components/Carousel.tsx`. New e2e test `stays paused while hovered after focus leaves a control` fails 4/4 on the old code and passes on the fix; it uses the real clock because the fake clock hides the bug. Removed the "single card gets no controls" test, since no carousel has one card now (the code path remains, untested). 67 e2e tests pass.

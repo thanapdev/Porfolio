@@ -1,7 +1,12 @@
 export type Design = {
   slug: string;
   title: string;
+  /** prototype link, played in the phone */
   figma: string;
+  /** design file for "Open in Figma", when it differs from the prototype */
+  file?: string;
+  /** research board or case study outside Figma */
+  caseStudy?: string;
   tags: string[];
   blurb: string;
   year: string;
@@ -17,6 +22,17 @@ export const designs: Design[] = [
     blurb: '[one line: what the app does and who it is for]',
     year: '[year?]',
     kind: '[class / personal / client?]',
+  },
+  {
+    slug: 'accesscampus',
+    title: 'AcessCampus',
+    figma: 'https://www.figma.com/proto/cw83ZV6F7lFHe9VYC0Roes/AcessCampus?node-id=31-55&starting-point-node-id=31%3A55',
+    file: 'https://www.figma.com/design/cw83ZV6F7lFHe9VYC0Roes/AcessCampus?node-id=39-5132',
+    caseStudy: 'https://canva.link/e0inqgga5kdhpws',
+    tags: ['UX research', 'Accessibility', 'Figma prototype'],
+    blurb: 'Route for Everyone: campus routes for wheelchair users and anyone who needs a step-free way, with ramps, lifts and stairs shown before you leave.',
+    year: '2026',
+    kind: 'Self-learning project',
   },
 ];
 

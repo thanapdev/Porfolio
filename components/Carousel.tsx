@@ -16,7 +16,9 @@ export default function Carousel({ label, children }: { label: string; children:
   const target = useRef<number | null>(null); // scrollLeft a button move is heading to
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-  const [held, setHeld] = useState(false); // hovered or focused
+  // kept apart, so focus leaving (e.g. a click on plain text) doesn't drop the hover pause
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
   const [inView, setInView] = useState(false);
   // server renders as reduced motion, so no pause button flashes before hydration
   const reduce = useSyncExternalStore(watchRM, () => matchMedia(RM).matches, () => true);
@@ -39,7 +41,7 @@ export default function Carousel({ label, children }: { label: string; children:
     setIndex(next);
   };
 
-  const running = many && !paused && !held && inView && !reduce;
+  const running = many && !paused && !hovered && !focused && inView && !reduce;
   // keyed on index too, so a manual move restarts the countdown
   useEffect(() => {
     if (!running) return;
@@ -66,10 +68,10 @@ export default function Carousel({ label, children }: { label: string; children:
       aria-roledescription="carousel"
       aria-label={label}
       data-autoplay={running}
-      onMouseEnter={() => setHeld(true)}
-      onMouseLeave={() => setHeld(false)}
-      onFocus={() => setHeld(true)}
-      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setHeld(false); }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={(e) => { if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false); }}
     >
       <div ref={track} className={styles.track} onScroll={onScroll}>
         {slides.map((s, i) => (
