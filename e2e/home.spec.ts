@@ -22,7 +22,8 @@ test('timeline lists 4 rows', async ({ page }) => {
 test('placeholder timeline roles and missing covers are flagged', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('#timeline tbody td[data-l=role] .ph')).toHaveCount(2);
-  await expect(page.locator('article').first().locator('.ph', { hasText: '[real screenshot]' })).toHaveCount(1);
+  // both Work cards have real covers now
+  await expect(page.locator('#work .ph', { hasText: '[real screenshot]' })).toHaveCount(0);
 });
 
 test('cursor ring appears with the mouse', async ({ page }, testInfo) => {

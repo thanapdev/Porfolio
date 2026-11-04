@@ -8,7 +8,7 @@ export default function DesignWork() {
     <section id="design">
       <div className="wrap">
         <p className="eyebrow">made in figma</p>
-        <h2 className="h2 disp">Designs you<br />can tap through</h2>
+        <h2 className="h2 disp">Case Studies</h2>
         <Carousel label="Figma designs">
           {designs.map((d) => <FigmaCard key={d.slug} design={d} cover={hasCover(`/design/${d.slug}/cover.png`)} />)}
         </Carousel>

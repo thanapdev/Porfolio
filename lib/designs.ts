@@ -3,8 +3,6 @@ export type Design = {
   title: string;
   /** prototype link, played in the phone */
   figma: string;
-  /** design file for "Open in Figma", when it differs from the prototype */
-  file?: string;
   /** research board or case study outside Figma */
   caseStudy?: string;
   tags: string[];
@@ -18,16 +16,16 @@ export const designs: Design[] = [
     slug: 'roomiematch',
     title: 'RoomieMatch',
     figma: 'https://www.figma.com/proto/XflnePuAHp00z4TEDtzwJx/RoomieMatch?node-id=25-4479&starting-point-node-id=25%3A4479',
+    caseStudy: 'https://canva.link/ag8ocmj1n9o4ffd',
     tags: ['UX/UI', 'Mobile app', 'Figma prototype'],
-    blurb: '[one line: what the app does and who it is for]',
-    year: '[year?]',
-    kind: '[class / personal / client?]',
+    blurb: 'A roommate-matching app for people looking for a roommate: find someone who fits, then find a place together.',
+    year: '2024–2025',
+    kind: 'Personal self-learning project · team of 2',
   },
   {
     slug: 'accesscampus',
     title: 'AcessCampus',
     figma: 'https://www.figma.com/proto/cw83ZV6F7lFHe9VYC0Roes/AcessCampus?node-id=31-55&starting-point-node-id=31%3A55',
-    file: 'https://www.figma.com/design/cw83ZV6F7lFHe9VYC0Roes/AcessCampus?node-id=39-5132',
     caseStudy: 'https://canva.link/e0inqgga5kdhpws',
     tags: ['UX research', 'Accessibility', 'Figma prototype'],
     blurb: 'Route for Everyone: campus routes for wheelchair users and anyone who needs a step-free way, with ramps, lifts and stairs shown before you leave.',

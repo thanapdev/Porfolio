@@ -21,7 +21,6 @@ export default function FigmaCard({ design: d, cover }: { design: Design; cover:
         <p><Text value={d.blurb} /></p>
         <div className="btns">
           <a className="btn blue" href={d.figma} target="_blank" rel="noopener">▶ Play prototype ↗</a>
-          {d.file && <a className="btn" href={d.file} target="_blank" rel="noopener">Open in Figma ↗</a>}
           {d.caseStudy && <a className="btn" href={d.caseStudy} target="_blank" rel="noopener">UX case study ↗</a>}
         </div>
         <p className={`${styles.hint} hand`}>psst… it really works, tap around →</p>

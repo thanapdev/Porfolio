@@ -2,14 +2,14 @@
 
 Read this file first when starting a new chat. Update it at the end of every work session.
 
-Last updated: 2026-10-28
+Last updated: 2026-11-04
 
 ## Resume here (next session)
 
-**Stopped mid-task (2026-10-28):** everything is committed and pushed. Two questions are waiting for the owner. (1) Card title for the second design: "AcessCampus" (Figma file name) or "Route Access" (app name in the screenshot)? (2) RoomieMatch kind, year and one-line description. Then continue with "Next work, in order" below.
+**Last session (2026-11-04):** everything is committed and pushed. Both Design cards and both Work covers are complete. Nothing is waiting on the owner from that session. Continue with "Next work, in order" below.
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Everything up to the AcessCampus design card (2026-10-28) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Everything up to the real Work covers and the completed Design cards (2026-11-04) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -84,12 +84,12 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - B: a full editorial restyle.
   - The owner kept the current design. Do not restyle the cards or the site toward whyramachandran.design or gloriaha.com.
 - **Section order (owner, 2026-10-23; Design added 2026-10-24):** Hero → Work → Design → Timeline → About → Contact. The timeline stays next to the project cards. The nav order matches.
-- **Design work section (owner, 2026-10-24).** GitHub builds (Work) and Figma designs are separate groups.
+- **Design work section (owner, 2026-10-24).** GitHub builds (Work) and Figma designs are separate groups. Heading changed to "Case Studies" (eyebrow "made in figma") on 2026-11-04, because every piece will have a case study. The nav link still reads "Design".
   - Spec: `docs/superpowers/specs/2026-10-24-figma-design-work-design.md`. Approved look: `mockup-design-work.html`.
   - Each piece is a card with a black phone frame. Nothing from Figma loads until Play is clicked. Then the Figma embed shows inside the phone, and focus moves into it.
   - The embed is cropped to fill the phone: iframe 600×1300, screen at (73,158). If Figma changes its padding, re-measure these numbers in `components/DesignWork.module.css`.
   - Pieces: RoomieMatch, then AcessCampus (added 2026-10-28). The section is a carousel.
-  - Buttons (owner, 2026-10-28): the blue "▶ Play prototype ↗" opens the Figma prototype in a new tab; the phone's "▶ Play" plays it inline. "Open in Figma ↗" shows only when a piece has a separate design file (`file`), and "UX case study ↗" only when it has `caseStudy`.
+  - Buttons (owner, 2026-10-28): the blue "▶ Play prototype ↗" opens the Figma prototype in a new tab; the phone's "▶ Play" plays it inline. "UX case study ↗" shows when a piece has `caseStudy` (both do: Canva boards). "Open in Figma ↗" was removed on 2026-11-04 (owner).
   - AcessCampus prototype must start at the profile setup screen (owner): node `31-55`, the prototype's default flow start. The link on the owner's Canva board starts at `31-163` (home), so do not copy it from there.
 - **Cursor ring (owner, 2026-10-22).** Borrowed from whyramachandran.design (`components/CursorLabel.tsx`).
   - A small, quiet "scroll ✦ scroll ✦" ring in muted grey at 80% opacity spins slowly around the mouse.
@@ -97,6 +97,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - The native pointer stays visible.
   - Mouse only.
   - Under reduced motion it does not spin or trail.
+- **Work cover screenshots (owner, 2026-11-04).** The cover frame stays 4:3. A wider frame matching 2880×1316 screenshots was tried and rolled back (owner: it looked ugly). Ask for screenshots at 4:3: Chrome DevTools device toolbar, Responsive 1200×900 (or 1024×768), "Capture screenshot". Trim any dark window edge before use.
 - **Carousel for Work and Design work (owner, 2026-10-24).** `components/Carousel.tsx` wraps both sections so the page stays short.
   - One card at a time, with ←/→ buttons, dots, a ⏸ button, and swipe on phones (CSS scroll-snap).
   - It auto-advances every 6 seconds and loops. The owner asked for 3 seconds, then chose 6 so HR can read a card.
@@ -138,14 +139,13 @@ Placeholders still on the real site. A production build (`VERCEL_ENV=production`
 - [ ] The problem and result of each case study (frontmatter `tldr`, plus body sections).
 - [ ] Real outcome numbers and the goal, research and caption sections in both MDX bodies.
 - [ ] Real screenshots.
-  - Covers: add `public/work/<slug>/cover.png`. The yellow "[real screenshot]" label disappears once the file exists.
+  - Covers: done for both case studies (2026-11-04).
   - BeforeAfter: replace `public/work/the-reborn-gacha/before.png` and `after.png`, then edit the caption in the MDX.
 - [ ] Resume PDF. Add `public/resume.pdf`, then change the Resume button label in `components/Contact.tsx`.
 - [ ] Role in QueueApp and in TiguS (`lib/timeline-extra.ts`).
 - [ ] Research methods on the back of the "User Research" chip.
-- [ ] RoomieMatch (`lib/designs.ts`): one-line description, year, and kind of work (class, personal, client or self-learning). The cover is done.
 - [ ] Flaky e2e under full-suite load (2026-10-28): `[mobile] carousel.spec.ts › auto-advances every 6 seconds` sometimes sees `data-autoplay="false"` for 5 s (about 2 of 9 full runs after the hover/focus split, 0 of 4 before; passes 15/15 alone; could not reproduce in 10 instrumented runs). Not yet known whether the split caused it. `intro.spec.ts › any key skips the intro` also still flakes under load. Next step: rerun with state logged (`paused/hovered/focused/inView`) until it fails.
-- [ ] AcessCampus card title: keep "AcessCampus" or change to "Route Access" (the app name in its screenshot)? Ask the owner. Kind (Self-learning project), year 2026, Canva link and cover are done.
+- [ ] Optional: RoomieMatch's Canva board lists the owner's role (problem and audience research, wireframes and annotation, about 70% of the Figma UI and interactions; features 50/50 with teammate Wiriya). Not shown on the card; offer it if the owner wants roles on design cards.
 - [ ] Optional, from the Design work review: the double-play and mobile layout tests could be stricter; the "tap around →" arrow points right on mobile where the phone is below; `figmaEmbedUrl` assumes the Figma link already has a `?`.
 
 Facts that need the owner's confirmation:
@@ -210,3 +210,5 @@ Known limits:
 - 2026-10-28: Added AcessCampus as the second Design piece (`lib/designs.ts`): prototype from node `31-55` (profile setup), the owner's Figma design link as "Open in Figma", and the Canva UX case study board (`canva.link/e0inqgga5kdhpws`) as a new "UX case study" button. Blurb written from the Concept text on that board; kind "Self-learning project" (owner); year 2026 from the Canva file date. Covers added for both designs (resized to 660px wide).
 - 2026-10-28: The blue "Play prototype" button is now a link that opens the prototype in Figma (owner asked). RoomieMatch lost its "Open in Figma" button because it pointed at the same link.
 - 2026-10-28: Fixed the carousel auto-advancing while the mouse was on it. Hover and focus shared one flag, so a blur (e.g. clicking plain text after a control) cleared the hover pause. They are now separate states in `components/Carousel.tsx`. New e2e test `stays paused while hovered after focus leaves a control` fails 4/4 on the old code and passes on the fix; it uses the real clock because the fake clock hides the bug. Removed the "single card gets no controls" test, since no carousel has one card now (the code path remains, untested). 67 e2e tests pass.
+- 2026-11-04: Completed both Design cards. RoomieMatch: "Personal self-learning project · team of 2 · 2024–2025", blurb from the owner, Canva case study `canva.link/ag8ocmj1n9o4ffd`. AcessCampus: title stays "AcessCampus" (owner), new cover with that name. Removed "Open in Figma" from both cards. Section heading is now "Case Studies".
+- 2026-11-04: Real covers for both Work cards (`public/work/*/cover.png`, 4:3 screenshots from the owner, 4px dark edge trimmed) and real `coverAlt` text. No "[real screenshot]" placeholders remain. A wider cover frame was tried and rolled back. Lint, typecheck and e2e pass.
