@@ -19,10 +19,12 @@ export default function Timeline() {
               {rows.map((r) => (
                 <tr key={r.title}>
                   <td><Text value={r.title} /></td>
-                  <td data-l="year">{r.year}</td>
+                  <td data-l="year">{r.yearLabel ?? r.year}</td>
                   <td data-l="role"><Text value={r.role} /></td>
                   <td data-l="link">
-                    {r.href && <a href={r.href} target="_blank" rel="noopener">{r.linkLabel}</a>}
+                    {r.links.map((l, i) => (
+                      <span key={l.href}>{i > 0 && ' / '}<a href={l.href} target="_blank" rel="noopener">{l.label}</a></span>
+                    ))}
                   </td>
                 </tr>
               ))}

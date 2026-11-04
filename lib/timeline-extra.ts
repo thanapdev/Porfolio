@@ -1,18 +1,19 @@
+import { designs } from './designs';
 import type { TimelineRow } from './projects';
 
-export const timelineExtra: TimelineRow[] = [
-  {
-    title: 'QueueApp (iOS)',
-    year: 2025,
-    role: '[OOP term project · Swift — role?]',
-    href: 'https://github.com/thanapdev/QueueApp_project',
-    linkLabel: 'GitHub ↗',
-  },
-  {
-    title: 'TiguS',
-    year: 2023,
-    role: '[Front-end final project — role?]',
-    href: 'https://github.com/thanapdev/project-TiguS---FrontEnd-Final-Project',
-    linkLabel: 'GitHub ↗',
-  },
-];
+const roles: Record<string, string> = {
+  roomiematch: 'UX/UI Designer · team of 2',
+  accesscampus: 'UX/UI Designer',
+};
+
+/** Timeline rows for the Figma designs, listed newest first. */
+export const timelineExtra: TimelineRow[] = [...designs].reverse().map((d) => ({
+  title: d.title,
+  year: Number(d.year.slice(-4)), // a span sorts by its last year
+  yearLabel: d.year,
+  role: roles[d.slug],
+  links: [
+    { href: d.figma, label: 'Prototype ↗' },
+    ...(d.caseStudy ? [{ href: d.caseStudy, label: 'UX case study ↗' }] : []),
+  ],
+}));

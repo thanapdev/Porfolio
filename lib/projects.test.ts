@@ -83,12 +83,17 @@ describe('nextProject', () => {
 describe('getTimeline', () => {
   it('sorts by year desc and keeps order within a year', () => {
     const extra: TimelineRow[] = [
-      { title: 'Old', year: 2023, role: 'r' },
-      { title: 'Mid1', year: 2025, role: 'r' },
-      { title: 'Mid2', year: 2025, role: 'r' },
+      { title: 'Old', year: 2023, role: 'r', links: [] },
+      { title: 'Mid1', year: 2025, role: 'r', links: [] },
+      { title: 'Mid2', year: 2025, role: 'r', links: [] },
     ];
     const rows = getTimeline([proj({ slug: 'a', title: 'New', order: 1 })], extra);
     expect(rows.map((r) => r.title)).toEqual(['New', 'Mid1', 'Mid2', 'Old']);
+  });
+
+  it('puts extra rows above projects of the same year', () => {
+    const rows = getTimeline([proj({ slug: 'a', title: 'Case', order: 1 })], [{ title: 'Design', year: 2026, role: 'r', links: [] }]);
+    expect(rows.map((r) => r.title)).toEqual(['Design', 'Case']);
   });
 
   it('maps projects to rows with Play for games, Live otherwise', () => {
@@ -100,8 +105,8 @@ describe('getTimeline', () => {
       [],
     );
     expect(rows).toEqual([
-      { title: 'Web', year: 2026, role: 'Designer', href: 'https://w', linkLabel: 'Live ↗' },
-      { title: 'Game', year: 2026, role: 'r', href: 'https://g', linkLabel: 'Play ↗' },
+      { title: 'Web', year: 2026, role: 'Designer', links: [{ href: 'https://w', label: 'Live ↗' }] },
+      { title: 'Game', year: 2026, role: 'r', links: [{ href: 'https://g', label: 'Play ↗' }] },
     ]);
   });
 });
@@ -116,6 +121,6 @@ describe('projectLinks', () => {
 describe('real content', () => {
   it('parses in order', () => {
     const ps = getProjects();
-    expect(ps.map((p) => p.slug)).toEqual(['yee-peng-cnx', 'the-reborn-gacha']);
+    expect(ps.map((p) => p.slug)).toEqual(['the-reborn-gacha', 'yee-peng-cnx']);
   });
 });

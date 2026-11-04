@@ -14,14 +14,17 @@ test('skill chip flips', async ({ page }) => {
   await expect(chip).toHaveAttribute('aria-pressed', 'true');
 });
 
-test('timeline lists 4 rows', async ({ page }) => {
+test('timeline lists every project, newest first', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#timeline tbody tr')).toHaveCount(4);
+  await expect(page.locator('#timeline tbody tr td:first-child')).toHaveText(['AcessCampus', 'The Reborn Gacha', 'Yee-Peng-CNX', 'RoomieMatch']);
+  const roomie = page.locator('#timeline tbody tr').last();
+  await expect(roomie.locator('td[data-l=year]')).toHaveText('2024–2025');
+  await expect(roomie.locator('td[data-l=link] a')).toHaveText(['Prototype ↗', 'UX case study ↗']);
 });
 
-test('placeholder timeline roles and missing covers are flagged', async ({ page }) => {
+test('timeline roles and Work covers have no placeholders', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#timeline tbody td[data-l=role] .ph')).toHaveCount(2);
+  await expect(page.locator('#timeline tbody td[data-l=role] .ph')).toHaveCount(0);
   // both Work cards have real covers now
   await expect(page.locator('#work .ph', { hasText: '[real screenshot]' })).toHaveCount(0);
 });

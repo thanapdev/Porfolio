@@ -6,10 +6,10 @@ Last updated: 2026-11-04
 
 ## Resume here (next session)
 
-**Last session (2026-11-04):** everything is committed and pushed. Both Design cards and both Work covers are complete. Nothing is waiting on the owner from that session. Continue with "Next work, in order" below.
+**Last session (2026-11-04):** everything is committed and pushed. Both Design cards and both Work covers are complete; the timeline lists all four projects and the nav is renamed. Nothing is waiting on the owner from that session. Continue with "Next work, in order" below.
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Everything up to the real Work covers and the completed Design cards (2026-11-04) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Everything up to the timeline and nav changes (2026-11-04) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -33,7 +33,7 @@ Last updated: 2026-11-04
 - `components/`: UI. `mdx/` holds the MDX components. `Text.tsx` holds the `[bracket]` placeholder helper.
 - `content/work/*.mdx`: the case studies (frontmatter plus body).
 - `lib/projects.ts`: content loader and validation.
-- `lib/timeline-extra.ts`: timeline rows that have no case study.
+- `lib/timeline-extra.ts`: timeline rows built from `lib/designs.ts` (Prototype link, plus UX case study when `caseStudy` is set).
 - `lib/designs.ts`: Figma design pieces for the Design work section, plus `figmaEmbedUrl`.
 - `scripts/check-placeholders.mjs`: the placeholder guard.
 - `e2e/`: Playwright tests. Unit tests sit next to their code.
@@ -83,8 +83,8 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - A: sticker cards with Ram-style fields (CASE STUDY 01, outcome subtitle, skill tags, stat notes).
   - B: a full editorial restyle.
   - The owner kept the current design. Do not restyle the cards or the site toward whyramachandran.design or gloriaha.com.
-- **Section order (owner, 2026-10-23; Design added 2026-10-24):** Hero → Work → Design → Timeline → About → Contact. The timeline stays next to the project cards. The nav order matches.
-- **Design work section (owner, 2026-10-24).** GitHub builds (Work) and Figma designs are separate groups. Heading changed to "Case Studies" (eyebrow "made in figma") on 2026-11-04, because every piece will have a case study. The nav link still reads "Design".
+- **Section order (owner, 2026-10-23; Design added 2026-10-24):** Hero → Work → Design → Timeline → About → Contact. The timeline stays next to the project cards. The nav order matches. Nav labels (owner, 2026-11-04): logo "THANAPONG", then Projects (`#work`), Case Studies (`#design`), Timeline, About, Contact.
+- **Design work section (owner, 2026-10-24).** GitHub builds (Work) and Figma designs are separate groups. Heading changed to "Case Studies" (eyebrow "made in figma") on 2026-11-04, because every piece will have a case study.
   - Spec: `docs/superpowers/specs/2026-10-24-figma-design-work-design.md`. Approved look: `mockup-design-work.html`.
   - Each piece is a card with a black phone frame. Nothing from Figma loads until Play is clicked. Then the Figma embed shows inside the phone, and focus moves into it.
   - The embed is cropped to fill the phone: iframe 600×1300, screen at (73,158). If Figma changes its padding, re-measure these numbers in `components/DesignWork.module.css`.
@@ -129,7 +129,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - Links: https://the-reborn-gacha.vercel.app and repo `thanapdev/The_Reborn_Gacha`.
   - Solo project, built with Vite + TypeScript + Vitest.
   - Game content: 7 deaths, 13 roles plus 1 secret role, and a 1080×1920 share card.
-- **Other repos in the timeline:** QueueApp (Swift, OOP term project, 2025) and TiguS (front-end final project, 2023).
+- **Timeline (owner, 2026-11-04):** newest first: AcessCampus (2026), The Reborn Gacha (2026), Yee-Peng-CNX (2026), RoomieMatch (2024–2025). QueueApp and TiguS were removed (owner: not used). Within a year, Figma designs sort above case studies; The Reborn Gacha is above Yee-Peng-CNX via frontmatter `order` (Reborn 1, Yee-Peng 2), which also puts it first in the Work carousel. Design roles "UX/UI Designer" (RoomieMatch adds "team of 2") were written by Claude from the Canva boards; confirm if the owner wants different wording.
 - **Tools:** Figma, Photoshop, Canva, HTML/CSS/JS/TS, Vue, Tailwind, Node, Swift, Java. The owner is also a HoYoverse game player.
 
 ## Open items
@@ -142,7 +142,6 @@ Placeholders still on the real site. A production build (`VERCEL_ENV=production`
   - Covers: done for both case studies (2026-11-04).
   - BeforeAfter: replace `public/work/the-reborn-gacha/before.png` and `after.png`, then edit the caption in the MDX.
 - [ ] Resume PDF. Add `public/resume.pdf`, then change the Resume button label in `components/Contact.tsx`.
-- [ ] Role in QueueApp and in TiguS (`lib/timeline-extra.ts`).
 - [ ] Research methods on the back of the "User Research" chip.
 - [ ] Flaky e2e under full-suite load (2026-10-28): `[mobile] carousel.spec.ts › auto-advances every 6 seconds` sometimes sees `data-autoplay="false"` for 5 s (about 2 of 9 full runs after the hover/focus split, 0 of 4 before; passes 15/15 alone; could not reproduce in 10 instrumented runs). Not yet known whether the split caused it. `intro.spec.ts › any key skips the intro` also still flakes under load. Next step: rerun with state logged (`paused/hovered/focused/inView`) until it fails.
 - [ ] Optional: RoomieMatch's Canva board lists the owner's role (problem and audience research, wireframes and annotation, about 70% of the Figma UI and interactions; features 50/50 with teammate Wiriya). Not shown on the card; offer it if the owner wants roles on design cards.
@@ -212,3 +211,5 @@ Known limits:
 - 2026-10-28: Fixed the carousel auto-advancing while the mouse was on it. Hover and focus shared one flag, so a blur (e.g. clicking plain text after a control) cleared the hover pause. They are now separate states in `components/Carousel.tsx`. New e2e test `stays paused while hovered after focus leaves a control` fails 4/4 on the old code and passes on the fix; it uses the real clock because the fake clock hides the bug. Removed the "single card gets no controls" test, since no carousel has one card now (the code path remains, untested). 67 e2e tests pass.
 - 2026-11-04: Completed both Design cards. RoomieMatch: "Personal self-learning project · team of 2 · 2024–2025", blurb from the owner, Canva case study `canva.link/ag8ocmj1n9o4ffd`. AcessCampus: title stays "AcessCampus" (owner), new cover with that name. Removed "Open in Figma" from both cards. Section heading is now "Case Studies".
 - 2026-11-04: Real covers for both Work cards (`public/work/*/cover.png`, 4:3 screenshots from the owner, 4px dark edge trimmed) and real `coverAlt` text. No "[real screenshot]" placeholders remain. A wider cover frame was tried and rolled back. Lint, typecheck and e2e pass.
+- 2026-11-04: Timeline now shows all four projects, newest first. Removed QueueApp and TiguS. Added RoomieMatch and AcessCampus from `lib/designs.ts`, with "Prototype ↗ / UX case study ↗" links (rows now hold a list of links). Swapped case study `order` so The Reborn Gacha is above Yee-Peng-CNX.
+- 2026-11-04: Nav: logo "THANAPONG"; Work → Projects; Design → Case Studies. Lint, typecheck, 13 unit tests and 67 e2e tests pass (one run had a known flake, rerun clean).

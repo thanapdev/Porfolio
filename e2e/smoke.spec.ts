@@ -12,7 +12,7 @@ test('mobile menu opens and closes', async ({ page }, testInfo) => {
   const btn = page.getByRole('button', { name: 'Menu' });
   await btn.click();
   await expect(btn).toHaveAttribute('aria-expanded', 'true');
-  const work = page.getByRole('link', { name: 'Work', exact: true });
+  const work = page.getByRole('link', { name: 'Projects', exact: true });
   await expect(work).toBeVisible();
   await work.click();
   await expect(btn).toHaveAttribute('aria-expanded', 'false');

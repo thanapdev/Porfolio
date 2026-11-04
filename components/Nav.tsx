@@ -4,8 +4,8 @@ import Link from 'next/link';
 import styles from './Nav.module.css';
 
 const links = [
-  ['Work', '/#work'],
-  ['Design', '/#design'],
+  ['Projects', '/#work'],
+  ['Case Studies', '/#design'],
   ['Timeline', '/#timeline'],
   ['About', '/#about'],
   ['Contact', '/#contact'],
@@ -23,7 +23,7 @@ export default function Nav() {
     <nav className={`${styles.nav} ${open ? styles.open : ''}`} aria-label="Main">
       <div className={`wrap ${styles.bar}`}>
         <Link className={`hand ${styles.logo}`} href="/">
-          thanapong
+          THANAPONG
         </Link>
         <button
           className={styles.menuBtn}
