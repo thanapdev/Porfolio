@@ -14,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <DesignWork />
       <section id="work">
         <div className="wrap">
           <p className="eyebrow">my projects</p>
@@ -23,7 +24,6 @@ export default function Home() {
           </Carousel>
         </div>
       </section>
-      <DesignWork />
       <Timeline />
       <About />
       <Contact />

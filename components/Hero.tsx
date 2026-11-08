@@ -9,7 +9,7 @@ export default function Hero() {
         Bangkok, open to freelance work and UX/UI roles.
       </p>
       <div className="btns">
-        <a className="btn red" href="#work">See my work ↓</a>
+        <a className="btn red" href="#design">See my work ↓</a>
         <a className="btn" href="#contact">Get in touch</a>
       </div>
       <p className={`${styles.hint} hand`}>psst… everything with a shadow is draggable →</p>

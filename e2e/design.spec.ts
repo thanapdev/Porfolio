@@ -49,7 +49,7 @@ test('nav links to the design section in order', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'mobile nav is a menu');
   await page.goto('/');
   const labels = await page.locator('nav li a').allInnerTexts();
-  expect(labels).toEqual(['Projects', 'Case Studies', 'Timeline', 'About', 'Contact']);
+  expect(labels).toEqual(['Case Studies', 'Projects', 'Timeline', 'About', 'Contact']);
   await expect(page.getByRole('link', { name: 'Case Studies', exact: true })).toHaveAttribute('href', '/#design');
 });
 

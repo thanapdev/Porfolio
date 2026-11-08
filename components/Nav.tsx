@@ -4,8 +4,8 @@ import Link from 'next/link';
 import styles from './Nav.module.css';
 
 const links = [
-  ['Projects', '/#work'],
   ['Case Studies', '/#design'],
+  ['Projects', '/#work'],
   ['Timeline', '/#timeline'],
   ['About', '/#about'],
   ['Contact', '/#contact'],
