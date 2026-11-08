@@ -6,7 +6,7 @@ Last updated: 2026-11-08
 
 ## Resume here (next session)
 
-**Last session (2026-11-08):** everything is committed and pushed. Added scroll-in animations, a new AccessCampus cover, and the title spelling "AccessCampus"; the owner confirmed the public email. Nothing is waiting on the owner from that session. Continue with "Next work, in order" below.
+**Last session (2026-11-08):** everything is committed and pushed. Added scroll-in animations, a new AccessCampus cover, and the title spelling "AccessCampus"; the owner confirmed the public email. Removed the About line about looking for a role and freelance work. Nothing is waiting on the owner from that session. Continue with "Next work, in order" below.
 
 **Where things stand:**
 - The site is built, reviewed and merged into `main`. Everything up to the scroll animations (2026-11-08) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
@@ -216,3 +216,4 @@ Known limits:
 - 2026-11-04: Timeline now shows all four projects, newest first. Removed QueueApp and TiguS. Added RoomieMatch and AccessCampus from `lib/designs.ts`, with "Prototype ↗ / UX case study ↗" links (rows now hold a list of links). Swapped case study `order` so The Reborn Gacha is above Yee-Peng-CNX.
 - 2026-11-04: Nav: logo "THANAPONG"; Work → Projects; Design → Case Studies. Lint, typecheck, 13 unit tests and 67 e2e tests pass (one run had a known flake, rerun clean).
 - 2026-11-08: Added scroll-in animations (`components/Reveal.tsx`): cards rise and their tape sticks on; timeline rows stagger in. Eyebrow handwriting and metric count-up were tried and dropped (owner). The owner confirmed the public email; new e2e test checks the "Email me" link. New AccessCampus cover from the owner (resized to 660px wide), and the title is now spelled "AccessCampus" to match it. Lint, typecheck, 13 unit tests and 73 e2e tests pass.
+- 2026-11-08: Removed "Looking for a UX/UI design role in 2026, and open to freelance projects now." from About (owner). The site no longer states availability anywhere; Contact could hold a shorter version if the owner wants it back. Home and smoke e2e pass.
