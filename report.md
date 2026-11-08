@@ -2,14 +2,14 @@
 
 Read this file first when starting a new chat. Update it at the end of every work session.
 
-Last updated: 2026-11-04
+Last updated: 2026-11-08
 
 ## Resume here (next session)
 
-**Last session (2026-11-04):** everything is committed and pushed. Both Design cards and both Work covers are complete; the timeline lists all four projects and the nav is renamed. Nothing is waiting on the owner from that session. Continue with "Next work, in order" below.
+**Last session (2026-11-08):** everything is committed and pushed. Added scroll-in animations, a new AccessCampus cover, and the title spelling "AccessCampus"; the owner confirmed the public email. Nothing is waiting on the owner from that session. Continue with "Next work, in order" below.
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Everything up to the timeline and nav changes (2026-11-04) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Everything up to the scroll animations (2026-11-08) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -34,6 +34,7 @@ Last updated: 2026-11-04
 - `content/work/*.mdx`: the case studies (frontmatter plus body).
 - `lib/projects.ts`: content loader and validation.
 - `lib/timeline-extra.ts`: timeline rows built from `lib/designs.ts` (Prototype link, plus UX case study when `caseStudy` is set).
+- `components/Reveal.tsx`: plays the scroll-in animations once (marks `[data-reveal]` elements with `data-shown`; CSS in `app/globals.css`).
 - `lib/designs.ts`: Figma design pieces for the Design work section, plus `figmaEmbedUrl`.
 - `scripts/check-placeholders.mjs`: the placeholder guard.
 - `e2e/`: Playwright tests. Unit tests sit next to their code.
@@ -88,9 +89,9 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - Spec: `docs/superpowers/specs/2026-10-24-figma-design-work-design.md`. Approved look: `mockup-design-work.html`.
   - Each piece is a card with a black phone frame. Nothing from Figma loads until Play is clicked. Then the Figma embed shows inside the phone, and focus moves into it.
   - The embed is cropped to fill the phone: iframe 600×1300, screen at (73,158). If Figma changes its padding, re-measure these numbers in `components/DesignWork.module.css`.
-  - Pieces: RoomieMatch, then AcessCampus (added 2026-10-28). The section is a carousel.
+  - Pieces: RoomieMatch, then AccessCampus (added 2026-10-28). The section is a carousel.
   - Buttons (owner, 2026-10-28): the blue "▶ Play prototype ↗" opens the Figma prototype in a new tab; the phone's "▶ Play" plays it inline. "UX case study ↗" shows when a piece has `caseStudy` (both do: Canva boards). "Open in Figma ↗" was removed on 2026-11-04 (owner).
-  - AcessCampus prototype must start at the profile setup screen (owner): node `31-55`, the prototype's default flow start. The link on the owner's Canva board starts at `31-163` (home), so do not copy it from there.
+  - AccessCampus prototype must start at the profile setup screen (owner): node `31-55`, the prototype's default flow start. The link on the owner's Canva board starts at `31-163` (home), so do not copy it from there.
 - **Cursor ring (owner, 2026-10-22).** Borrowed from whyramachandran.design (`components/CursorLabel.tsx`).
   - A small, quiet "scroll ✦ scroll ✦" ring in muted grey at 80% opacity spins slowly around the mouse.
   - It has no hover states (owner: no change on hover, not too eye-catching).
@@ -108,6 +109,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - It shows once per browser session (session cookie `intro=1`). It never shows under reduced motion or without JavaScript.
   - Any key, click or tap skips it.
   - Playwright gives every test the `intro=1` cookie in `playwright.config.ts`. `e2e/intro.spec.ts` starts without it.
+- **Scroll animations (owner, 2026-11-08).** Kept: cards rise in and their tape sticks on; timeline rows stagger in. Rejected by the owner: a handwriting reveal on eyebrows and a count-up on card metrics. Each plays once. Nothing is hidden without JavaScript or under reduced motion. Hide with `opacity`, not `clip-path`: IntersectionObserver never reports a fully clipped element as visible.
 - **Real-site decisions (2026-10-21):** Next.js App Router, MDX content in the repo, CSS Modules (no Tailwind), English only, full case-study pages, static on Vercel. Details are in the spec.
 
 ## Data sources
@@ -129,7 +131,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - Links: https://the-reborn-gacha.vercel.app and repo `thanapdev/The_Reborn_Gacha`.
   - Solo project, built with Vite + TypeScript + Vitest.
   - Game content: 7 deaths, 13 roles plus 1 secret role, and a 1080×1920 share card.
-- **Timeline (owner, 2026-11-04):** newest first: AcessCampus (2026), The Reborn Gacha (2026), Yee-Peng-CNX (2026), RoomieMatch (2024–2025). QueueApp and TiguS were removed (owner: not used). Within a year, Figma designs sort above case studies; The Reborn Gacha is above Yee-Peng-CNX via frontmatter `order` (Reborn 1, Yee-Peng 2), which also puts it first in the Work carousel. Design roles "UX/UI Designer" (RoomieMatch adds "team of 2") were written by Claude from the Canva boards; confirm if the owner wants different wording.
+- **Timeline (owner, 2026-11-04):** newest first: AccessCampus (2026), The Reborn Gacha (2026), Yee-Peng-CNX (2026), RoomieMatch (2024–2025). QueueApp and TiguS were removed (owner: not used). Within a year, Figma designs sort above case studies; The Reborn Gacha is above Yee-Peng-CNX via frontmatter `order` (Reborn 1, Yee-Peng 2), which also puts it first in the Work carousel. Design roles "UX/UI Designer" (RoomieMatch adds "team of 2") were written by Claude from the Canva boards; confirm if the owner wants different wording.
 - **Tools:** Figma, Photoshop, Canva, HTML/CSS/JS/TS, Vue, Tailwind, Node, Swift, Java. The owner is also a HoYoverse game player.
 
 ## Open items
@@ -149,7 +151,7 @@ Placeholders still on the real site. A production build (`VERCEL_ENV=production`
 
 Facts that need the owner's confirmation:
 
-- [ ] **Public email.** `mailto:t.yamkamol.work@gmail.com` is in the Contact section. It was taken from the GitHub README. Confirm this is the email to show publicly.
+- [x] **Public email.** Confirmed by the owner (2026-11-08): "Email me" opens `mailto:t.yamkamol.work@gmail.com`. An e2e test guards it.
 
 Next steps:
 
@@ -206,10 +208,11 @@ Known limits:
 - 2026-10-24: Turned Work and Design work into carousels (`components/Carousel.tsx`, `e2e/carousel.spec.ts`). Fixed a quick double-click on → landing on the wrong card, and a horizontal scroll on phones. 66 e2e tests pass on two full runs. One earlier full run had a single `intro.spec.ts` failure that did not come back; it may be flaky under load. Not reviewed by a separate reviewer. Pushed to `origin/main`.
 - 2026-10-25: Fixed the large empty gap under the nav after "See my work" or a nav link. `section[id]{scroll-margin-top:-64px}` in `app/globals.css` lifts the jump target past most of the 96px section padding, leaving about 36px under the nav on desktop and mobile. Contact, the last section, keeps a bigger gap because the page cannot scroll further. Smoke, home and carousel e2e tests pass (29 passed, 3 skipped).
 - 2026-10-25: The owner paused the project. The report is up to date and everything is pushed. Next session: fill the placeholders under "Open items".
-- 2026-10-28: Added AcessCampus as the second Design piece (`lib/designs.ts`): prototype from node `31-55` (profile setup), the owner's Figma design link as "Open in Figma", and the Canva UX case study board (`canva.link/e0inqgga5kdhpws`) as a new "UX case study" button. Blurb written from the Concept text on that board; kind "Self-learning project" (owner); year 2026 from the Canva file date. Covers added for both designs (resized to 660px wide).
+- 2026-10-28: Added AccessCampus as the second Design piece (`lib/designs.ts`): prototype from node `31-55` (profile setup), the owner's Figma design link as "Open in Figma", and the Canva UX case study board (`canva.link/e0inqgga5kdhpws`) as a new "UX case study" button. Blurb written from the Concept text on that board; kind "Self-learning project" (owner); year 2026 from the Canva file date. Covers added for both designs (resized to 660px wide).
 - 2026-10-28: The blue "Play prototype" button is now a link that opens the prototype in Figma (owner asked). RoomieMatch lost its "Open in Figma" button because it pointed at the same link.
 - 2026-10-28: Fixed the carousel auto-advancing while the mouse was on it. Hover and focus shared one flag, so a blur (e.g. clicking plain text after a control) cleared the hover pause. They are now separate states in `components/Carousel.tsx`. New e2e test `stays paused while hovered after focus leaves a control` fails 4/4 on the old code and passes on the fix; it uses the real clock because the fake clock hides the bug. Removed the "single card gets no controls" test, since no carousel has one card now (the code path remains, untested). 67 e2e tests pass.
-- 2026-11-04: Completed both Design cards. RoomieMatch: "Personal self-learning project · team of 2 · 2024–2025", blurb from the owner, Canva case study `canva.link/ag8ocmj1n9o4ffd`. AcessCampus: title stays "AcessCampus" (owner), new cover with that name. Removed "Open in Figma" from both cards. Section heading is now "Case Studies".
+- 2026-11-04: Completed both Design cards. RoomieMatch: "Personal self-learning project · team of 2 · 2024–2025", blurb from the owner, Canva case study `canva.link/ag8ocmj1n9o4ffd`. AccessCampus: title stays "AccessCampus" (owner), new cover with that name. Removed "Open in Figma" from both cards. Section heading is now "Case Studies".
 - 2026-11-04: Real covers for both Work cards (`public/work/*/cover.png`, 4:3 screenshots from the owner, 4px dark edge trimmed) and real `coverAlt` text. No "[real screenshot]" placeholders remain. A wider cover frame was tried and rolled back. Lint, typecheck and e2e pass.
-- 2026-11-04: Timeline now shows all four projects, newest first. Removed QueueApp and TiguS. Added RoomieMatch and AcessCampus from `lib/designs.ts`, with "Prototype ↗ / UX case study ↗" links (rows now hold a list of links). Swapped case study `order` so The Reborn Gacha is above Yee-Peng-CNX.
+- 2026-11-04: Timeline now shows all four projects, newest first. Removed QueueApp and TiguS. Added RoomieMatch and AccessCampus from `lib/designs.ts`, with "Prototype ↗ / UX case study ↗" links (rows now hold a list of links). Swapped case study `order` so The Reborn Gacha is above Yee-Peng-CNX.
 - 2026-11-04: Nav: logo "THANAPONG"; Work → Projects; Design → Case Studies. Lint, typecheck, 13 unit tests and 67 e2e tests pass (one run had a known flake, rerun clean).
+- 2026-11-08: Added scroll-in animations (`components/Reveal.tsx`): cards rise and their tape sticks on; timeline rows stagger in. Eyebrow handwriting and metric count-up were tried and dropped (owner). The owner confirmed the public email; new e2e test checks the "Email me" link. New AccessCampus cover from the owner (resized to 660px wide), and the title is now spelled "AccessCampus" to match it. Lint, typecheck, 13 unit tests and 73 e2e tests pass.

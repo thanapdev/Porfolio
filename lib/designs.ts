@@ -24,7 +24,7 @@ export const designs: Design[] = [
   },
   {
     slug: 'accesscampus',
-    title: 'AcessCampus',
+    title: 'AccessCampus',
     figma: 'https://www.figma.com/proto/cw83ZV6F7lFHe9VYC0Roes/AcessCampus?node-id=31-55&starting-point-node-id=31%3A55',
     caseStudy: 'https://canva.link/e0inqgga5kdhpws',
     tags: ['UX research', 'Accessibility', 'Figma prototype'],

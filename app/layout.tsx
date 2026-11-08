@@ -10,6 +10,7 @@ import './globals.css';
 import Nav from '@/components/Nav';
 import CursorLabel from '@/components/CursorLabel';
 import IntroSplash from '@/components/IntroSplash';
+import Reveal from '@/components/Reveal';
 import { SITE_URL } from '@/lib/site';
 
 const body = Space_Grotesk({
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Nav />
         <CursorLabel />
+        <Reveal />
         <main id="main" tabIndex={-1}>
           {children}
         </main>

@@ -12,10 +12,10 @@ test('design section shows RoomieMatch without loading Figma', async ({ page }) 
   await expect(s.locator('article').first().getByRole('link', { name: /UX case study/ })).toHaveAttribute('href', 'https://canva.link/ag8ocmj1n9o4ffd');
 });
 
-test('AcessCampus links to its prototype and Canva case study', async ({ page }) => {
+test('AccessCampus links to its prototype and Canva case study', async ({ page }) => {
   await page.goto('/');
   const card = page.locator('#design article').nth(1);
-  await expect(card.getByRole('heading', { name: 'AcessCampus' })).toBeAttached();
+  await expect(card.getByRole('heading', { name: 'AccessCampus' })).toBeAttached();
   await expect(card.getByRole('link', { name: /Play prototype/ })).toHaveAttribute('href', /figma\.com\/proto\/cw83ZV6F7lFHe9VYC0Roes\/.*starting-point-node-id=31%3A55/);
   await expect(card.getByRole('link', { name: /Open in Figma/ })).toHaveCount(0);
   await expect(card.getByRole('link', { name: /UX case study/ })).toHaveAttribute('href', 'https://canva.link/e0inqgga5kdhpws');

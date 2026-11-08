@@ -27,5 +27,14 @@ section[id]{scroll-margin-top:-64px}
 .chips li{font:700 13px var(--font-body),sans-serif;padding:5px 10px;border:2px solid var(--ink);border-radius:999px;background:#fff}
 .chips li:nth-child(1){background:var(--yel)}.chips li:nth-child(3){background:var(--sky)}
 
+/* scroll-in animations, played once by components/Reveal.tsx */
+.reveal [data-reveal]:not([data-shown]) article,.reveal [data-reveal]:not([data-shown]) tbody tr{opacity:0}
+.reveal [data-reveal]:not([data-shown]) article::before,.reveal [data-reveal]:not([data-shown]) article::after{opacity:0}
+[data-shown] article{animation:rise .5s ease-out both}
+[data-shown] article::before,[data-shown] article::after{animation:tape .35s .35s cubic-bezier(.3,1.6,.5,1) both}
+[data-shown] tbody tr{animation:rise .4s calc(var(--i,0) * 90ms) ease-out both}
+@keyframes rise{from{opacity:0;translate:0 24px}}
+@keyframes tape{from{opacity:0;scale:1.5}}
+
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 body[data-mode="code"]{--paper:#eef1ff}

@@ -68,6 +68,7 @@ export default function Carousel({ label, children }: { label: string; children:
       aria-roledescription="carousel"
       aria-label={label}
       data-autoplay={running}
+      data-reveal
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setFocused(true)}
