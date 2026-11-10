@@ -1,0 +1,19 @@
+.band{--gutter:max(16px,calc((100vw - 1120px)/2));position:relative;background:var(--blue);border-top:3px solid var(--ink);overflow:hidden}
+.next{display:flex;align-items:center;gap:clamp(24px,8vw,120px);height:220px;padding:0 calc(var(--gutter) + 64px) 0 var(--gutter);color:#fff;text-decoration:none}
+.next:focus-visible{outline-color:#fff;outline-offset:-6px}
+/* the band's overflow crops the phone at the bottom */
+.phone{position:relative;align-self:flex-start;flex:none;width:150px;height:325px;margin-top:28px;border:8px solid var(--ink);border-radius:28px;overflow:hidden;background:#e9e1cf}
+.text{display:flex;flex-direction:column;gap:4px;min-width:0}
+.label{font-size:17px;font-weight:600}
+.title{font-size:clamp(30px,5vw,52px);line-height:1.05}
+.arrow{display:inline-block;transition:transform .2s}
+.next:hover .arrow{transform:translateX(8px)}
+.top{position:absolute;right:var(--gutter);top:50%;margin-top:-24px;display:grid;place-items:center;width:48px;height:48px;color:#fff;font-size:32px;line-height:1;text-decoration:none}
+.top:focus-visible{outline-color:#fff}
+@media (max-width:760px){
+  .next{height:170px;gap:20px;padding-right:var(--gutter)}
+  .phone{width:96px;height:208px;margin-top:20px;border-width:6px;border-radius:20px}
+  .title{font-size:clamp(20px,6.6vw,30px)}
+  /* moves to the corner, clear of the title */
+  .top{top:6px;margin-top:0;right:8px}
+}

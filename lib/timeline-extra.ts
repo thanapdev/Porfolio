@@ -14,6 +14,6 @@ export const timelineExtra: TimelineRow[] = [...designs].reverse().map((d) => ({
   role: roles[d.slug],
   links: [
     { href: d.figma, label: 'Prototype ↗' },
-    ...(d.caseStudy ? [{ href: d.caseStudy, label: 'UX case study ↗' }] : []),
+    { href: `/case-study/${d.slug}`, label: 'UX case study' },
   ],
 }));

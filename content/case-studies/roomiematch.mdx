@@ -1,0 +1,134 @@
+<Grid>
+<StickyNote>
+**Problem**
+
+People share a room to split the rent, but they only learn how a roommate really lives after moving in.
+</StickyNote>
+<StickyNote>
+**What I made**
+
+A roommate-matching app that scores lifestyle compatibility before you meet, then helps you agree on house rules after you match.
+</StickyNote>
+</Grid>
+
+## My role
+
+We were a team of 2. I explored the problem and the audience, drew the wireframes and annotations, and made about 70% of the Figma UI and interactions. My teammate interviewed the target users, gathered the published research and built the journey map. We defined the features together.
+
+## The problem
+
+Some people get so unhappy with a roommate that they want to live alone, but the economy forces them to keep sharing the rent. Much of that comes from one gap: nobody knows how the other person lives until it is too late.
+
+Trash left around, a room nobody cleans, belongings used without asking, and outsiders brought in without warning all came up again and again.
+
+Students are the main audience. Many move away from home for university with no close friends nearby, so they need someone to share with, and most want to split the rent. Working people are the second group. They screen carefully, and would rather pay more to live alone than come home from work to roommate problems.
+
+### What published sources say
+
+- A column in *The Vanderbilt Hustler* (Anisa Juma, 2025) calls a bad roommate a "personal hell" that can ruin the college experience.
+- A paper in the *Journal of Public Health in the Deep South* links negative roommate relationships to students' health and wellbeing, with poorer rest and more stress.
+- A document from the Chiang Mai Provincial Public Health Office stresses preventing conflict early, through shared agreements and good communication.
+
+So finding a compatible roommate and agreeing on rules early affects health as well as comfort.
+
+## What people told us
+
+My teammate interviewed students and working people who had lived with roommates, and we turned what they said into six personas and empathy maps. Three of them:
+
+<Persona who="3rd-year student who cooks at home" quote="I'm not angry that you ate it. I'm angry that you didn't tell me." needs="A cleaning schedule, and a roommate who asks before touching other people's things." />
+
+<Persona who="3rd-year student who needs quiet to sleep" quote="Do you snore? Do you play games loudly?" needs="To know this before choosing, plus a cleaning rota and agreed laundry days." />
+
+<Persona who="Working professional with a strong need for privacy" quote="I feel like I have no privacy at all." needs="Clear zones in the room and rules for bathroom cleaning, trash and sweeping." />
+
+The complaints fell into four groups:
+
+<Grid>
+<StickyNote>**Cleanliness and hygiene**</StickyNote>
+<StickyNote>**Noise and sleep times**</StickyNote>
+<StickyNote>**Privacy and outsiders**</StickyNote>
+<StickyNote>**Sharing resources**</StickyNote>
+</Grid>
+
+## One student's journey
+
+This journey follows one persona from a bad room to life with RoomieMatch, so the later stages show how the app is meant to work.
+
+<Journey steps={[
+  { stage: 'Awareness', does: 'Wakes at 2 a.m. to the smell and noise of a roommate cooking. Finds wet trash left for a week, with insects on it.', feels: 'Irritated, disgusted, short on sleep.', thinks: "Ugh! I just washed my hair and it smells of cooking smoke again. And that trash still isn't out." },
+  { stage: 'Research', does: 'Complains to a close friend, then posts on X and a university OpenChat. The information is scattered and a good fit is hard to find.', feels: 'Worried and confused, afraid of ending up somewhere worse.', thinks: "Where do I even find someone tidy? X is all people selling things, and on OpenChat I can't see who anyone is.", chance: 'Profiles that show name, age, photo and lifestyle up front.' },
+  { stage: 'Consideration', does: 'Downloads RoomieMatch, picks a looking-for-room-and-roommate status, and adds lifestyle tags: no smoking, no snoring, loves clean.', feels: 'Excited and hopeful about finding someone similar.', thinks: "Wow, this app even says this person doesn't snore. And they stay up late and sleep in, just like me.", chance: "A Compatibility Score that covers the small things people don't dare ask, like snoring and cleanliness." },
+  { stage: 'Decision', does: 'Finds a 90% match, chats, sends a Making Contact request, and they decide to room together.', feels: 'Confident and at ease.', thinks: "We really click. I'd better send the request first, so this profile stops showing up in other people's feeds.", chance: 'Making Contact cuts the "sorry, I already found someone" problem.' },
+  { stage: 'Usage', does: 'Moves in, puts the cleaning rota in Our schedule, and sets rules in Our agreement, like telling each other before bringing friends over.', feels: 'Happy and relieved.', thinks: 'Finally, a clean and quiet room. Every rule we set gets followed. This is the university life I dreamed of.', chance: 'Our schedule and Our agreement make it easy to talk about rules without feeling awkward.' },
+]} />
+
+## Defining the problem
+
+<Callout>
+**Functional pain:** finding a roommate is spread across X, Facebook and Line groups. Status is never live, so people message someone only to hear the spot is gone.
+
+**Emotional pain:** it is hard to raise rules with a stranger, or to speak up about late gaming, loud calls or a partner staying over. Stress builds in the place that should be for rest.
+
+**Trust pain:** people worry about being stood up, about not getting along, and about whether the other person will pay the rent on time.
+</Callout>
+
+## The idea
+
+**A good roommate is someone with a similar lifestyle.** RoomieMatch matches on room needs, then uses each person's lifestyle to work out a compatibility percentage. Even two people who love loud late-night gaming can be a great match.
+
+It also stays useful after the match, through finding someone, getting to know them, agreeing to room together and moving in.
+
+<Grid>
+<Callout>
+**Cleanliness**
+
+- Cleanliness level (1–10) feeds the % score
+- Our schedule holds the cleaning rota
+- Our agreement sets rules like taking out the trash daily
+</Callout>
+<Callout>
+**Noise and sleep**
+
+- Sleep schedule: night owl or early bird
+- Choose quiet or gaming before matching
+- The % score shows fit before you decide
+</Callout>
+<Callout>
+**Privacy**
+
+- Check profile and % score before making contact
+- Our agreement settles the rules on guests early
+</Callout>
+<Callout>
+**Shared resources**
+
+- Our schedule shows who needs what, and when
+- Budget range is set before matching
+</Callout>
+</Grid>
+
+### Key features
+
+- **Two roles.** Room Owners and Room Seekers each see the people relevant to them, so owners do not see other owners.
+- **Search by train line.** Pick a BTS, MRT or ARL station and see the real distance, such as 500 m from the station.
+- **Swipe with data.** The compatibility score sits on the profile card.
+- **Making Contact.** Sending a formal request and being accepted hides the profile from others, and "Contact in Progress" stops overlapping conversations.
+- **After the match.** The status changes to Confirm Roommate once the lease is agreed. Our schedule is a shared calendar, and both people can edit Our agreement.
+
+### User flow and wireframes
+
+I drew every screen and how the screens connect, with numbered notes for each element and separate flows for room owners and room finders.
+
+<FigmaBoard figma="https://www.figma.com/design/XflnePuAHp00z4TEDtzwJx/RoomieMatch?node-id=345-1588" title="RoomieMatch user flow and wireframes (Figma)" caption="The full flow: sign-up and profile setup, then the room owner's side and the room finder's side." />
+
+### From the prototype
+
+<Screens items={[
+  { src: '/design/roomiematch/home.png', width: 600, height: 1297, alt: 'RoomieMatch home screen: a profile card with a 95% match badge, lifestyle tags for night owl, no smoking and keep clean, and pass, super like and like buttons', caption: 'The match score sits on the card, with lifestyle tags you can read before you swipe.' },
+  { src: '/design/roomiematch/making-contact.png', width: 600, height: 1297, alt: 'RoomieMatch chat screen with a Making Contact dialog and an Agree button', caption: 'Making Contact is a deliberate step, so nobody has two talks going about one room.' },
+  { src: '/design/roomiematch/room.png', width: 600, height: 1659, alt: 'RoomieMatch room screen showing the two room members, a shared calendar called Our schedule, and a list of rules called Our agreement', caption: 'After the match, chores and house rules live on one shared screen.' },
+]} />
+
+## Try the prototype
+
+<Prototype slug="roomiematch" />

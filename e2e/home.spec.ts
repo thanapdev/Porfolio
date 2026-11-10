@@ -19,7 +19,7 @@ test('timeline lists every project, newest first', async ({ page }) => {
   await expect(page.locator('#timeline tbody tr td:first-child')).toHaveText(['AccessCampus', 'The Reborn Gacha', 'Yee-Peng-CNX', 'RoomieMatch']);
   const roomie = page.locator('#timeline tbody tr').last();
   await expect(roomie.locator('td[data-l=year]')).toHaveText('2024–2025');
-  await expect(roomie.locator('td[data-l=link] a')).toHaveText(['Prototype ↗', 'UX case study ↗']);
+  await expect(roomie.locator('td[data-l=link] a')).toHaveText(['Prototype ↗', 'UX case study']);
 });
 
 test('timeline roles and Work covers have no placeholders', async ({ page }) => {

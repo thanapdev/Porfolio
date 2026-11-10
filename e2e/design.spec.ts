@@ -9,16 +9,41 @@ test('design section shows RoomieMatch without loading Figma', async ({ page }) 
   const proto = s.locator('article').first().getByRole('link', { name: /Play prototype/ });
   await expect(proto).toHaveAttribute('href', /figma\.com\/proto\/XflnePuAHp00z4TEDtzwJx\//);
   await expect(proto).toHaveAttribute('target', '_blank');
-  await expect(s.locator('article').first().getByRole('link', { name: /UX case study/ })).toHaveAttribute('href', 'https://canva.link/ag8ocmj1n9o4ffd');
+  await expect(s.locator('article').first().getByRole('link', { name: /UX case study/ })).toHaveAttribute('href', '/case-study/roomiematch');
 });
 
-test('AccessCampus links to its prototype and Canva case study', async ({ page }) => {
+test('AccessCampus links to its prototype and case study page', async ({ page }) => {
   await page.goto('/');
   const card = page.locator('#design article').nth(1);
   await expect(card.getByRole('heading', { name: 'AccessCampus' })).toBeAttached();
   await expect(card.getByRole('link', { name: /Play prototype/ })).toHaveAttribute('href', /figma\.com\/proto\/cw83ZV6F7lFHe9VYC0Roes\/.*starting-point-node-id=31%3A55/);
   await expect(card.getByRole('link', { name: /Open in Figma/ })).toHaveCount(0);
-  await expect(card.getByRole('link', { name: /UX case study/ })).toHaveAttribute('href', 'https://canva.link/e0inqgga5kdhpws');
+  await expect(card.getByRole('link', { name: /UX case study/ })).toHaveAttribute('href', '/case-study/accesscampus');
+});
+
+test('case study button opens the page on this site', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#design article').first().getByRole('link', { name: /UX case study/ }).click();
+  await expect(page).toHaveURL(/\/case-study\/roomiematch$/);
+  await expect(page.getByRole('heading', { level: 1, name: 'RoomieMatch' })).toBeVisible();
+  await expect(page.getByTestId('phone')).toBeVisible();
+  await expect(page.getByRole('link', { name: /Next case study/ })).toHaveAttribute('href', '/case-study/accesscampus');
+  await expect(page.getByRole('link', { name: /Next case study/ })).toContainText('AccessCampus');
+  await expect(page.getByRole('heading', { name: "What's next" })).toHaveCount(0);
+  await expect(page.locator('article footer').getByRole('link', { name: /Play prototype/ })).toHaveAttribute('target', '_blank');
+  await expect(page.locator('article footer').getByRole('link', { name: 'Back to home' })).toHaveAttribute('href', '/#design');
+});
+
+test('wireframe board embeds the Figma user flow', async ({ page }) => {
+  await page.goto('/case-study/roomiematch');
+  const frame = page.locator('iframe[title^="RoomieMatch user flow"]');
+  await expect(frame).toHaveAttribute('src', /^https:\/\/embed\.figma\.com\/design\/XflnePuAHp00z4TEDtzwJx\/.*node-id=345-1588.*embed-host=portfolio/);
+  await expect(page.getByRole('button', { name: 'Zoom in with Figma' })).toHaveCount(0);
+});
+
+test('unknown case study is 404', async ({ page }) => {
+  const res = await page.goto('/case-study/does-not-exist');
+  expect(res?.status()).toBe(404);
 });
 
 test('phone Play loads one titled Figma iframe, also from the keyboard', async ({ page }) => {

@@ -9,7 +9,9 @@ test('unknown slug is 404', async ({ page }) => {
 test('sitemap lists case studies', async ({ request }) => {
   const res = await request.get('/sitemap.xml');
   expect(res.ok()).toBe(true);
-  expect(await res.text()).toContain('/work/yee-peng-cnx');
+  const xml = await res.text();
+  expect(xml).toContain('/work/yee-peng-cnx');
+  expect(xml).toContain('/case-study/roomiematch');
 });
 
 test('home and case study have description and canonical', async ({ page }) => {

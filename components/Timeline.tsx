@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import { getProjects, getTimeline } from '@/lib/projects';
 import { timelineExtra } from '@/lib/timeline-extra';
@@ -24,7 +25,7 @@ export default function Timeline() {
                   <td data-l="role"><Text value={r.role} /></td>
                   <td data-l="link">
                     {r.links.map((l, i) => (
-                      <span key={l.href}>{i > 0 && ' / '}<a href={l.href} target="_blank" rel="noopener">{l.label}</a></span>
+                      <span key={l.href}>{i > 0 && ' / '}<Link href={l.href} {...(l.href.startsWith('http') && { target: '_blank', rel: 'noopener' })}>{l.label}</Link></span>
                     ))}
                   </td>
                 </tr>

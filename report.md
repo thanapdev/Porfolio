@@ -2,14 +2,14 @@
 
 Read this file first when starting a new chat. Update it at the end of every work session.
 
-Last updated: 2026-11-08
+Last updated: 2026-11-10
 
 ## Resume here (next session)
 
-**Last session (2026-11-08):** everything is committed and pushed. Added scroll-in animations, a new AccessCampus cover, and the title spelling "AccessCampus"; the owner confirmed the public email. Removed the About line about looking for a role and freelance work. Case Studies now comes before Projects. Nothing is waiting on the owner from that session. Continue with "Next work, in order" below.
+**Last session (2026-11-10):** everything is committed and pushed. The "UX case study" buttons no longer leave for Canva: RoomieMatch and AccessCampus now have their own pages at `/case-study/[slug]`, written from the Canva boards. Three small decisions are still with the owner; see "From the 2026-11-10 case study pages" under Open items. Then continue with "Next work, in order" below.
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Everything up to the scroll animations (2026-11-08) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Everything up to the case study pages (2026-11-10) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -31,9 +31,11 @@ Last updated: 2026-11-08
 **Code map:**
 - `app/`: routes, metadata, OG images, sitemap and robots.
 - `components/`: UI. `mdx/` holds the MDX components. `Text.tsx` holds the `[bracket]` placeholder helper.
-- `content/work/*.mdx`: the case studies (frontmatter plus body).
+- `content/work/*.mdx`: the project write-ups behind `/work/[slug]` (frontmatter plus body).
+- `content/case-studies/*.mdx`: the UX case studies behind `/case-study/[slug]`, one per entry in `lib/designs.ts` (body only, no frontmatter).
+- `components/FigmaPhone.tsx`: the black phone with Play, shared by the home cards and the case study pages. `components/mdx/` also holds `Persona`, `Journey`, `Grid`, `Screens`, `Prototype` and `FigmaBoard` for the case studies.
 - `lib/projects.ts`: content loader and validation.
-- `lib/timeline-extra.ts`: timeline rows built from `lib/designs.ts` (Prototype link, plus UX case study when `caseStudy` is set).
+- `lib/timeline-extra.ts`: timeline rows built from `lib/designs.ts` (Prototype link and UX case study link).
 - `components/Reveal.tsx`: plays the scroll-in animations once (marks `[data-reveal]` elements with `data-shown`; CSS in `app/globals.css`).
 - `lib/designs.ts`: Figma design pieces for the Design work section, plus `figmaEmbedUrl`.
 - `scripts/check-placeholders.mjs`: the placeholder guard.
@@ -90,8 +92,15 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - Each piece is a card with a black phone frame. Nothing from Figma loads until Play is clicked. Then the Figma embed shows inside the phone, and focus moves into it.
   - The embed is cropped to fill the phone: iframe 600×1300, screen at (73,158). If Figma changes its padding, re-measure these numbers in `components/DesignWork.module.css`.
   - Pieces: RoomieMatch, then AccessCampus (added 2026-10-28). The section is a carousel.
-  - Buttons (owner, 2026-10-28): the blue "▶ Play prototype ↗" opens the Figma prototype in a new tab; the phone's "▶ Play" plays it inline. "UX case study ↗" shows when a piece has `caseStudy` (both do: Canva boards). "Open in Figma ↗" was removed on 2026-11-04 (owner).
+  - Buttons (owner, 2026-10-28): the blue "▶ Play prototype ↗" opens the Figma prototype in a new tab; the phone's "▶ Play" plays it inline. "UX case study" opens the piece's page on this site, in the same tab (2026-11-10). "Open in Figma ↗" was removed on 2026-11-04 (owner).
   - AccessCampus prototype must start at the profile setup screen (owner): node `31-55`, the prototype's default flow start. The link on the owner's Canva board starts at `31-163` (home), so do not copy it from there.
+- **Case study pages (owner, 2026-11-10).** `/case-study/roomiematch` and `/case-study/accesscampus`, kept apart from `/work/[slug]` so they do not appear in the Projects carousel and do not need a metric. Sources: Canva boards `DAHZQvIVm9s` (RoomieMatch) and `DAHZEDMP_2w` (AccessCampus), and the RoomieMatch deck `DAHZQsidC-s`.
+  - Copy is in English. Persona names and ages are left out so the people interviewed cannot be identified. The fake team list on the AccessCampus board is template text and is not used.
+  - Research is real. AccessCampus: the owner interviewed users alone. RoomieMatch: the teammate did the interviews, published research and journey map; the owner did the problem and audience work, wireframes and about 70% of the Figma UI; features were shared. Keep this split accurate.
+  - The "What's next" section was removed (owner). The pages no longer say that usability testing has not happened, but do not claim test results: none exist.
+  - Page end: "▶ Play prototype ↗" and "Back to home" (goes to `/#design`), then a full-width blue band linking to the next case study, with a back-to-top arrow.
+  - RoomieMatch wireframes are a live Figma design embed (`FigmaBoard`, node `345-1588`, 900px wide, loads with the page, no button). The owner rejected images from PDF exports. A prototype embed of this node shows only a grey screen ("0 / 1"), so do not switch to it.
+- **Phone frame is straight (owner, 2026-11-10).** The 1.5° tilt was removed, and the cover image is requested at `sizes="440px"`, because the cover looked blurry on the owner's 1x external monitor (1920×1080).
 - **Cursor ring (owner, 2026-10-22).** Borrowed from whyramachandran.design (`components/CursorLabel.tsx`).
   - A small, quiet "scroll ✦ scroll ✦" ring in muted grey at 80% opacity spins slowly around the mouse.
   - It has no hover states (owner: no change on hover, not too eye-catching).
@@ -146,7 +155,13 @@ Placeholders still on the real site. A production build (`VERCEL_ENV=production`
 - [ ] Resume PDF. Add `public/resume.pdf`, then change the Resume button label in `components/Contact.tsx`.
 - [ ] Research methods on the back of the "User Research" chip.
 - [ ] Flaky e2e under full-suite load (2026-10-28): `[mobile] carousel.spec.ts › auto-advances every 6 seconds` sometimes sees `data-autoplay="false"` for 5 s (about 2 of 9 full runs after the hover/focus split, 0 of 4 before; passes 15/15 alone; could not reproduce in 10 instrumented runs). Not yet known whether the split caused it. `intro.spec.ts › any key skips the intro` also still flakes under load. Next step: rerun with state logged (`paused/hovered/focused/inView`) until it fails.
-- [ ] Optional: RoomieMatch's Canva board lists the owner's role (problem and audience research, wireframes and annotation, about 70% of the Figma UI and interactions; features 50/50 with teammate Wiriya). Not shown on the card; offer it if the owner wants roles on design cards.
+- [ ] From the 2026-11-10 case study pages, waiting on the owner:
+  - Is the straight phone frame OK? It is a one-line change to bring the tilt back in `components/DesignWork.module.css`.
+  - Figma cannot lock a design embed to one frame, so viewers can pan to everything else on that Figma page. Recommended: move frame "roomiematch user flow" to its own Figma page. The only true lock is a custom image viewer on this site. The file must stay viewable by anyone with the link, or the embed breaks.
+  - AccessCampus has no wireframes or screens on its page yet. Ask whether the owner wants the same treatment; it needs a Figma link to the wireframe frame and 3–4 screens.
+- [ ] Typos in the RoomieMatch design, visible on the case study page and in the prototype; fix in Figma, then re-export `public/design/roomiematch/home.png` and `making-contact.png`: "Looking of Room mate" (Looking for a roommate), "Emma want to Making Contact With you" (Emma wants to make contact with you), "Find your room mate".
+- [ ] Optional: the case study pages use the site-wide OG image, not one per page.
+- [ ] Optional: roles on the design cards. The RoomieMatch role split is now on its case study page, but the home card does not show it.
 - [ ] Optional, from the Design work review: the double-play and mobile layout tests could be stricter; the "tap around →" arrow points right on mobile where the phone is below; `figmaEmbedUrl` assumes the Figma link already has a `?`.
 
 Facts that need the owner's confirmation:
@@ -218,3 +233,4 @@ Known limits:
 - 2026-11-08: Added scroll-in animations (`components/Reveal.tsx`): cards rise and their tape sticks on; timeline rows stagger in. Eyebrow handwriting and metric count-up were tried and dropped (owner). The owner confirmed the public email; new e2e test checks the "Email me" link. New AccessCampus cover from the owner (resized to 660px wide), and the title is now spelled "AccessCampus" to match it. Lint, typecheck, 13 unit tests and 73 e2e tests pass.
 - 2026-11-08: Removed "Looking for a UX/UI design role in 2026, and open to freelance projects now." from About (owner). The site no longer states availability anywhere; Contact could hold a shorter version if the owner wants it back. Home and smoke e2e pass.
 - 2026-11-08: Moved Case Studies above Projects (owner), in the page and the nav. "See my work" now jumps to Case Studies. Lint, typecheck and 73 e2e tests pass.
+- 2026-11-10: Added on-site case study pages for RoomieMatch and AccessCampus, replacing the Canva links on the cards and timeline (`caseStudy` removed from `lib/designs.ts`). Content translated from the Canva boards and the RoomieMatch deck. RoomieMatch also gets the full Journey Map, three prototype screens and a live Figma embed of the user flow and wireframes. Removed "What's next". Next case study is now a full-width band. Phone frame straightened and its cover sharpened for 1x screens. Lint, typecheck, 13 unit tests and 79 e2e tests pass; `intro.spec.ts › any key skips the intro` flaked in some full runs and passed on rerun. The Figma embeds could not be checked by automation (Figma returns 403 to headless browsers); the owner confirmed the design embed renders in a real browser.

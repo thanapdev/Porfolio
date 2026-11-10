@@ -7,7 +7,7 @@
 .meta{font-weight:600;font-size:15px;color:var(--mute);margin:0 0 12px}
 .hint{font-size:22px;color:#7b7262;margin:18px 0 0}
 /* black phone frame at the prototype's screen ratio (393x852) */
-.phone{box-sizing:content-box;width:220px;aspect-ratio:453/982;border:10px solid var(--ink);border-radius:36px;background:#e9e1cf;position:relative;overflow:hidden;transform:rotate(1.5deg);box-shadow:6px 8px 0 rgba(0,0,0,.15)}
+.phone{box-sizing:content-box;width:220px;aspect-ratio:453/982;border:10px solid var(--ink);border-radius:36px;background:#e9e1cf;position:relative;overflow:hidden;box-shadow:6px 8px 0 rgba(0,0,0,.15)}
 .phone :global(.ph){position:absolute;left:12px;bottom:12px}
 .play{position:absolute;inset:0;margin:auto;width:max-content;height:max-content}
 /* shortcut: Figma pads the screen inside its embed; at 600x1300 it draws the 453x982 screen at (73,158), measured 2026-10-24. Re-measure if Figma changes its padding. */

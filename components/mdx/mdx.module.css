@@ -2,6 +2,26 @@
 .note>:first-child{margin-top:0}.note>:last-child{margin-bottom:0}
 .callout{background:var(--card);border:2px solid var(--ink);border-left:10px solid var(--blue);padding:16px 20px;margin:28px 0;box-shadow:6px 8px 0 rgba(0,0,0,.12)}
 .callout>:first-child{margin-top:0}.callout>:last-child{margin-bottom:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px;margin:28px 0}
+.grid>aside{margin:0}
+.persona{background:var(--card);border:2px solid var(--ink);padding:16px 20px;margin:20px 0;box-shadow:6px 8px 0 rgba(0,0,0,.12)}
+.who{display:block;font-size:15px;color:var(--mute)}
+.persona blockquote{margin:6px 0 10px;font-size:26px;line-height:1.15}
+.journey{list-style:none;padding:0;background:var(--card);border:2px solid var(--ink)}
+.journey li{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:14px 16px;font-size:16px}
+.journey li+li{border-top:2px solid var(--ink)}
+.journey b{display:block}
+.journey em{display:block;margin-top:6px;color:var(--mute)}
+.proto{display:flex;justify-content:center;margin:32px 0}
+/* breaks out of the prose column so annotations stay readable */
+.wide{--w:min(900px,calc(100vw - 32px));width:var(--w);margin:24px 0 24px calc(50% - var(--w)/2)}
+.wide iframe{display:block;width:100%;height:min(85svh,800px);background:#fff;border:2px solid var(--ink);box-shadow:6px 8px 0 rgba(0,0,0,.12)}
+.wide figcaption{margin-top:12px;font-size:15px;line-height:1.4}
+.screens{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;margin:28px 0}
+.screens figure{margin:0}
+.screens img{display:block;width:100%;height:auto;border:2px solid var(--ink);border-radius:20px;box-shadow:6px 8px 0 rgba(0,0,0,.12)}
+.screens figcaption{margin-top:12px;font-size:15px;line-height:1.4}
+@media (max-width:760px){.journey li{grid-template-columns:1fr;gap:8px}.screens{grid-template-columns:minmax(0,240px);justify-content:center;gap:28px}}
 .polaroid{background:#fff;padding:14px 14px 56px;border:2px solid var(--ink);transform:rotate(-2deg);box-shadow:6px 8px 0 rgba(0,0,0,.12);position:relative;margin:32px auto;max-width:520px}
 .polaroid::before{content:"";position:absolute;width:110px;height:30px;background:rgba(255,216,74,.75);top:-14px;left:50%;margin-left:-55px;transform:rotate(-4deg)}
 .img{position:relative;aspect-ratio:1;background:repeating-linear-gradient(45deg,#e9e1cf 0 12px,#f3ecdc 12px 24px);overflow:hidden}

@@ -23,7 +23,7 @@ test('mobile menu opens and closes', async ({ page }, testInfo) => {
 });
 
 test('axe: home and case study have no violations', async ({ page }) => {
-  for (const path of ['/', '/work/yee-peng-cnx']) {
+  for (const path of ['/', '/work/yee-peng-cnx', '/case-study/roomiematch', '/case-study/accesscampus']) {
     await page.goto(path);
     const { violations } = await new AxeBuilder({ page }).analyze();
     expect(violations, path).toEqual([]);
@@ -31,7 +31,7 @@ test('axe: home and case study have no violations', async ({ page }) => {
 });
 
 test('no horizontal scroll', async ({ page }) => {
-  for (const path of ['/', '/work/the-reborn-gacha']) {
+  for (const path of ['/', '/work/the-reborn-gacha', '/case-study/roomiematch', '/case-study/accesscampus']) {
     await page.goto(path);
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth <= window.innerWidth,

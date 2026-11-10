@@ -1,0 +1,118 @@
+<Grid>
+<StickyNote>
+**Problem**
+
+Maps tell you the way, but not whether you can actually get through it with a wheelchair, crutches or painful knees.
+</StickyNote>
+<StickyNote>
+**What I made**
+
+A campus route planner, Route for Everyone, that shows ramps, lifts and stairs before you leave and lets people report what has changed.
+</StickyNote>
+</Grid>
+
+## The problem
+
+Most map apps assume you can walk any route they suggest. They rarely say whether a route has stairs, a ramp, a working lift or a clear path.
+
+On campus, that information is scattered across building signs and staff who have to be asked. Planning a trip gets harder for the people who most need to plan.
+
+The audience is people with limited mobility on campus: students and university staff.
+
+## What people told me
+
+I talked with students and staff who have mobility limits, and turned what I heard into six personas and empathy maps. Three of them:
+
+<Persona who="2nd-year student who uses a wheelchair" quote="Before I leave my dorm, I want to know which route really reaches my classroom, without running into stairs and turning back." needs="Certainty about the route, and not having to ask for help." />
+
+<Persona who="1st-year student who uses crutches" quote="I can climb stairs, but more than two floors or a long walk wears my legs out. I don't want to be late because I had to rest on the way." needs="Walking times at their own pace, and warnings about slippery or steep ground." />
+
+<Persona who="Housekeeper with knee pain" quote="I can't manage high stairs. A lift or a gentle ramp helps so much." needs="Large, clear text, and live news of which lifts are out of order." />
+
+### What the research showed
+
+I grouped everything into six themes.
+
+1. **Facility information is missing or unclear.** Ramps, lifts, handrails, benches and charging points.
+2. **The path can't be predicted.** Slippery tile in the rain, rough gravel, steep ramps, narrow paths, steps before the lift.
+3. **Information changes and nobody updates it.** Broken lifts are known only by word of mouth.
+4. **Trips cost more time and energy.** One person leaves 20–30 minutes early for every trip.
+5. **People depend on others for information.** They ask staff, colleagues or whoever is nearby.
+6. **The app itself has to be accessible.** Small text and complex apps shut people out.
+
+Themes 1–3 appeared in nearly every persona, so they became the core problem. Themes 4–5 are what those problems cause. Theme 6 applies to every feature.
+
+## One student's journey
+
+A wheelchair user travels from the dorm to an unfamiliar class building.
+
+<Journey steps={[
+  { stage: 'Plan', does: 'Searches for the building.', pain: "Doesn't know which routes are accessible.", chance: 'Start from origin and destination.' },
+  { stage: 'Compare', does: 'Checks the routes.', pain: 'Ramp and lift details are incomplete.', chance: 'Show limits and verified information.' },
+  { stage: 'Travel', does: 'Follows the route.', pain: 'Unexpected obstacles.', chance: 'Clear landmarks and route details.' },
+  { stage: 'Handle problems', does: 'Finds a broken lift or a closed path.', pain: "Doesn't know the alternatives.", chance: 'Offer alternatives that can be confirmed.' },
+  { stage: 'Give feedback', does: 'Reports the problem.', pain: "Doesn't know who to tell.", chance: 'Report with location and track its status.' },
+]} />
+
+## Defining the problem
+
+<Callout>
+People with limited mobility on campus need to know in advance which route will really get them there with their limits that day, because ramp, lift and path information is incomplete, out of date and scattered. So they depend on others, and spend more time and energy than everyone else.
+</Callout>
+
+I wrote five How Might We questions and took two into the MVP:
+
+- **In the MVP:** how might we help people know which route is really accessible for them before they leave?
+- **In the MVP:** how might we keep information about broken lifts and closed paths up to date?
+- How might we make path conditions readable at a glance?
+- How might we offer a backup when the plan fails partway?
+- How might we make reporting and confirming easy, with no long typing?
+
+## Choosing what to build
+
+I sorted the ideas by impact and effort. These are my own estimates.
+
+<Grid>
+<Callout>
+**Quick wins: in the MVP**
+
+- Needs profile that filters routes
+- "Accessible" or "Has limits" labels
+- Icons for ramps, lifts, stairs and benches
+- Lift status with last-updated time
+- Report a problem in 1–2 taps
+- Other users confirm reports
+</Callout>
+<Callout>
+**Big bets: next phase**
+
+- Travel time at each person's pace
+- Step-free entrances and drop-off points
+- Alerts on saved routes
+- Data from the campus facilities team
+</Callout>
+<Callout>
+**Fill-ins: if there's time**
+
+- Photos of key spots
+</Callout>
+<Callout>
+**Not doing**
+
+- AR navigation
+- IoT sensors in lifts
+</Callout>
+</Grid>
+
+### Design principles from theme 6
+
+- Large, resizable text
+- Symbols and colors that read instantly
+- Reporting by tap or voice, with no typing
+- Mobile first
+
+The flow: set your needs once, get routes labeled for you, see lift and path status with update times, and report or confirm a problem in 1–2 taps. Where the information isn't enough, the app says so instead of guessing, and it can't promise more safety than the data supports.
+
+## Try the prototype
+
+<Prototype slug="accesscampus" />
