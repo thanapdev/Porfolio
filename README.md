@@ -26,7 +26,7 @@ Add `content/work/<slug>.mdx`. It starts with this frontmatter. A missing or wro
 | `team` | string | yes | For example "team of 2" or "solo". |
 | `tags` | string[] | yes | 1–3 short uppercase tags. |
 | `summary` | string | yes | Card blurb, at most 2 sentences. |
-| `tldr` | `{problem, did, result}` | yes | Shown as 3 sticky notes. |
+| `tldr` | `{inspiration, made, feel}` | yes | Shown as 3 sticky notes: Inspired by, What I made, What I want you to feel. |
 | `metric` | `{value, label}` | yes | Shown on the home card. |
 | `cover`, `coverAlt` | string | yes | Build fails if `coverAlt` is missing. |
 | `live`, `repo` | URL | no | A button shows only when the URL is present. |

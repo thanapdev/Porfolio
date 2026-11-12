@@ -8,8 +8,9 @@ import Persona from '@/components/mdx/Persona';
 import Journey from '@/components/mdx/Journey';
 import Prototype from '@/components/mdx/Prototype';
 import Screens from '@/components/mdx/Screens';
-import FigmaBoard from '@/components/mdx/FigmaBoard';
+import ZoomBoard from '@/components/mdx/ZoomBoard';
+import Wide from '@/components/mdx/Wide';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
-  return { StickyNote, Polaroid, BeforeAfter, Callout, Grid, Persona, Journey, Prototype, Screens, FigmaBoard, ...components };
+  return { StickyNote, Polaroid, BeforeAfter, Callout, Grid, Persona, Journey, Prototype, Screens, ZoomBoard, Wide, ...components };
 }

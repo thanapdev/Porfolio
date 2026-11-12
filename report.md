@@ -2,14 +2,14 @@
 
 Read this file first when starting a new chat. Update it at the end of every work session.
 
-Last updated: 2026-11-10
+Last updated: 2026-11-12
 
 ## Resume here (next session)
 
-**Last session (2026-11-10):** everything is committed and pushed. The "UX case study" buttons no longer leave for Canva: RoomieMatch and AccessCampus now have their own pages at `/case-study/[slug]`, written from the Canva boards. Three small decisions are still with the owner; see "From the 2026-11-10 case study pages" under Open items. Then continue with "Next work, in order" below.
+**Last session (2026-11-12):** everything is committed and pushed. Case study pages now show user flows in a full-screen zoom viewer pulled straight from Figma (`scripts/figma-zoom.mjs`, token in `~/.figma_token`), AccessCampus has screens and wireframes, the Projects section is "Side Projects" with "Behind the build" pages that tell the inspiration, and The Reborn Gacha page is rewritten with its real first design. Still waiting on the owner: Yee-Peng-CNX's story, the RoomieMatch wireframe frame link, and whether the nav should say "Side Projects". See Open items.
 
 **Where things stand:**
-- The site is built, reviewed and merged into `main`. Everything up to the case study pages (2026-11-10) is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
+- The site is built, reviewed and merged into `main`. Everything up to 2026-11-12 is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
 - Nothing is deployed yet.
 
 **Deploy decision (owner, 2026-10-21):**
@@ -33,7 +33,7 @@ Last updated: 2026-11-10
 - `components/`: UI. `mdx/` holds the MDX components. `Text.tsx` holds the `[bracket]` placeholder helper.
 - `content/work/*.mdx`: the project write-ups behind `/work/[slug]` (frontmatter plus body).
 - `content/case-studies/*.mdx`: the UX case studies behind `/case-study/[slug]`, one per entry in `lib/designs.ts` (body only, no frontmatter).
-- `components/FigmaPhone.tsx`: the black phone with Play, shared by the home cards and the case study pages. `components/mdx/` also holds `Persona`, `Journey`, `Grid`, `Screens`, `Prototype` and `FigmaBoard` for the case studies.
+- `components/FigmaPhone.tsx`: the black phone with Play, shared by the home cards and the case study pages. `components/mdx/` also holds `Persona`, `Journey`, `Grid`, `Screens`, `Prototype`, `ZoomBoard` (preview image that opens a full-screen pan and zoom viewer) for the case studies.
 - `lib/projects.ts`: content loader and validation.
 - `lib/timeline-extra.ts`: timeline rows built from `lib/designs.ts` (Prototype link and UX case study link).
 - `components/Reveal.tsx`: plays the scroll-in animations once (marks `[data-reveal]` elements with `data-shown`; CSS in `app/globals.css`).
@@ -99,8 +99,11 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - Research is real. AccessCampus: the owner interviewed users alone. RoomieMatch: the teammate did the interviews, published research and journey map; the owner did the problem and audience work, wireframes and about 70% of the Figma UI; features were shared. Keep this split accurate.
   - The "What's next" section was removed (owner). The pages no longer say that usability testing has not happened, but do not claim test results: none exist.
   - Page end: "▶ Play prototype ↗" and "Back to home" (goes to `/#design`), then a full-width blue band linking to the next case study, with a back-to-top arrow.
-  - RoomieMatch wireframes are a live Figma design embed (`FigmaBoard`, node `345-1588`, 900px wide, loads with the page, no button). The owner rejected images from PDF exports. A prototype embed of this node shows only a grey screen ("0 / 1"), so do not switch to it.
-- **Phone frame is straight (owner, 2026-11-10).** The 1.5° tilt was removed, and the cover image is requested at `sizes="440px"`, because the cover looked blurry on the owner's 1x external monitor (1920×1080).
+  - RoomieMatch user flow and wireframes use `ZoomBoard` (2026-11-11): an inline preview that opens full screen, with drag, wheel and pinch zoom, +/−, Fit, keyboard (+, −, 0, arrows) and Esc, locked to the image. The inline preview and the viewer both open zoomed on the start of the flow (`start` prop, in full-size px: sign-up at x 223, y 402, 3573 wide; owner, 2026-11-11); Fit shows the whole map. Files: `public/design/roomiematch/user-flow/` (base.png 4000px, preview.png of the start area, and 196 full-size 1024px tiles, about 12 MB), pulled from Figma (node `370-1588`). The viewer loads only the tiles in view, and only once base.png is too coarse. A single big image was tried first and looked broken when zoomed (6000px for a 13400px frame); do not go back to that. Max zoom is 1:1 with the Figma frame. The owner chose this because zooming inside the Figma embed was hard to use. Figma frame for reference: node `370-1588`, on its own page. A prototype embed of the old node showed only a grey screen ("0 / 1"), so do not use one.
+  - AccessCampus has the same viewer for its user flow (node `77-100`, 7860×14052, starts at "1 · Onboarding") and shows its wireframes as one plain image of every screen, no zoom (owner, 2026-11-11; `public/design/accesscampus/wireframes.png`, 2000px, pulled from Figma node `39-2003`), then three screens: needs setup, route results and the broken-lift reroute.
+  - **Everything comes from Figma (owner, 2026-11-11).** `node scripts/figma-zoom.mjs <frame link> <out dir> <startX> <startY> <startW>` asks the Figma API for the frame as a vector PDF, then runs `scripts/zoom-tiles.swift` to make base.png, preview.png and tiles. It reads a personal access token from `~/.figma_token` (outside the repo, read-only file content scope, short expiry). The token is only needed to pull again after a Figma edit; the site never calls Figma. If it has expired, ask the owner for a new one with `pbpaste > ~/.figma_token && chmod 600 ~/.figma_token`. Live Figma design embeds (`FigmaBoard`) were removed: zooming in them was hard to use.
+- **Phone frame is straight (owner, 2026-11-10; confirmed 2026-11-11).** The 1.5° tilt was removed, and the cover image is requested at `sizes="440px"`, because the cover looked blurry on the owner's 1x external monitor (1920×1080). The owner confirmed it is now sharp.
+- **RoomieMatch typos stay (owner, 2026-11-11).** The design will not be edited again, so "Looking of Room mate", "Emma want to Making Contact With you" and "Find your room mate" remain in the screens and the prototype.
 - **Cursor ring (owner, 2026-10-22).** Borrowed from whyramachandran.design (`components/CursorLabel.tsx`).
   - A small, quiet "scroll ✦ scroll ✦" ring in muted grey at 80% opacity spins slowly around the mouse.
   - It has no hover states (owner: no change on hover, not too eye-catching).
@@ -147,19 +150,16 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 
 Placeholders still on the real site. A production build (`VERCEL_ENV=production`) fails until they are gone. Search `className="ph"` and `[` bracket values in `content/work/*.mdx` frontmatter (`tldr.problem`, `tldr.result`, and any bracketed `metric`).
 
-- [ ] The problem and result of each case study (frontmatter `tldr`, plus body sections).
+- [ ] Yee-Peng-CNX "Behind the build" page: needs the owner's inspiration and the feeling they want visitors to get (frontmatter `tldr.inspiration` and `tldr.feel`, plus body sections like The Reborn Gacha's).
 - [ ] Real outcome numbers and the goal, research and caption sections in both MDX bodies.
 - [ ] Real screenshots.
   - Covers: done for both case studies (2026-11-04).
-  - BeforeAfter: replace `public/work/the-reborn-gacha/before.png` and `after.png`, then edit the caption in the MDX.
+  - BeforeAfter: done for The Reborn Gacha (2026-11-12): start screens of the first design (commit `b2e5255` of `thanapdev/The_Reborn_Gacha`, navy and gold night theme) and the current one (bold blue and lime), screenshotted at 1200×900 from each version run locally. The caption says what changed; the owner has not said why, so add the reason if they give one.
 - [ ] Resume PDF. Add `public/resume.pdf`, then change the Resume button label in `components/Contact.tsx`.
 - [ ] Research methods on the back of the "User Research" chip.
 - [ ] Flaky e2e under full-suite load (2026-10-28): `[mobile] carousel.spec.ts › auto-advances every 6 seconds` sometimes sees `data-autoplay="false"` for 5 s (about 2 of 9 full runs after the hover/focus split, 0 of 4 before; passes 15/15 alone; could not reproduce in 10 instrumented runs). Not yet known whether the split caused it. `intro.spec.ts › any key skips the intro` also still flakes under load. Next step: rerun with state logged (`paused/hovered/focused/inView`) until it fails.
 - [ ] From the 2026-11-10 case study pages, waiting on the owner:
-  - Is the straight phone frame OK? It is a one-line change to bring the tilt back in `components/DesignWork.module.css`.
-  - Figma cannot lock a design embed to one frame, so viewers can pan to everything else on that Figma page. Recommended: move frame "roomiematch user flow" to its own Figma page. The only true lock is a custom image viewer on this site. The file must stay viewable by anyone with the link, or the embed breaks.
-  - AccessCampus has no wireframes or screens on its page yet. Ask whether the owner wants the same treatment; it needs a Figma link to the wireframe frame and 3–4 screens.
-- [ ] Typos in the RoomieMatch design, visible on the case study page and in the prototype; fix in Figma, then re-export `public/design/roomiematch/home.png` and `making-contact.png`: "Looking of Room mate" (Looking for a roommate), "Emma want to Making Contact With you" (Emma wants to make contact with you), "Find your room mate".
+  - RoomieMatch wireframes: the owner wants a separate Wireframes section like AccessCampus. Needs the Figma link to that frame; then run `scripts/figma-zoom.mjs` into `public/design/roomiematch/wireframes`, and split the RoomieMatch heading into User flow and Wireframes.
 - [ ] Optional: the case study pages use the site-wide OG image, not one per page.
 - [ ] Optional: roles on the design cards. The RoomieMatch role split is now on its case study page, but the home card does not show it.
 - [ ] Optional, from the Design work review: the double-play and mobile layout tests could be stricter; the "tap around →" arrow points right on mobile where the phone is below; `figmaEmbedUrl` assumes the Figma link already has a `?`.
@@ -234,3 +234,7 @@ Known limits:
 - 2026-11-08: Removed "Looking for a UX/UI design role in 2026, and open to freelance projects now." from About (owner). The site no longer states availability anywhere; Contact could hold a shorter version if the owner wants it back. Home and smoke e2e pass.
 - 2026-11-08: Moved Case Studies above Projects (owner), in the page and the nav. "See my work" now jumps to Case Studies. Lint, typecheck and 73 e2e tests pass.
 - 2026-11-10: Added on-site case study pages for RoomieMatch and AccessCampus, replacing the Canva links on the cards and timeline (`caseStudy` removed from `lib/designs.ts`). Content translated from the Canva boards and the RoomieMatch deck. RoomieMatch also gets the full Journey Map, three prototype screens and a live Figma embed of the user flow and wireframes. Removed "What's next". Next case study is now a full-width band. Phone frame straightened and its cover sharpened for 1x screens. Lint, typecheck, 13 unit tests and 79 e2e tests pass; `intro.spec.ts › any key skips the intro` flaked in some full runs and passed on rerun. The Figma embeds could not be checked by automation (Figma returns 403 to headless browsers); the owner confirmed the design embed renders in a real browser.
+- 2026-11-11: The owner confirmed the straight phone is sharp, and chose to keep the RoomieMatch typos. RoomieMatch's Figma embed now points at the frame the owner moved to its own page (`370-1588`). AccessCampus gained a live Figma embed of its user flow (`77-100`) and three screens from the owner (needs setup, route results, broken-lift reroute). AccessCampus also embeds its wireframes. RoomieMatch's user flow moved from the Figma embed to a new full-screen zoom viewer (`ZoomBoard`), because zooming inside the embed was hard. Lint, typecheck and 81 e2e tests pass. AccessCampus user flow now uses the zoom viewer too (its wireframes stay one plain image, owner's call), and all three boards are pulled straight from Figma with `scripts/figma-zoom.mjs`; the Figma embed component was removed. Lint, typecheck and 81 e2e tests pass.
+- 2026-11-12: Projects section renamed to read as side projects (owner): eyebrow "creative experience", heading "Side Projects" (was "my projects" / "Things I made (and you can click)"). The nav link still says "Projects". The blue card button is now "Behind the build →" (was "View Case Study →"), so it does not clash with the Case Studies section.
+- 2026-11-12: "Behind the build" pages now tell the inspiration and the feeling, not a case study (owner). The sticky notes are Inspired by / What I made / What I want you to feel (frontmatter `tldr` keys `inspiration`, `made`, `feel`). The Reborn Gacha body rewritten from the owner's words: the thrill of a gacha pull plus games with choice-based endings; meant to be funny, with suspense while the result rolls in. Sections: Where it came from, What I wanted you to feel, How it plays, My role, Design. Yee-Peng-CNX waits for the owner's story. Lint, typecheck, 13 unit tests and 80 of 81 e2e pass; `intro.spec.ts` flaked once and passed on rerun.
+- 2026-11-12: The Reborn Gacha Design section now compares the real first design (from the repo history, commit `b2e5255`) with the current one; the owner had not kept it. Caption describes the change only.

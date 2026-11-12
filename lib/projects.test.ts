@@ -18,7 +18,7 @@ const fm = (over: Record<string, string> = {}, drop: string[] = []) => {
     team: 'team: solo',
     tags: 'tags: [WEB, SOLO]',
     summary: 'summary: "A demo."',
-    tldr: 'tldr:\n  problem: "P"\n  did: "D"\n  result: "R"',
+    tldr: 'tldr:\n  inspiration: "I"\n  made: "M"\n  feel: "F"',
     metric: 'metric:\n  value: "3"\n  label: "things"',
     cover: 'cover: /work/demo/cover.png',
     coverAlt: 'coverAlt: "A cover"',
@@ -33,7 +33,7 @@ const fm = (over: Record<string, string> = {}, drop: string[] = []) => {
 
 const proj = (o: Partial<Project> & { slug: string; order: number }): Project => ({
   title: o.slug, year: 2026, role: 'r', team: 't', tags: ['A'], summary: 's',
-  tldr: { problem: 'p', did: 'd', result: 'r' }, metric: { value: '1', label: 'l' },
+  tldr: { inspiration: 'i', made: 'm', feel: 'f' }, metric: { value: '1', label: 'l' },
   cover: '/c.png', coverAlt: 'c', readTime: 1, ...o,
 });
 
@@ -52,7 +52,7 @@ describe('parseProject', () => {
     expect(p).toEqual({
       slug: 'demo', title: 'Demo', year: 2026, role: 'Designer', team: 'solo',
       tags: ['WEB', 'SOLO'], summary: 'A demo.',
-      tldr: { problem: 'P', did: 'D', result: 'R' },
+      tldr: { inspiration: 'I', made: 'M', feel: 'F' },
       metric: { value: '3', label: 'things' },
       cover: '/work/demo/cover.png', coverAlt: 'A cover',
       live: 'https://example.com', repo: 'https://github.com/x/y',

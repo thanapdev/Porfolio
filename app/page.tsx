@@ -17,8 +17,8 @@ export default function Home() {
       <DesignWork />
       <section id="work">
         <div className="wrap">
-          <p className="eyebrow">my projects</p>
-          <h2 className="h2 disp">Things I made<br />(and you can click)</h2>
+          <p className="eyebrow">creative experience</p>
+          <h2 className="h2 disp">Side Projects</h2>
           <Carousel label="Projects">
             {projects.map((p, i) => <ProjectCard key={p.slug} project={p} index={i} />)}
           </Carousel>

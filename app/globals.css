@@ -1,6 +1,7 @@
 *,*::before,*::after{box-sizing:border-box}
 :root{--paper:#f5efe2;--card:#fffdf7;--ink:#1d1a16;--mute:#5a5245;--red:#e8492f;--blue:#2f5be8;--yel:#ffd84a;--grn:#3fae6a;--pink:#ffc6dc;--sky:#cfe0ff}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
+html:has(dialog[open]){overflow:hidden}
 body{margin:0;background:var(--paper) radial-gradient(#d8cfbd 1.2px,transparent 1.4px) 0 0/22px 22px;color:var(--ink);font:17px/1.55 var(--font-body),var(--font-thai),system-ui,sans-serif;overflow-x:hidden}
 a{color:inherit}
 button{font:inherit;cursor:pointer;color:inherit}

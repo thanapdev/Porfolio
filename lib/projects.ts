@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 export type Project = {
   slug: string; title: string; year: number; role: string; team: string;
   tags: string[]; summary: string;
-  tldr: { problem: string; did: string; result: string };
+  tldr: { inspiration: string; made: string; feel: string };
   metric: { value: string; label: string };
   cover: string; coverAlt: string; live?: string; repo?: string;
   order: number; readTime: number; // minutes
@@ -32,7 +32,7 @@ export function parseProject(slug: string, source: string): Project {
   for (const f of ['title', 'role', 'team', 'summary', 'cover', 'coverAlt']) if (!str(d[f])) fail(f);
   for (const f of ['year', 'order']) if (!num(d[f])) fail(f);
   if (!Array.isArray(d.tags) || d.tags.length < 1 || !d.tags.every(str)) fail('tags');
-  if (!obj(d.tldr) || !str(d.tldr.problem) || !str(d.tldr.did) || !str(d.tldr.result)) fail('tldr');
+  if (!obj(d.tldr) || !str(d.tldr.inspiration) || !str(d.tldr.made) || !str(d.tldr.feel)) fail('tldr');
   if (!obj(d.metric) || !str(d.metric.value) || !str(d.metric.label)) fail('metric');
   for (const f of ['live', 'repo']) if (d[f] !== undefined && !str(d[f])) fail(f);
 

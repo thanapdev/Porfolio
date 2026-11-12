@@ -32,7 +32,7 @@ export default function ProjectCard({ project: p, index }: { project: Project; i
           <span className="hand"><Text value={p.metric.label} /></span>
         </div>
         <div className="btns">
-          <Link className="btn blue" href={`/work/${p.slug}`}>View Case Study →</Link>
+          <Link className="btn blue" href={`/work/${p.slug}`}>Behind the build →</Link>
           {projectLinks(p).map((l) => (
             <a key={l.label} className="btn" href={l.href} target="_blank" rel="noopener">{l.label} ↗</a>
           ))}

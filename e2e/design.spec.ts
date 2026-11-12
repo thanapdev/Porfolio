@@ -34,11 +34,37 @@ test('case study button opens the page on this site', async ({ page }) => {
   await expect(page.locator('article footer').getByRole('link', { name: 'Back to home' })).toHaveAttribute('href', '/#design');
 });
 
-test('wireframe board embeds the Figma user flow', async ({ page }) => {
+test('user flow opens full screen and zooms', async ({ page }) => {
   await page.goto('/case-study/roomiematch');
-  const frame = page.locator('iframe[title^="RoomieMatch user flow"]');
-  await expect(frame).toHaveAttribute('src', /^https:\/\/embed\.figma\.com\/design\/XflnePuAHp00z4TEDtzwJx\/.*node-id=345-1588.*embed-host=portfolio/);
-  await expect(page.getByRole('button', { name: 'Zoom in with Figma' })).toHaveCount(0);
+  const viewer = page.getByRole('dialog', { name: 'RoomieMatch user flow and wireframes' });
+  const layer = viewer.getByTestId('zoom-layer');
+  // retry until the client component has hydrated and opens the dialog
+  await expect(async () => {
+    await page.getByRole('button', { name: /Zoom in on RoomieMatch user flow/ }).click();
+    await expect(viewer).toBeVisible({ timeout: 500 });
+  }).toPass();
+  await expect(layer.locator('img').first()).toHaveAttribute('src', '/design/roomiematch/user-flow/base.png');
+  const scale = async () => Number((await layer.getAttribute('style'))!.match(/scale\(([\d.]+)\)/)![1]);
+  // opens zoomed in on the start of the flow, not the whole map
+  const first = await scale();
+  await viewer.getByRole('button', { name: 'Zoom in' }).click();
+  await expect.poll(scale).toBeGreaterThan(first);
+  // zoomed in far enough, sharp full-size tiles load on top of the base image
+  for (let i = 0; i < 8; i++) await viewer.getByRole('button', { name: 'Zoom in' }).click();
+  await expect(layer.locator('img[src*="/tiles/"]').first()).toBeAttached();
+  await viewer.getByRole('button', { name: 'Fit' }).click();
+  await expect.poll(scale).toBeLessThan(first);
+  await page.keyboard.press('Escape');
+  await expect(viewer).toBeHidden();
+});
+
+test('AccessCampus shows its user flow in the zoom viewer and all wireframes at once', async ({ page }) => {
+  await page.goto('/case-study/accesscampus');
+  await expect(page.getByRole('button', { name: 'Zoom in on AccessCampus user flow' }).locator('img')).toHaveAttribute('src', '/design/accesscampus/user-flow/preview.png');
+  // wireframes are one plain image showing every screen, with no zoom viewer
+  await expect(page.getByRole('img', { name: /low-fidelity wireframes of 21 screens/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Zoom in on AccessCampus wireframes/ })).toHaveCount(0);
+  await expect(page.locator('iframe')).toHaveCount(0); // no Figma embeds load with the page
 });
 
 test('unknown case study is 404', async ({ page }) => {

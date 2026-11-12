@@ -6,9 +6,9 @@ test('case study renders header and tldr', async ({ page }) => {
   await expect(page.getByText('Experience Designer ·')).toBeVisible();
   const notes = page.getByTestId('tldr-note');
   await expect(notes).toHaveCount(3);
-  await expect(notes.nth(0)).toContainText('Problem');
-  await expect(notes.nth(1)).toContainText('What I did');
-  await expect(notes.nth(2)).toContainText('Result');
+  await expect(notes.nth(0)).toContainText('Inspired by');
+  await expect(notes.nth(1)).toContainText('What I made');
+  await expect(notes.nth(2)).toContainText('What I want you to feel');
 });
 
 test('next project wraps', async ({ page }) => {

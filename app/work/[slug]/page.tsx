@@ -25,9 +25,9 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
   const next = nextProject(slug, projects);
   const { default: Body } = await import(`@/content/work/${slug}.mdx`);
   const notes = [
-    ['Problem', p.tldr.problem],
-    ['What I did', p.tldr.did],
-    ['Result', p.tldr.result],
+    ['Inspired by', p.tldr.inspiration],
+    ['What I made', p.tldr.made],
+    ['What I want you to feel', p.tldr.feel],
   ] as const;
 
   return (

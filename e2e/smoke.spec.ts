@@ -42,7 +42,7 @@ test('no horizontal scroll', async ({ page }) => {
 
 test('journey: home to case study and back', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('link', { name: /View Case Study/ }).first().click();
+  await page.getByRole('link', { name: /Behind the build/ }).first().click();
   await expect(page).toHaveURL(/\/work\//);
   await page.getByRole('link', { name: /Back to all work/ }).first().click();
   await expect(page).toHaveURL(/\/#work$/);
