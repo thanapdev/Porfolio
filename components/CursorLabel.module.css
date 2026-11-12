@@ -3,5 +3,6 @@
 .on .ring{opacity:.8}
 .text{font:600 12px var(--font-toy),sans-serif;text-transform:uppercase;letter-spacing:.1em;fill:var(--mute)}
 .star{fill:var(--mute)}
-@media (prefers-reduced-motion:no-preference){.ring text{animation:spin 14s linear infinite;transform-origin:60px 60px}}
+/* spin the whole svg, not the text inside it, so the compositor turns it without repainting; only while it is shown */
+@media (prefers-reduced-motion:no-preference){.on .ring{animation:spin 14s linear infinite}}
 @keyframes spin{to{transform:rotate(360deg)}}

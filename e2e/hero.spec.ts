@@ -1,16 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test('code switch renames hero', async ({ page }) => {
+test('hero has the sketch sticker instead of the control panel', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('switch', { name: 'Code mode' }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveAttribute('aria-label', '<Thanapong />');
-  await expect(page.getByRole('switch', { name: 'Code mode' })).toHaveAttribute('aria-checked', 'true');
-  // "<Thanapong />" stays on one line and fits the viewport
-  const tops = await page.locator('h1 span[aria-hidden="true"]').evaluateAll((els) =>
-    els.map((el) => Math.round(el.getBoundingClientRect().top / 20)),
-  );
-  expect(new Set(tops).size).toBe(1);
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAttribute('aria-label', 'Thanapong Yamkamol');
+  await expect(page.getByRole('button', { name: /wireframe that turns into a finished screen/ })).toBeVisible();
+  await expect(page.getByRole('switch')).toHaveCount(0);
+  await expect(page.locator('#boom')).toHaveCount(0);
 });
 
 test('sticker stays in zone', async ({ page }) => {
@@ -42,16 +37,6 @@ test('sticker moves with arrow keys', async ({ page }) => {
   await st.focus();
   await page.keyboard.press('ArrowLeft');
   expect(await left()).toBeCloseTo(before - 12, 1);
-});
-
-test('reduced motion: no confetti', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await page.goto('/');
-  const btn = page.locator('#boom');
-  await expect(btn).toHaveText("Don't press");
-  await btn.click();
-  await expect(page.locator('.confetti')).toHaveCount(0);
-  await expect(btn).not.toHaveText("Don't press");
 });
 
 test('sticker re-clamps when the viewport shrinks', async ({ page }, testInfo) => {

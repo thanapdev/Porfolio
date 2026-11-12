@@ -11,9 +11,6 @@ export type Project = {
   order: number; readTime: number; // minutes
 };
 
-/** `year` sorts; `yearLabel` is shown instead when set (e.g. a span like 2024–2025). */
-export type TimelineRow = { title: string; year: number; yearLabel?: string; role: string; links: { href: string; label: string }[] };
-
 const str = (v: unknown): v is string => typeof v === 'string' && v.trim() !== '';
 const num = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
 const obj = (v: unknown): v is Record<string, unknown> =>
@@ -63,15 +60,6 @@ export function getProject(slug: string): Project | undefined {
 export function nextProject(slug: string, projects: Project[]): Project {
   const i = projects.findIndex((p) => p.slug === slug);
   return projects[(i + 1) % projects.length];
-}
-
-export function getTimeline(projects: Project[], extra: TimelineRow[]): TimelineRow[] {
-  const rows: TimelineRow[] = projects.map((p) => ({
-    title: p.title, year: p.year, role: p.role,
-    links: p.live ? [{ href: p.live, label: p.tags.includes('GAME') ? 'Play ↗' : 'Live ↗' }] : [],
-  }));
-  // extra rows go first, so within a year they sit above the case studies (Array.sort is stable)
-  return [...extra, ...rows].sort((a, b) => b.year - a.year);
 }
 
 export function projectLinks(p: Project): { label: string; href: string }[] {

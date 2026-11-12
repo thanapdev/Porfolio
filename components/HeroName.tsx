@@ -7,19 +7,14 @@ const COLORS = ['#e8492f', '#2f5be8', '#3fae6a', '#d9a912'];
 const tilt = (i: number) => (((i * 37 + 11) % 141) / 10 - 7).toFixed(1);
 const lift = (i: number) => (((i * 53 + 5) % 181) / 10 - 9).toFixed(1);
 
-type Props = { name: string; codeMode: boolean; play: number };
-
-export default function HeroName({ name, codeMode, play }: Props) {
+export default function HeroName({ name }: { name: string }) {
   const [popped, setPopped] = useState<number | null>(null);
-  const text = codeMode ? `<${name.split(' ')[0]} />` : name;
-  // code mode keeps "<Name />" as one unbreakable word so "/>" never wraps alone
-  const words = codeMode ? [text.replace(' ', '\u00A0')] : text.split(' ');
+  const words = name.split(' ');
   let i = 0;
   return (
     <h1
-      className={`${styles.name} disp ${codeMode ? styles.codeName : ''}`}
-      aria-label={text}
-      style={{ '--play': play } as React.CSSProperties}
+      className={`${styles.name} disp`}
+      aria-label={name}
     >
       {words.map((word, w) => (
         <span key={w}>

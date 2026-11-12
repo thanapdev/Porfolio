@@ -1,13 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import {
   getProjects,
-  getTimeline,
   nextProject,
   parseProject,
   projectLinks,
   readTime,
   type Project,
-  type TimelineRow,
 } from './projects';
 
 const fm = (over: Record<string, string> = {}, drop: string[] = []) => {
@@ -77,37 +75,6 @@ describe('nextProject', () => {
     const b = proj({ slug: 'b', order: 2 });
     expect(nextProject('a', [a, b])).toBe(b);
     expect(nextProject('b', [a, b])).toBe(a);
-  });
-});
-
-describe('getTimeline', () => {
-  it('sorts by year desc and keeps order within a year', () => {
-    const extra: TimelineRow[] = [
-      { title: 'Old', year: 2023, role: 'r', links: [] },
-      { title: 'Mid1', year: 2025, role: 'r', links: [] },
-      { title: 'Mid2', year: 2025, role: 'r', links: [] },
-    ];
-    const rows = getTimeline([proj({ slug: 'a', title: 'New', order: 1 })], extra);
-    expect(rows.map((r) => r.title)).toEqual(['New', 'Mid1', 'Mid2', 'Old']);
-  });
-
-  it('puts extra rows above projects of the same year', () => {
-    const rows = getTimeline([proj({ slug: 'a', title: 'Case', order: 1 })], [{ title: 'Design', year: 2026, role: 'r', links: [] }]);
-    expect(rows.map((r) => r.title)).toEqual(['Design', 'Case']);
-  });
-
-  it('maps projects to rows with Play for games, Live otherwise', () => {
-    const rows = getTimeline(
-      [
-        proj({ slug: 'a', title: 'Web', order: 1, role: 'Designer', live: 'https://w' }),
-        proj({ slug: 'b', title: 'Game', order: 2, tags: ['GAME', 'WEB'], live: 'https://g' }),
-      ],
-      [],
-    );
-    expect(rows).toEqual([
-      { title: 'Web', year: 2026, role: 'Designer', links: [{ href: 'https://w', label: 'Live ↗' }] },
-      { title: 'Game', year: 2026, role: 'r', links: [{ href: 'https://g', label: 'Play ↗' }] },
-    ]);
   });
 });
 

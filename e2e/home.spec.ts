@@ -7,24 +7,15 @@ test('home shows both case studies', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'The Reborn Gacha' })).toBeVisible();
 });
 
-test('skill chip flips', async ({ page }) => {
+test('skills are plain labels, not buttons', async ({ page }) => {
   await page.goto('/');
-  const chip = page.getByRole('button', { name: /User Research/ });
-  await chip.click();
-  await expect(chip).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('list', { name: 'Skills' }).getByRole('listitem')).toHaveCount(6);
+  await expect(page.getByRole('button', { name: /User Research/ })).toHaveCount(0);
+  await expect(page.locator('#timeline')).toHaveCount(0);
 });
 
-test('timeline lists every project, newest first', async ({ page }) => {
+test('Work covers have no placeholders', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('#timeline tbody tr td:first-child')).toHaveText(['AccessCampus', 'The Reborn Gacha', 'Yee-Peng-CNX', 'RoomieMatch']);
-  const roomie = page.locator('#timeline tbody tr').last();
-  await expect(roomie.locator('td[data-l=year]')).toHaveText('2024–2025');
-  await expect(roomie.locator('td[data-l=link] a')).toHaveText(['Prototype ↗', 'UX case study']);
-});
-
-test('timeline roles and Work covers have no placeholders', async ({ page }) => {
-  await page.goto('/');
-  await expect(page.locator('#timeline tbody td[data-l=role] .ph')).toHaveCount(0);
   // both Work cards have real covers now
   await expect(page.locator('#work .ph', { hasText: '[real screenshot]' })).toHaveCount(0);
 });
@@ -48,12 +39,9 @@ test('cursor ring appears with the mouse', async ({ page }, testInfo) => {
   await expect(ring).toContainText('scroll');
 });
 
-test('timeline rows and cards reveal on scroll', async ({ page }) => {
+test('cards reveal on scroll', async ({ page }) => {
   await page.goto('/');
-  const card = page.locator('#timeline tbody tr').first();
   await expect(page.locator('html')).toHaveClass(/reveal/);
-  await card.scrollIntoViewIfNeeded();
-  await expect(card).toHaveCSS('opacity', '1');
   await page.locator('#work').scrollIntoViewIfNeeded();
   await expect(page.locator('#work article').first()).toHaveCSS('opacity', '1');
 });
@@ -62,6 +50,6 @@ test('reduced motion hides nothing', async ({ browser }) => {
   const page = await browser.newPage({ reducedMotion: 'reduce' });
   await page.goto('/');
   await expect(page.locator('html')).not.toHaveClass(/reveal/);
-  await expect(page.locator('#timeline tbody tr').last()).toHaveCSS('opacity', '1');
+  await expect(page.locator('#work article').last()).toHaveCSS('opacity', '1');
   await page.close();
 });

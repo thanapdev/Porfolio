@@ -1,7 +1,6 @@
 import Hero from '@/components/Hero';
 import ProjectCard from '@/components/ProjectCard';
 import About from '@/components/About';
-import Timeline from '@/components/Timeline';
 import DesignWork from '@/components/DesignWork';
 import Carousel from '@/components/Carousel';
 import Contact from '@/components/Contact';
@@ -24,7 +23,6 @@ export default function Home() {
           </Carousel>
         </div>
       </section>
-      <Timeline />
       <About />
       <Contact />
     </>

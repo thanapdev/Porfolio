@@ -6,7 +6,7 @@ Last updated: 2026-11-12
 
 ## Resume here (next session)
 
-**Last session (2026-11-12):** everything is committed and pushed. Case study pages now show user flows in a full-screen zoom viewer pulled straight from Figma (`scripts/figma-zoom.mjs`, token in `~/.figma_token`), AccessCampus has screens and wireframes, the Projects section is "Side Projects" with "Behind the build" pages that tell the inspiration, and The Reborn Gacha page is rewritten with its real first design. Still waiting on the owner: Yee-Peng-CNX's story, the RoomieMatch wireframe frame link, and whether the nav should say "Side Projects". See Open items.
+**Last session (2026-11-12):** everything is committed and pushed. Since the last push: Yee-Peng-CNX "Behind the build" written from the owner's story; the Project timeline and the flipping skill chips removed; the hero control panel replaced by a wireframe-to-UI sketch card; and a smoothness pass (no always-on animation repaints any more). Still waiting on the owner: the RoomieMatch wireframe frame link, whether the nav should say "Side Projects", and why the Reborn Gacha theme changed (optional). See Open items.
 
 **Where things stand:**
 - The site is built, reviewed and merged into `main`. Everything up to 2026-11-12 is in `main` and pushed. Run `git log --oneline -5` for the latest commits.
@@ -35,7 +35,6 @@ Last updated: 2026-11-12
 - `content/case-studies/*.mdx`: the UX case studies behind `/case-study/[slug]`, one per entry in `lib/designs.ts` (body only, no frontmatter).
 - `components/FigmaPhone.tsx`: the black phone with Play, shared by the home cards and the case study pages. `components/mdx/` also holds `Persona`, `Journey`, `Grid`, `Screens`, `Prototype`, `ZoomBoard` (preview image that opens a full-screen pan and zoom viewer) for the case studies.
 - `lib/projects.ts`: content loader and validation.
-- `lib/timeline-extra.ts`: timeline rows built from `lib/designs.ts` (Prototype link and UX case study link).
 - `components/Reveal.tsx`: plays the scroll-in animations once (marks `[data-reveal]` elements with `data-shown`; CSS in `app/globals.css`).
 - `lib/designs.ts`: Figma design pieces for the Design work section, plus `figmaEmbedUrl`.
 - `scripts/check-placeholders.mjs`: the placeholder guard.
@@ -68,7 +67,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 - **Direction A chosen: "Sticker/Collage base + Toy UI parts".** Owner liked directions 2 and 3 and dropped 1 (Arcade/Gacha).
   - Base: paper background with dot grid, big Bricolage Grotesque heading, Caveat handwriting, taped cards, sticky notes.
   - From Toy UI: chunky 3D buttons (`box-shadow: 0 6px 0 ink`, press moves down), the Design/Code switch, the Wobble slider, and the "Don't press" confetti button.
-  - The toy controls live in a draggable "control panel" sticker in the hero. It drags by its pink grip only, so its controls stay clickable.
+  - The hero's right side holds draggable stickers and, since 2026-11-12, a sketch card (`components/SketchToUI.tsx`, no caption; owner removed "sketch → ship"): a CSS-only 7 s loop where a wireframe draws itself and fills in as UI. It replaced the control panel (Design/Code switch, Wobble slider, "Don't press" confetti), which the owner removed. Under reduced motion the card shows the finished UI.
 - **Fonts:** Bricolage Grotesque (display), Space Grotesk (body), Caveat (handwriting), Fredoka (buttons), Noto Sans Thai (Thai fallback).
 - **Colors:** paper `#f5efe2`, ink `#1d1a16`, red `#e8492f`, blue `#2f5be8`, yellow `#ffd84a`, green `#3fae6a`.
 - **Red with white text uses `#c93a22`, not the mockup's `#e8492f`.** This applies to `.btn.red` and the HELLO sticker. White text needs 4.5:1 contrast; `#e8492f` gives 3.87:1.
@@ -76,17 +75,17 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
 - **Placeholder style:** missing data is shown with class `.ph` (yellow background, red dashed outline). It must be easy to see and replace.
 - **Accessibility kept in the mockup and must carry into the real site:**
   - Stickers move with arrow keys.
-  - The switch uses `role="switch"`.
-  - Skill chips use `aria-pressed`.
+  - Every sticker, including the sketch card, is a focusable button whose label includes its visible text (axe checks this).
+  - Skill chips are plain list items, not buttons (2026-11-12).
   - `prefers-reduced-motion` turns animation off.
   - Touch targets are at least 44px.
-  - The timeline table turns into a stacked list on mobile.
 - **Yee-Peng-CNX role follows the repo README** (owner's decision, 2026-10-21): Experience Designer, covering UX/UI design and the cinematic look. Do not claim dev work on this project. Wiriya Thepbangchag is credited as Lead Developer.
 - **Work cards stay as built (owner, 2026-10-22).** Compared in `mockup-work-styles.html`:
   - A: sticker cards with Ram-style fields (CASE STUDY 01, outcome subtitle, skill tags, stat notes).
   - B: a full editorial restyle.
   - The owner kept the current design. Do not restyle the cards or the site toward whyramachandran.design or gloriaha.com.
 - **Section order (owner, 2026-10-23; Design added 2026-10-24; Case Studies moved first 2026-11-08):** Hero → Case Studies (`#design`) → Projects (`#work`) → Timeline → About → Contact. The nav order matches: logo "THANAPONG", then Case Studies, Projects, Timeline, About, Contact. The hero "See my work" button jumps to `#design`, the first section.
+  - Since 2026-11-12: Hero → Case Studies → Side Projects (`#work`) → About → Contact. Nav: Case Studies, Projects, About, Contact. The skill chips under About no longer flip (owner); their tool lists on the back were dropped with it.
 - **Design work section (owner, 2026-10-24).** GitHub builds (Work) and Figma designs are separate groups. Heading changed to "Case Studies" (eyebrow "made in figma") on 2026-11-04, because every piece will have a case study.
   - Spec: `docs/superpowers/specs/2026-10-24-figma-design-work-design.md`. Approved look: `mockup-design-work.html`.
   - Each piece is a card with a black phone frame. Nothing from Figma loads until Play is clicked. Then the Figma embed shows inside the phone, and focus moves into it.
@@ -121,7 +120,7 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - It shows once per browser session (session cookie `intro=1`). It never shows under reduced motion or without JavaScript.
   - Any key, click or tap skips it.
   - Playwright gives every test the `intro=1` cookie in `playwright.config.ts`. `e2e/intro.spec.ts` starts without it.
-- **Scroll animations (owner, 2026-11-08).** Kept: cards rise in and their tape sticks on; timeline rows stagger in. Rejected by the owner: a handwriting reveal on eyebrows and a count-up on card metrics. Each plays once. Nothing is hidden without JavaScript or under reduced motion. Hide with `opacity`, not `clip-path`: IntersectionObserver never reports a fully clipped element as visible.
+- **Scroll animations (owner, 2026-11-08).** Kept: cards rise in and their tape sticks on. (Timeline rows also staggered in until the timeline was removed on 2026-11-12.) Rejected by the owner: a handwriting reveal on eyebrows and a count-up on card metrics. Each plays once. Nothing is hidden without JavaScript or under reduced motion. Hide with `opacity`, not `clip-path`: IntersectionObserver never reports a fully clipped element as visible.
 - **Real-site decisions (2026-10-21):** Next.js App Router, MDX content in the repo, CSS Modules (no Tailwind), English only, full case-study pages, static on Vercel. Details are in the spec.
 
 ## Data sources
@@ -143,20 +142,18 @@ A personal portfolio site for Thanapong Yamkamol (GitHub `thanapdev`), a student
   - Links: https://the-reborn-gacha.vercel.app and repo `thanapdev/The_Reborn_Gacha`.
   - Solo project, built with Vite + TypeScript + Vitest.
   - Game content: 7 deaths, 13 roles plus 1 secret role, and a 1080×1920 share card.
-- **Timeline (owner, 2026-11-04):** newest first: AccessCampus (2026), The Reborn Gacha (2026), Yee-Peng-CNX (2026), RoomieMatch (2024–2025). QueueApp and TiguS were removed (owner: not used). Within a year, Figma designs sort above case studies; The Reborn Gacha is above Yee-Peng-CNX via frontmatter `order` (Reborn 1, Yee-Peng 2), which also puts it first in the Work carousel. Design roles "UX/UI Designer" (RoomieMatch adds "team of 2") were written by Claude from the Canva boards; confirm if the owner wants different wording.
+- **No timeline (owner, 2026-11-12).** The Project timeline section and its nav link were removed. Before that it listed all four projects newest first (2026-11-04). Design roles "UX/UI Designer" (RoomieMatch adds "team of 2") had been written by Claude from the Canva boards; they no longer appear anywhere.
 - **Tools:** Figma, Photoshop, Canva, HTML/CSS/JS/TS, Vue, Tailwind, Node, Swift, Java. The owner is also a HoYoverse game player.
 
 ## Open items
 
 Placeholders still on the real site. A production build (`VERCEL_ENV=production`) fails until they are gone. Search `className="ph"` and `[` bracket values in `content/work/*.mdx` frontmatter (`tldr.problem`, `tldr.result`, and any bracketed `metric`).
 
-- [ ] Yee-Peng-CNX "Behind the build" page: needs the owner's inspiration and the feeling they want visitors to get (frontmatter `tldr.inspiration` and `tldr.feel`, plus body sections like The Reborn Gacha's).
 - [ ] Real outcome numbers and the goal, research and caption sections in both MDX bodies.
 - [ ] Real screenshots.
   - Covers: done for both case studies (2026-11-04).
   - BeforeAfter: done for The Reborn Gacha (2026-11-12): start screens of the first design (commit `b2e5255` of `thanapdev/The_Reborn_Gacha`, navy and gold night theme) and the current one (bold blue and lime), screenshotted at 1200×900 from each version run locally. The caption says what changed; the owner has not said why, so add the reason if they give one.
 - [ ] Resume PDF. Add `public/resume.pdf`, then change the Resume button label in `components/Contact.tsx`.
-- [ ] Research methods on the back of the "User Research" chip.
 - [ ] Flaky e2e under full-suite load (2026-10-28): `[mobile] carousel.spec.ts › auto-advances every 6 seconds` sometimes sees `data-autoplay="false"` for 5 s (about 2 of 9 full runs after the hover/focus split, 0 of 4 before; passes 15/15 alone; could not reproduce in 10 instrumented runs). Not yet known whether the split caused it. `intro.spec.ts › any key skips the intro` also still flakes under load. Next step: rerun with state logged (`paused/hovered/focused/inView`) until it fails.
 - [ ] From the 2026-11-10 case study pages, waiting on the owner:
   - RoomieMatch wireframes: the owner wants a separate Wireframes section like AccessCampus. Needs the Figma link to that frame; then run `scripts/figma-zoom.mjs` into `public/design/roomiematch/wireframes`, and split the RoomieMatch heading into User flow and Wireframes.
@@ -238,3 +235,7 @@ Known limits:
 - 2026-11-12: Projects section renamed to read as side projects (owner): eyebrow "creative experience", heading "Side Projects" (was "my projects" / "Things I made (and you can click)"). The nav link still says "Projects". The blue card button is now "Behind the build →" (was "View Case Study →"), so it does not clash with the Case Studies section.
 - 2026-11-12: "Behind the build" pages now tell the inspiration and the feeling, not a case study (owner). The sticky notes are Inspired by / What I made / What I want you to feel (frontmatter `tldr` keys `inspiration`, `made`, `feel`). The Reborn Gacha body rewritten from the owner's words: the thrill of a gacha pull plus games with choice-based endings; meant to be funny, with suspense while the result rolls in. Sections: Where it came from, What I wanted you to feel, How it plays, My role, Design. Yee-Peng-CNX waits for the owner's story. Lint, typecheck, 13 unit tests and 80 of 81 e2e pass; `intro.spec.ts` flaked once and passed on rerun.
 - 2026-11-12: The Reborn Gacha Design section now compares the real first design (from the repo history, commit `b2e5255`) with the current one; the owner had not kept it. Caption describes the change only.
+- 2026-11-12: Yee-Peng-CNX "Behind the build" rewritten from the owner's words: about three years living in Chiang Mai, precious memories they wanted to share with every visitor, and a chance to build it with a teammate. Problem / Process / Outcome placeholders removed; no specific memories were added beyond what the owner said.
+- 2026-11-12: Removed the Project timeline section, its nav link and its code (`components/Timeline.tsx`, `lib/timeline-extra.ts`, `getTimeline`). The About skill chips are now plain labels, no flip and no hint (owner). Lint, typecheck, 10 unit tests and 79 e2e tests pass.
+- 2026-11-12: Removed the hero control panel (Design/Code switch, Wobble, Don't press confetti) and the code mode it drove. Added a sketch card sticker in its place: a wireframe that draws itself, then fills in as a finished screen, on a loop (owner chose it from three ideas). Lint, typecheck, 10 unit tests and the full e2e suite pass.
+- 2026-11-12: Smoothness pass (owner asked for 60–120 fps). Measured on a production build: scrolling every page holds 60 fps in the test browser (its cap) with about 2 ms of main-thread work per frame, inside a 120 Hz budget. The only constant work was two always-on animations repainting every frame: the cursor ring (spun the SVG text, even while hidden) and the hero sketch card (even when scrolled away). The ring now spins the whole SVG on the compositor and only while shown; the sketch card was rebuilt to animate only transform and opacity (a paper cover slides down over the wireframe, then the finished UI fades in), so it never repaints either. Idle repaints went from about 160 per second to 0, and the owner said scrolling felt smooth again. Do not animate SVG strokes, dash offsets or fills on always-running loops here. The test browser still shows one 50–67 ms frame in some scroll runs while any endless animation runs; it uses software compositing, so this may not happen on a real GPU. GPU compositing (for example the nav's backdrop blur) could not be measured here; switching it off made no difference to paint or raster time.
